@@ -67,4 +67,4 @@ jobs:
           name: failure-analysis
           path: allure-analysis/
           if-no-files-found: ignore
-          retention-days: 5
+          retention-days: 1

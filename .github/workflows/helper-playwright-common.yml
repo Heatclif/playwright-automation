@@ -1,6 +1,6 @@
 name: Playwright Common (helper workflow)
 
-# Reusable workflow: checkout, set up Node, run tests for one tag, upload the Allure report.
+# Reusable workflow: checkout, set up Node, run tests for one tag, upload the raw Allure results.
 on:
   workflow_call:
     inputs:
@@ -43,18 +43,5 @@ jobs:
         with:
           name: allure-results_${{ inputs.tag }}
           path: allure-results/
-          retention-days: 1
-          if-no-files-found: warn
-
-      - name: Generate Allure report
-        if: ${{ !cancelled() }}
-        run: npx allure generate allure-results --clean -o allure-report
-
-      - name: Upload Allure report
-        if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report_${{ inputs.tag }}
-          path: allure-report/
           retention-days: 1
           if-no-files-found: warn

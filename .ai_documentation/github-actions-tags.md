@@ -8,9 +8,14 @@ uploads its own Allure results, and a final job merges them all into one report 
 | File | Role |
 | --- | --- |
 | `.github/workflows/regression.yml` | Entry point. Triggers (cron `30 3 * * 1-5` = 09:00 IST Mon-Fri, `workflow_dispatch`). Holds the `matrix.tag` list. |
-| `.github/workflows/helper-playwright-common.yml` | Reusable. Checkout, Node, `npm ci`, install browser, run tests for one tag, upload `allure-results_<tag>` and `allure-report_<tag>`. |
+| `.github/workflows/helper-playwright-common.yml` | Reusable. Checkout, Node, `npm ci`, install browser, run tests for one tag, upload `allure-results_<tag>` only (no per-tag report). |
 | `.github/workflows/helper-post-gh-page.yml` | Reusable. Downloads every `allure-results_*`, restores history from gh-pages, generates the combined report, uploads it and publishes to gh-pages. |
 | `.github/workflows/helper-claude-analysis.yml` | Reusable, optional. Checks out gh-pages into `allure-report_combined`, starts Claude Code with the `allure-report` MCP allowed, runs the `failure-analysis` skill and prints the tables in the job log and summary. |
+
+### Artifact retention
+
+Only the combined report is uploaded as a report (`allure-report_combined`, **5 days**). Per-tag jobs upload just
+`allure-results_<tag>` and other artifacts (e.g. `failure-analysis`) use **1 day**. Keep it that way when editing workflows.
 
 ### Optional Claude analysis
 
