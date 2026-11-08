@@ -11,7 +11,6 @@ on:
         type: boolean
         default: true
 
-# Only one run may rewrite gh-pages at a time, otherwise history can be lost.
 concurrency:
   group: allure-gh-pages
   cancel-in-progress: false
@@ -24,7 +23,6 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
@@ -40,7 +38,6 @@ jobs:
           path: allure-results
           merge-multiple: true
 
-      # First run: the branch doesn't exist yet, so this step is allowed to fail.
       - name: Pull previous report from gh-pages
         continue-on-error: true
         uses: actions/checkout@v4
@@ -66,7 +63,7 @@ jobs:
         with:
           name: allure-report_combined
           path: allure-report/
-          retention-days: 30
+          retention-days: 5
 
       - name: Publish to gh-pages
         if: ${{ inputs.publish }}

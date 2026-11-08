@@ -43,7 +43,7 @@ jobs:
         with:
           name: allure-results_${{ inputs.tag }}
           path: allure-results/
-          retention-days: 7
+          retention-days: 1
           if-no-files-found: warn
 
       - name: Generate Allure report
@@ -56,5 +56,5 @@ jobs:
         with:
           name: allure-report_${{ inputs.tag }}
           path: allure-report/
-          retention-days: 30
+          retention-days: 1
           if-no-files-found: warn

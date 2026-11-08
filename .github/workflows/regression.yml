@@ -18,7 +18,8 @@ jobs:
           - events
           - booking
           - admin_event
-    uses: ./.github/workflows/playwright-common.yml
+          - failing_demo
+    uses: ./.github/workflows/helper-playwright-common.yml
     with:
       tag: ${{ matrix.tag }}
 
@@ -28,6 +29,4 @@ jobs:
     if: ${{ !cancelled() }}
     permissions:
       contents: write
-    uses: ./.github/workflows/allure-combine.yml
-    with:
-      publish: ${{ github.event_name != 'pull_request' }}
+    uses: ./.github/workflows/helper-post-gh-page.yml
