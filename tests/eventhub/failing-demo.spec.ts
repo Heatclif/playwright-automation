@@ -22,7 +22,7 @@ test.describe('Failing demo', { tag: '@failing_demo' }, () => {
   });
 
   test('fails randomly (50% chance): password gets a random extra suffix', async ({ app, page }) => {
-    const breakPassword = Math.random() < 0.5;
+    const breakPassword = Math.random() < 0.2;
     const password = breakPassword ? `${USER.password}-extra` : USER.password;
     test.info().annotations.push({ type: 'password-modified', description: String(breakPassword) });
 
