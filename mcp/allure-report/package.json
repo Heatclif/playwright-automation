@@ -1,0 +1,15 @@
+{
+  "name": "allure-report-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP server that reads an Allure report and returns pass/fail results with history-based trend and failure reasons",
+  "scripts": {
+    "start": "node src/server.ts",
+    "test": "node --test src/analyze.test.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.25.0"
+  }
+}

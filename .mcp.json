@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "allure-report": {
+      "command": "node",
+      "args": ["mcp/allure-report/src/server.ts"],
+      "env": {
+        "ALLURE_REPORT_DIR": "allure-report_combined"
+      }
+    }
+  }
+}

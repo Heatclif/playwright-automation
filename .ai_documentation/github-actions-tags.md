@@ -10,6 +10,17 @@ uploads its own Allure results, and a final job merges them all into one report 
 | `.github/workflows/regression.yml` | Entry point. Triggers (cron `30 3 * * 1-5` = 09:00 IST Mon-Fri, `workflow_dispatch`). Holds the `matrix.tag` list. |
 | `.github/workflows/helper-playwright-common.yml` | Reusable. Checkout, Node, `npm ci`, install browser, run tests for one tag, upload `allure-results_<tag>` and `allure-report_<tag>`. |
 | `.github/workflows/helper-post-gh-page.yml` | Reusable. Downloads every `allure-results_*`, restores history from gh-pages, generates the combined report, uploads it and publishes to gh-pages. |
+| `.github/workflows/helper-claude-analysis.yml` | Reusable, optional. Checks out gh-pages into `allure-report_combined`, starts Claude Code with the `allure-report` MCP allowed, runs the `failure-analysis` skill and prints the tables in the job log and summary. |
+
+### Optional Claude analysis
+
+`regression.yml` has a manual-run checkbox, **Use Claude for analysis?** (`use_claude_analysis`, default off). When ticked and
+`combine-report` succeeded, the `claude-analysis` job runs after it. Scheduled runs never run it (no inputs).
+
+- Needs the repo secret `ANTHROPIC_API_KEY`.
+- The gh-pages content is extracted to `allure-report_combined`. This must match `ALLURE_REPORT_DIR` in `.mcp.json` (the MCP reads it).
+- MCP server: `mcp/allure-report` (needs Node 24). Skill: `.claude/skills/failure-analysis`. Claude is limited to that skill, the
+  `list_all_tests` tool and the two skill scripts (the sync script skips itself in GHA, since gh-pages is already checked out); the workflow itself prints `allure-analysis/all-tests-tables.txt`.
 
 Only `regression.yml` needs editing to add a tag. The helpers are generic and use the tag as an input.
 

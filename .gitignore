@@ -10,3 +10,7 @@ node_modules/
 /allure-report/
 .env
 .playwright-mcp/
+/allure-analysis/
+/mcp/*/node_modules/
+/allure-report_combined/
+/allure-report_combined.sync-tmp/

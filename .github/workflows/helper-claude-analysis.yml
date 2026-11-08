@@ -1,0 +1,70 @@
+name: Claude failure analysis (helper workflow)
+
+# Reusable workflow: download the published Allure report from the gh-pages branch, start Claude Code with
+# the allure-report MCP allowed, run the failure-analysis skill, and print the resulting tables in the job log
+# and the job summary. Claude only produces the file; this workflow prints it, so the agent never reads report data.
+on:
+  workflow_call:
+    secrets:
+      ANTHROPIC_API_KEY:
+        required: true
+
+jobs:
+  analysis:
+    name: claude failure analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    env:
+      # Must match ALLURE_REPORT_DIR in .mcp.json, which is where the allure-report MCP reads from.
+      REPORT_DIR: allure-report_combined
+    steps:
+      - uses: actions/checkout@v4
+
+      # The MCP server runs TypeScript natively, which needs Node 24.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Download gh-pages content into the report folder
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: ${{ env.REPORT_DIR }}
+
+      - name: Verify the report was extracted
+        run: |
+          test -d "$REPORT_DIR/data/test-cases" || { echo "::error::$REPORT_DIR/data/test-cases not found. Is gh-pages a published Allure report?"; exit 1; }
+          echo "Report test cases: $(ls "$REPORT_DIR/data/test-cases" | wc -l)"
+
+      - name: Install allure-report MCP dependencies
+        working-directory: mcp/allure-report
+        run: npm ci || npm install
+
+      - name: Set up Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Run failure-analysis skill with the allure-report MCP
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "Run the failure-analysis skill on ${REPORT_DIR}/ and list all tests." \
+            --mcp-config .mcp.json --strict-mcp-config \
+            --allowedTools "Skill" "mcp__allure-report__list_all_tests" "Bash(node .claude/skills/failure-analysis/scripts/sync-gh-pages.mjs:*)" "Bash(node .claude/skills/failure-analysis/scripts/render-tables.mjs:*)"
+
+      - name: Print the analysis
+        run: |
+          f=allure-analysis/all-tests-tables.txt
+          test -f "$f" || { echo "::error::$f was not produced. See the Claude step log for the reported issue."; exit 1; }
+          cat "$f"
+          { echo '```text'; cat "$f"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload analysis files
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-analysis
+          path: allure-analysis/
+          if-no-files-found: ignore
+          retention-days: 5

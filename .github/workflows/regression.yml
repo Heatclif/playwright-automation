@@ -5,6 +5,11 @@ on:
     # GitHub cron is always UTC. 03:30 UTC = 09:00 IST, Monday to Friday.
     - cron: '30 3 * * 1-5'
   workflow_dispatch:
+    inputs:
+      use_claude_analysis:
+        description: 'Use Claude for analysis? (failure tables from the published Allure report)'
+        type: boolean
+        default: false
 
 jobs:
   regression:
@@ -30,3 +35,14 @@ jobs:
     permissions:
       contents: write
     uses: ./.github/workflows/helper-post-gh-page.yml
+
+  claude-analysis:
+    name: claude failure analysis
+    needs: combine-report
+    # Checkbox is only available on manual runs; scheduled runs skip this job.
+    if: ${{ !cancelled() && needs.combine-report.result == 'success' && inputs.use_claude_analysis }}
+    permissions:
+      contents: read
+    uses: ./.github/workflows/helper-claude-analysis.yml
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
