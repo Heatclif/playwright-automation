@@ -1,0 +1,60 @@
+name: Playwright Common
+
+# Reusable workflow: checkout, set up Node, run tests for one tag, upload the Allure report.
+on:
+  workflow_call:
+    inputs:
+      tag:
+        description: 'Tag name without the leading @ (e.g. auth, events, booking, admin_event)'
+        required: true
+        type: string
+      project:
+        description: 'Playwright project (browser) to run'
+        required: false
+        type: string
+        default: chromium
+
+jobs:
+  test:
+    name: ${{ inputs.tag }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps ${{ inputs.project }}
+
+      - name: Run tests tagged @${{ inputs.tag }}
+        run: npx playwright test --project=${{ inputs.project }} --grep "@${{ inputs.tag }}"
+
+      # Raw results are needed so the combine workflow can merge every tag into one report.
+      - name: Upload Allure results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results_${{ inputs.tag }}
+          path: allure-results/
+          retention-days: 7
+          if-no-files-found: warn
+
+      - name: Generate Allure report
+        if: ${{ !cancelled() }}
+        run: npx allure generate allure-results --clean -o allure-report
+
+      - name: Upload Allure report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report_${{ inputs.tag }}
+          path: allure-report/
+          retention-days: 30
+          if-no-files-found: warn

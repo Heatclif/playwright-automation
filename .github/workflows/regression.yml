@@ -1,0 +1,33 @@
+name: Regression
+
+on:
+  schedule:
+    # GitHub cron is always UTC. 03:30 UTC = 09:00 IST, Monday to Friday.
+    - cron: '30 3 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  regression:
+    name: regression (${{ matrix.tag }})
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        tag:
+          - auth
+          - events
+          - booking
+          - admin_event
+    uses: ./.github/workflows/playwright-common.yml
+    with:
+      tag: ${{ matrix.tag }}
+
+  combine-report:
+    name: combined allure report
+    needs: regression
+    if: ${{ !cancelled() }}
+    permissions:
+      contents: write
+    uses: ./.github/workflows/allure-combine.yml
+    with:
+      publish: ${{ github.event_name != 'pull_request' }}
