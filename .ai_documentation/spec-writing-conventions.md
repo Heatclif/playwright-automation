@@ -84,6 +84,6 @@ document it in the table above, and note it is not a CI shard tag unless added p
 `test.describe.configure({ retries: 0 })` so the CI-wide `retries: 2` does not hide the failures.
 Do not copy this pattern into real feature specs; do not "fix" these tests.
 
-Each feature spec (`auth`, `events`, `booking`, `admin-events`) also has a nested `Flaky demo` describe with one
-`passes randomly (50% chance)` test (`expect(Math.random() < 0.5).toBe(true)`, `retries: 0`). They are intentional
-too: keep them, and do not add them to new specs.
+`failing-demo.spec.ts` also holds several simple non-UI flaky tests (`flaky: ... (50% chance)`) that each pass about
+half the time via a random `expect`, with an `INTENTIONAL FLAKY TEST` message on failure. Keep them there only;
+do not add flaky tests to real feature specs.

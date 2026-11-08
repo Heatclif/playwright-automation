@@ -31,4 +31,22 @@ test.describe('Failing demo', { tag: '@failing_demo' }, () => {
     await expect(page).toHaveURL('/');
     await expect(app.homePage.nav.userEmail).toHaveText(USER.email);
   });
+
+  // Simple flaky tests: no UI needed, each passes ~50% of the time.
+
+  test('flaky: coin flip (50% chance)', async () => {
+    expect(Math.random() < 0.5, 'INTENTIONAL FLAKY TEST: designed to fail ~50% of the time, not a real defect').toBe(true);
+  });
+
+  test('flaky: dice roll is even (50% chance)', async () => {
+    expect((Math.floor(Math.random() * 6) + 1) % 2 === 0, 'INTENTIONAL FLAKY TEST: designed to fail ~50% of the time, not a real defect').toBe(true);
+  });
+
+  test('flaky: timestamp is on an even millisecond (50% chance)', async () => {
+    expect(Date.now() % 2 === 0, 'INTENTIONAL FLAKY TEST: designed to fail ~50% of the time, not a real defect').toBe(true);
+  });
+
+  test('flaky: random number is above the midpoint (50% chance)', async () => {
+    expect(Math.random() > 0.5, 'INTENTIONAL FLAKY TEST: designed to fail ~50% of the time, not a real defect').toBe(true);
+  });
 });

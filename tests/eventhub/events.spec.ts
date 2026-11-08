@@ -41,13 +41,4 @@ test.describe('Browse events', { tag: '@events' }, () => {
     await expect(app.eventDetailsPage.title).toHaveText(FEATURED_EVENT.title);
     await expect(app.eventDetailsPage.confirmBookingButton).toBeVisible();
   });
-
-  // Intentionally flaky (50% pass rate); retries off so the CI-wide retries don't mask it.
-  test.describe('Flaky demo', () => {
-    test.describe.configure({ retries: 0 });
-
-    test('passes randomly (50% chance)', async () => {
-      expect(Math.random() < 0.5, 'INTENTIONAL FLAKY TEST: designed to fail ~50% of the time, not a real defect').toBe(true);
-    });
-  });
 });
