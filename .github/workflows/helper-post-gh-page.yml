@@ -1,4 +1,4 @@
-name: Allure Combine
+name: GitHub Pages (helper workflow) 
 
 # Reusable workflow: merge every allure-results_* artifact of this run with the history
 # from the previous report on gh-pages, build one report, upload it and publish to gh-pages.

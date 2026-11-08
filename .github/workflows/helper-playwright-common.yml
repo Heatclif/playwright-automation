@@ -1,4 +1,4 @@
-name: Playwright Common
+name: Playwright Common (helper workflow)
 
 # Reusable workflow: checkout, set up Node, run tests for one tag, upload the Allure report.
 on:
