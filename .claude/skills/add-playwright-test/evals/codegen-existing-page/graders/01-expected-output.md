@@ -1,0 +1,7 @@
+---
+type: llm
+focus: trace
+weight: 1
+---
+
+The result matches this description: Agent states Path A with a confidence figure, reuses existing EventsPage members (adds only what is missing), adds the test inside events.spec.ts under the existing describe with no new tag, runs only the @events tests, and reports the result.

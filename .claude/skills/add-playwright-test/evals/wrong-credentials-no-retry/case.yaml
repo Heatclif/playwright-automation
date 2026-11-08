@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: wrong-credentials-no-retry
+expected_outcome: |
+  Test is written, the run fails at login because of invalid credentials, the agent recognises it as environmental, does NOT retry or edit code to fix it, and hands back to the user telling them to fix the credentials.
