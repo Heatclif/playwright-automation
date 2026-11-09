@@ -11,7 +11,7 @@ All code lives in `src/eventhub/`. Specs only talk to page objects through the `
 | Factory | `PageFactory.ts` | One lazily created, cached instance of each page per Playwright `page`. |
 | Types | `types.ts` | Shared interfaces / unions (`EventDetails`, `Category`). |
 | Test data | `test-data.ts` | Static data and builders. |
-| Config | `config.ts` | `BASE_URL`, `USER`; env-overridable. |
+| Config | `config.ts` | `BASE_URL` (env-overridable), `USER` (required `EVENTHUB_EMAIL`/`EVENTHUB_PASSWORD` from `.env` or secrets). |
 
 Do not mix these: no test data in page objects, no locators in `test-data.ts`.
 

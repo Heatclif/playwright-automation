@@ -23,7 +23,7 @@ Any change to the framework **must update the matching file in the same change**
 
 ```
 src/eventhub/
-  config.ts          BASE_URL, USER (env-overridable)
+  config.ts          BASE_URL (env-overridable), USER (required from .env / GitHub secrets)
   types.ts           shared TypeScript types / interfaces
   test-data.ts       static data and builders (buildEvent, CUSTOMER, ...)
   fixtures.ts        custom `test`: baseURL, login-once storageState, `app` (PageFactory)

@@ -27,6 +27,9 @@ jobs:
     uses: ./.github/workflows/helper-playwright-common.yml
     with:
       tag: ${{ matrix.tag }}
+    secrets:
+      EVENTHUB_EMAIL: ${{ secrets.EVENTHUB_EMAIL }}
+      EVENTHUB_PASSWORD: ${{ secrets.EVENTHUB_PASSWORD }}
 
   combine-report:
     name: combined allure report

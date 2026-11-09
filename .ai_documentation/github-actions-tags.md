@@ -17,6 +17,12 @@ uploads its own Allure results, and a final job merges them all into one report 
 Only the combined report is uploaded as a report (`allure-report_combined`, **5 days**). Per-tag jobs upload just
 `allure-results_<tag>` and other artifacts (e.g. `failure-analysis`) use **1 day**. Keep it that way when editing workflows.
 
+### Credentials
+
+Test login comes from `EVENTHUB_EMAIL` / `EVENTHUB_PASSWORD` (no defaults; `config.ts` throws if missing). Locally they live in
+`.env` (gitignored; copy `.env.example`). In CI, add them as repo secrets; `regression.yml` passes them to
+`helper-playwright-common.yml` (declared under `workflow_call.secrets`), which sets them as `env` on the test step.
+
 ### Optional Claude analysis
 
 `regression.yml` has a manual-run checkbox, **Use Claude for analysis?** (`use_claude_analysis`, default off). When ticked and

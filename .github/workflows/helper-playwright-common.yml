@@ -13,6 +13,11 @@ on:
         required: false
         type: string
         default: chromium
+    secrets:
+      EVENTHUB_EMAIL:
+        required: true
+      EVENTHUB_PASSWORD:
+        required: true
 
 jobs:
   test:
@@ -34,6 +39,9 @@ jobs:
         run: npx playwright install --with-deps ${{ inputs.project }}
 
       - name: Run tests tagged @${{ inputs.tag }}
+        env:
+          EVENTHUB_EMAIL: ${{ secrets.EVENTHUB_EMAIL }}
+          EVENTHUB_PASSWORD: ${{ secrets.EVENTHUB_PASSWORD }}
         run: npx playwright test --project=${{ inputs.project }} --grep "@${{ inputs.tag }}"
 
       # Raw results are needed so the combine workflow can merge every tag into one report.
