@@ -9,6 +9,7 @@ Before writing or changing code, read the relevant guide in `.ai_documentation/`
 - Adding/editing tests or tags: `.ai_documentation/spec-writing-conventions.md`
 - Adding/editing page objects, components or the `PageFactory`: `.ai_documentation/page-object-conventions.md`
 - Adding a tag that must run in CI: `.ai_documentation/github-actions-tags.md`
+- Writing/editing a skill in `.claude/skills/`: `.ai_documentation/skill-shared-rules.md` (link to it, don't copy its rules)
 - Overview and project map: `.ai_documentation/README.md`
 
 ## Keep the docs up to date (required)

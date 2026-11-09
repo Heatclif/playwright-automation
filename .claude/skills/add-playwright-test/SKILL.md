@@ -78,9 +78,9 @@ Running the new tests is a required step, not optional: never finish or report "
 On failure, classify it using `references/failure-triage.md` before doing anything:
 
 - **Environmental or data problem** (wrong credentials, account locked, user/data doesn't exist, site down, missing `.env`): **stop immediately, no retries.** Retrying can't fix it and may lock the account. Report what you saw and what the user must supply.
-- **Code problem** (bad locator, strict-mode violation, wrong assertion, missing wait that auto-waiting should cover, missing factory registration, TypeScript error): fix and re-run. **Maximum 2 fix attempts**, so 3 runs in total. Each attempt must be based on evidence (the error, and a fresh `browser_snapshot` if the locator is suspect), not a guess. Don't loosen an assertion just to get green; if the assertion contradicts the app's behaviour, that's a finding for the user.
+- **Code problem** (bad locator, strict-mode violation, wrong assertion, missing wait that auto-waiting should cover, missing factory registration, TypeScript error): fix and re-run. **Maximum 2 fix attempts**, so 3 runs in total. Each attempt must be based on evidence (the error, and a fresh `browser_snapshot` if the locator is suspect), not a guess. Don't loosen an assertion just to get green; if the assertion contradicts the app's behaviour, that's a finding for the user (`.ai_documentation/skill-shared-rules.md`, section 3).
 
-Never "fix" by adding `waitForTimeout`, `.first()` to dodge strict mode without understanding why there are several matches, or by weakening what the test verifies.
+Never "fix" by weakening the test: follow `.ai_documentation/skill-shared-rules.md`, section 3.
 
 ## Hand-off
 
@@ -97,4 +97,4 @@ Keep it short:
 
 ## Keeping docs in sync
 
-If the change introduces a new tag, folder, or pattern, update the matching `.ai_documentation/` file in the same change (the project's CLAUDE.md requires it). Do not commit unless asked.
+If the change introduces a new tag, folder, or pattern, update the matching `.ai_documentation/` file in the same change (the project's CLAUDE.md requires it). Do not commit unless asked (shared rules, section 4).

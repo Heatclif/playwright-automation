@@ -8,6 +8,7 @@ Guidelines and patterns for AI assistants (and humans) working on this framework
 | [spec-writing-conventions.md](spec-writing-conventions.md) | adding or changing a test / spec file, or choosing tags |
 | [page-object-conventions.md](page-object-conventions.md) | adding elements, components or pages under `src/eventhub/` |
 | [github-actions-tags.md](github-actions-tags.md) | introducing a new tag that must run in CI |
+| [skill-shared-rules.md](skill-shared-rules.md) | writing or running a skill in `.claude/skills/` (Allure data handling, stop-on-error, never weaken tests, no commits) |
 
 ## Keeping this folder up to date
 

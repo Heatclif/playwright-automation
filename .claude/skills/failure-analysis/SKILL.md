@@ -9,9 +9,7 @@ Turns the `allure-report` MCP output into readable per-spec tables, **without th
 
 ## Hard rules
 
-1. **Never read report contents.** Do not Read, cat, head, grep, jq or otherwise open the MCP's JSON or the generated tables file. Do not ask the MCP for `includeInline: true`. You only handle file *paths*.
-2. **Stop and report on any failure.** If the `allure-report` MCP is missing/not connected/not approved, a tool returns `isError`, the render script exits non-zero, or a path from a previous step does not exist, stop immediately. Tell the user the exact error text and which step failed. Do not try alternatives (reading the Allure files directly, running the server by hand, writing your own parser, other MCPs, retrying with different flags) unless the user explicitly says to. The user wants to decide how to recover.
-3. Keep the file paths, so later steps (or the user) can use them. Say the paths; don't summarize the contents.
+Follow `.ai_documentation/skill-shared-rules.md`, sections 1 (don't read raw Allure JSON) and 2 (stop and report on infrastructure failure). Read it before starting. This skill is stricter on section 1: you also never open the generated tables file, and only handle file *paths*. Say the paths; don't summarize the contents.
 
 ## Steps
 
@@ -19,7 +17,7 @@ Turns the `allure-report` MCP output into readable per-spec tables, **without th
    ```bash
    node .claude/skills/failure-analysis/scripts/sync-gh-pages.mjs
    ```
-   It fetches the latest `origin/gh-pages` and replaces `allure-report_combined/` (the folder the MCP reads) with it, so local results match the latest published report. It prints only status lines, and it skips itself in GitHub Actions, where the workflow has already checked gh-pages out. If the script exits non-zero (no network, no `origin` remote, no `gh-pages` branch, folder isn't a report), stop per rule 2 and quote its error. Mention the `gh_pages_commit` it prints in the final report. Note that the local folder is overwritten, so tell the user once if it did not come from gh-pages before.
+   It fetches the latest `origin/gh-pages` and replaces `allure-report_combined/` (the folder the MCP reads) with it, so local results match the latest published report. It prints only status lines, and it skips itself in GitHub Actions, where the workflow has already checked gh-pages out. If the script exits non-zero (no network, no `origin` remote, no `gh-pages` branch, folder isn't a report), stop per shared rule 2 and quote its error. Mention the `gh_pages_commit` it prints in the final report. Note that the local folder is overwritten, so tell the user once if it did not come from gh-pages before.
 
 1. **Pick the MCP tool from the request:**
    - "failures", "what failed", "flaky/recurring" → `list_failed_tests`
@@ -27,15 +25,15 @@ Turns the `allure-report` MCP output into readable per-spec tables, **without th
    - "all", "everything", "full report", or unspecified → `list_all_tests`
    
    Pass `reportPath` only if the user named a report folder. Never pass `includeInline`.
-   If no `allure-report` MCP tool is available, stop per rule 2 (tell the user it is not connected; it is registered in `.mcp.json` and needs approval/restart).
+   If no `allure-report` MCP tool is available, stop per shared rule 2 (tell the user it is not connected; it is registered in `.mcp.json` and needs approval/restart).
 
-2. **Read the reply's `outputFile` and `summary`.** The reply is small by design (path + counts), so this is fine. Keep `outputFile` as the JSON path. If it is missing, stop per rule 2.
+2. **Read the reply's `outputFile` and `summary`.** The reply is small by design (path + counts), so this is fine. Keep `outputFile` as the JSON path. If it is missing, stop per shared rule 2.
 
 3. **Render the tables with the coded tool:**
    ```bash
    node .claude/skills/failure-analysis/scripts/render-tables.mjs <outputFile>
    ```
-   The tables file lands next to the JSON as `<kind>-tests-tables.txt`. Give a second argument for a different output path, and `--max-reason=<chars>` to change the failure-reason truncation (default 1000). The script prints only `tables_file`, `spec_files` and `tests`. A non-zero exit means stop per rule 2.
+   The tables file lands next to the JSON as `<kind>-tests-tables.txt`. Give a second argument for a different output path, and `--max-reason=<chars>` to change the failure-reason truncation (default 1000). The script prints only `tables_file`, `spec_files` and `tests`. A non-zero exit means stop per shared rule 2.
 
 4. **Report to the user:** the gh-pages commit that was synced (if step 0 ran), the tables file path, the JSON path, and the MCP's summary counts (total/passed/failed, recurring/flaky). Do not paste or describe table contents. If the user wants to see them, tell them to open the file.
 
