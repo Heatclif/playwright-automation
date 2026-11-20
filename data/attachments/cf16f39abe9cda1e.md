@@ -1,0 +1,274 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: eventhub/booking.spec.ts >> Bookings >> total price follows the number of tickets selected
+- Location: tests/eventhub/booking.spec.ts:31:7
+
+# Error details
+
+```
+TimeoutError: locator.click: Timeout 10000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: '+', exact: true })
+    - locator resolved to <button disabled type="button" class="w-9 h-9 rounded-lg border border-gray-300 flex items-center justify-center text-lg font-bold hover:bg-gray-100 transition-colors disabled:opacity-40">+</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    19 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - link "EventHub" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /
+        - link "Events" [ref=e12] [cursor=pointer]:
+          - /url: /events
+        - link "My Bookings" [ref=e13] [cursor=pointer]:
+          - /url: /bookings
+        - link "API Docs" [ref=e14] [cursor=pointer]:
+          - /url: https://api.eventhub.rahulshettyacademy.com/api/docs
+        - button "Admin" [ref=e16] [cursor=pointer]
+        - generic [ref=e19]:
+          - generic "natsuerza4321@gmail.com" [ref=e20]
+          - button "Logout" [ref=e21] [cursor=pointer]
+  - main [ref=e22]:
+    - generic [ref=e23]:
+      - navigation [ref=e24]:
+        - link "Events" [ref=e25] [cursor=pointer]:
+          - /url: /events
+        - generic [ref=e26]: /
+        - generic [ref=e27]: Dilli Diwali Mela
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - img "Dilli Diwali Mela" [ref=e31]
+          - generic [ref=e32]:
+            - generic [ref=e33]:
+              - generic [ref=e34]: Festival
+              - generic [ref=e35]: Featured
+            - heading "Dilli Diwali Mela" [level=1] [ref=e36]
+            - generic [ref=e37]: This is a featured event — always available for practice
+            - generic [ref=e40]:
+              - generic [ref=e41]:
+                - generic [ref=e42]: 📅
+                - generic [ref=e43]:
+                  - paragraph [ref=e44]: Date
+                  - paragraph [ref=e45]: Tuesday, 20 October
+              - generic [ref=e46]:
+                - generic [ref=e47]: 🕐
+                - generic [ref=e48]:
+                  - paragraph [ref=e49]: Time
+                  - paragraph [ref=e50]: 05:00 pm
+              - generic [ref=e51]:
+                - generic [ref=e52]: 📍
+                - generic [ref=e53]:
+                  - paragraph [ref=e54]: Venue
+                  - paragraph [ref=e55]: Pragati Maidan Exhibition Grounds
+              - generic [ref=e56]:
+                - generic [ref=e57]: 🌆
+                - generic [ref=e58]:
+                  - paragraph [ref=e59]: City
+                  - paragraph [ref=e60]: Delhi
+              - generic [ref=e61]:
+                - generic [ref=e62]: 🎫
+                - generic [ref=e63]:
+                  - paragraph [ref=e64]: Available
+                  - paragraph [ref=e65]: 8 / 10000 seats
+              - generic [ref=e66]:
+                - generic [ref=e67]: 💰
+                - generic [ref=e68]:
+                  - paragraph [ref=e69]: Price per ticket
+                  - paragraph [ref=e70]: $300
+            - generic [ref=e71]:
+              - heading "About this event" [level=2] [ref=e72]
+              - paragraph [ref=e73]: Celebrate the Festival of Lights at the grandest Diwali Mela in North India. Enjoy 200+ stalls of artisanal crafts, street food, folk performances, fireworks, and cultural showcases spanning three vibrant evenings.
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - heading "Book Tickets" [level=2] [ref=e77]
+            - generic [ref=e78]: $300
+          - paragraph [ref=e79]: per ticket
+          - generic [ref=e80]:
+            - generic [ref=e81]:
+              - generic [ref=e82]: Tickets
+              - generic [ref=e83]:
+                - button "−" [ref=e84] [cursor=pointer]
+                - generic [ref=e85]: "8"
+                - button "+" [disabled] [ref=e86]
+                - generic [ref=e87]: (max 8)
+            - generic [ref=e88]:
+              - generic [ref=e89]: Full Name*
+              - textbox "Full Name*" [ref=e90]:
+                - /placeholder: Your full name
+            - generic [ref=e91]:
+              - generic [ref=e92]: Email*
+              - textbox "Email*" [ref=e93]:
+                - /placeholder: you@email.com
+            - generic [ref=e94]:
+              - generic [ref=e95]: Phone Number*
+              - textbox "Phone Number*" [ref=e96]:
+                - /placeholder: +91 98765 43210
+            - generic [ref=e97]:
+              - generic [ref=e98]:
+                - generic [ref=e99]: $300 × 8 tickets
+                - generic [ref=e100]: $2,400
+              - generic [ref=e101]:
+                - generic [ref=e102]: Total
+                - generic [ref=e103]: $2,400
+            - button "Confirm Booking" [ref=e104] [cursor=pointer]
+  - contentinfo [ref=e105]:
+    - generic [ref=e106]:
+      - generic [ref=e107]:
+        - generic [ref=e108]:
+          - heading "Rahul Shetty Academy" [level=3] [ref=e109]
+          - paragraph [ref=e110]: India's leading QA automation training academy — empowering engineers to build real-world testing skills.
+        - generic [ref=e111]:
+          - heading "Popular Courses" [level=3] [ref=e112]
+          - list [ref=e113]:
+            - listitem [ref=e114]:
+              - link "Selenium WebDriver with Java" [ref=e115] [cursor=pointer]:
+                - /url: https://rahulshettyacademy.com
+            - listitem [ref=e116]:
+              - link "Playwright with JavaScript" [ref=e117] [cursor=pointer]:
+                - /url: https://rahulshettyacademy.com
+            - listitem [ref=e118]:
+              - link "RestAssured API Testing" [ref=e119] [cursor=pointer]:
+                - /url: https://rahulshettyacademy.com
+            - listitem [ref=e120]:
+              - link "Cypress End-to-End Testing" [ref=e121] [cursor=pointer]:
+                - /url: https://rahulshettyacademy.com
+            - listitem [ref=e122]:
+              - link "Appium Mobile Testing" [ref=e123] [cursor=pointer]:
+                - /url: https://rahulshettyacademy.com
+        - generic [ref=e124]:
+          - heading "QA Job Hiring Platform" [level=3] [ref=e125]
+          - paragraph [ref=e126]: Get hired faster — take skill assessments trusted by top QA employers worldwide.
+          - link "techsmarthire.com →" [ref=e127] [cursor=pointer]:
+            - /url: https://techsmarthire.com
+        - generic [ref=e128]:
+          - heading "EventHub Practice App" [level=3] [ref=e129]
+          - list [ref=e130]:
+            - listitem [ref=e131]:
+              - link "Browse Events" [ref=e132] [cursor=pointer]:
+                - /url: /events
+            - listitem [ref=e133]:
+              - link "My Bookings" [ref=e134] [cursor=pointer]:
+                - /url: /bookings
+            - listitem [ref=e135]:
+              - link "Manage Events" [ref=e136] [cursor=pointer]:
+                - /url: /admin/events
+            - listitem [ref=e137]:
+              - link "API Documentation" [ref=e138] [cursor=pointer]:
+                - /url: https://api.eventhub.rahulshettyacademy.com/api/docs
+      - generic [ref=e139]:
+        - paragraph [ref=e140]: © 2026 Rahul Shetty Academy. All rights reserved.
+        - generic [ref=e141]:
+          - link "rahulshettyacademy.com →" [ref=e142] [cursor=pointer]:
+            - /url: https://rahulshettyacademy.com
+          - link "techsmarthire.com →" [ref=e143] [cursor=pointer]:
+            - /url: https://techsmarthire.com
+  - alert [ref=e144]
+```
+
+# Test source
+
+```ts
+  1  | import { expect, Locator, Page } from '@playwright/test';
+  2  | import { Form } from '../components/Form';
+  3  | import { CustomerDetails } from '../types';
+  4  | import { BasePage } from './BasePage';
+  5  | 
+  6  | export type ConfirmationField = 'Booking Ref' | 'Customer' | 'Tickets' | 'Total';
+  7  | 
+  8  | export class EventDetailsPage extends BasePage {
+  9  |   /** Event pages are reached through the Events list; the id is dynamic. */
+  10 |   readonly path = '/events';
+  11 |   readonly title: Locator;
+  12 |   readonly ticketCount: Locator;
+  13 |   readonly bookingForm: Form;
+  14 |   readonly totalPrice: Locator;
+  15 |   readonly seatsAvailable: Locator;
+  16 |   readonly soldOutLabel: Locator;
+  17 |   readonly soldOutButton: Locator;
+  18 |   readonly confirmBookingButton: Locator;
+  19 |   readonly confirmationPanel: Locator;
+  20 |   readonly bookingRef: Locator;
+  21 |   private readonly incrementTickets: Locator;
+  22 |   private readonly decrementTickets: Locator;
+  23 | 
+  24 |   constructor(page: Page) {
+  25 |     super(page);
+  26 |     this.title = page.getByRole('heading', { level: 1 });
+  27 |     this.ticketCount = page.locator('#ticket-count');
+  28 |     this.incrementTickets = page.getByRole('button', { name: '+', exact: true });
+  29 |     this.decrementTickets = page.getByRole('button', { name: '−', exact: true });
+  30 |     this.confirmBookingButton = page.getByRole('button', { name: 'Confirm Booking' });
+  31 |     this.bookingForm = new Form(page.locator('form').filter({ has: this.confirmBookingButton }));
+  32 |     // The price summary is plain spans: the value sits next to the "Total" label.
+  33 |     this.totalPrice = this.bookingForm.root.locator('div:has(> span:text-is("Total")) > span').last();
+  34 |     // Seat info is plain <p>s: the value sits next to the "Available" label ("3 / 3 seats" or "SOLD OUT").
+  35 |     this.seatsAvailable = page.locator('div:has(> p:text-is("Available")) > p').last();
+  36 |     // Matches both the "SOLD OUT" seat label and the disabled "Sold Out" booking button.
+  37 |     this.soldOutLabel = page.getByText('Sold Out');
+  38 |     // Once sold out, the disabled submit button is renamed from "Confirm Booking" to "Sold Out".
+  39 |     this.soldOutButton = page.getByRole('button', { name: 'Sold Out' });
+  40 |     this.confirmationPanel = page
+  41 |       .locator('div')
+  42 |       .filter({ has: page.getByRole('heading', { name: 'Booking Confirmed!' }) })
+  43 |       .last();
+  44 |     this.bookingRef = this.confirmationPanel.locator('.booking-ref');
+  45 |   }
+  46 | 
+  47 |   async reload(): Promise<void> {
+  48 |     await this.page.reload();
+  49 |   }
+  50 | 
+  51 |   async setTickets(count: number): Promise<void> {
+  52 |     let current = Number(await this.ticketCount.innerText());
+  53 |     while (current !== count) {
+> 54 |       await (current < count ? this.incrementTickets : this.decrementTickets).click();
+     |                                                                               ^ TimeoutError: locator.click: Timeout 10000ms exceeded.
+  55 |       current += current < count ? 1 : -1;
+  56 |       await expect(this.ticketCount).toHaveText(String(current));
+  57 |     }
+  58 |   }
+  59 | 
+  60 |   async fillCustomerDetails(customer: CustomerDetails): Promise<void> {
+  61 |     await this.bookingForm.fill('Full Name', customer.fullName);
+  62 |     await this.bookingForm.fill('Email', customer.email);
+  63 |     await this.bookingForm.fill('Phone Number', customer.phone);
+  64 |   }
+  65 | 
+  66 |   async book(customer: CustomerDetails, tickets = 1): Promise<void> {
+  67 |     await this.setTickets(tickets);
+  68 |     await this.fillCustomerDetails(customer);
+  69 |     await this.confirmBookingButton.click();
+  70 |   }
+  71 | 
+  72 |   /** Value shown next to a label in the "Booking Confirmed" summary. */
+  73 |   confirmationValue(field: ConfirmationField): Locator {
+  74 |     return this.confirmationPanel.locator(`div:has(> span:text-is("${field}")) > span`).last();
+  75 |   }
+  76 | }
+  77 | 
+```
