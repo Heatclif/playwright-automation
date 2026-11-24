@@ -38,7 +38,7 @@ Flow in a spec: data layer -> builder -> `*Api` method -> assertions in the spec
 - **Credentials**: every test except registration uses `apiTestData.auth.credentials`, which is `USER` from `config.ts`
   (`EVENTHUB_EMAIL` / `EVENTHUB_PASSWORD`, same account as the UI, no defaults). Registration uses `generateNewUser()`.
 - **Login is asserted in the `authedApi` fixture** (status 200 and a token), so a bad login fails there and not as a later 401.
-- **Prices are strings** in API responses (`"999"`, `"1998"`); compare with `Number(...)`.
+- **Prices are strings** in API responses (`"999"`, `"1998"`): `EventItem.price` and `BookingItem.totalPrice` are typed `string`; compare with `Number(...)` or against `.toString()`. Request payloads (`CreateEventInput.price`) stay `number`.
 - **Booking refs** are `<letter>-<6 alphanumerics>` with a varying prefix; match `/^[A-Z]-[A-Z0-9]{6}$/`.
 - **Logging**: each call is printed to the console and attached to the test (so it appears in Allure). `password`, `token` and
   `authorization` values are masked as `***` by `redact()` in `api-client.ts`. Add any new secret field name to `SENSITIVE_KEYS`.
@@ -46,7 +46,7 @@ Flow in a spec: data layer -> builder -> `*Api` method -> assertions in the spec
 - **No browser for API tests**: `api/api-fixtures.ts` extends plain `@playwright/test` and has no UI login, so API specs never launch a browser. Don't import `ui/ui-fixtures.ts` in API specs (its `storageState` logs in through the UI for every test).
 - **Parallel workers**: CI runs with `workers: 1`. Locally, many workers creating events at once can make the backend return
   404 `Record not found` on `POST /events`; if that happens run with `--workers=1`.
-- Prefer unique data per test (`generateUniqueEvent`) since the backend is shared.
+- Prefer unique data per test (`generateUniqueEvent`) since the backend is shared. Event dates in `api-test-data.ts` are generated with the `futureDate()` helper (N days from now, UTC), so they never go stale; do not hardcode dates.
 
 ## Tags
 

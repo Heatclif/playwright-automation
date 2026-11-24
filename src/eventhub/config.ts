@@ -11,7 +11,12 @@ function required(name: string): string {
   return value;
 }
 
+/** Resolved lazily (on access), so importing config never throws; only tests that actually log in need the credentials. */
 export const USER = {
-  email: required('EVENTHUB_EMAIL'),
-  password: required('EVENTHUB_PASSWORD'),
+  get email(): string {
+    return required('EVENTHUB_EMAIL');
+  },
+  get password(): string {
+    return required('EVENTHUB_PASSWORD');
+  },
 };

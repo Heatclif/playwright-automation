@@ -52,7 +52,8 @@ export interface EventItem {
   venue: string;
   city: string;
   eventDate: string;
-  price: number;
+  /** Returned by the API as a string (e.g. "999"); wrap in Number(...) before numeric comparison. */
+  price: string;
   totalSeats: number;
   availableSeats: number;
   imageUrl?: string | null;
@@ -96,7 +97,8 @@ export interface BookingItem {
   customerEmail: string;
   customerPhone: string;
   quantity: number;
-  totalPrice: number;
+  /** Returned by the API as a string (e.g. "1998"); wrap in Number(...) before numeric comparison. */
+  totalPrice: string;
   status: 'confirmed' | 'cancelled' | string;
   bookingRef: string;
   createdAt?: string;

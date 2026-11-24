@@ -24,7 +24,7 @@ Any change to the framework **must update the matching file in the same change**
 
 ```
 src/eventhub/
-  config.ts          BASE_URL, API_BASE_URL (env-overridable), USER (required from .env / GitHub secrets)
+  config.ts          BASE_URL, API_BASE_URL (env-overridable), USER (required from .env / GitHub secrets; lazy getters, only throw when read)
   ui/                UI layer (mirrors api/)
     ui-fixtures.ts   custom `test` for UI specs: baseURL, login-once storageState, `app` (PageFactory)
     types.ts         shared TypeScript types / interfaces

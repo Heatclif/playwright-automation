@@ -2,6 +2,14 @@
 import { Category, CreateEventInput } from '../types';
 import { USER } from '../../config';
 
+/** ISO date `daysAhead` days from now (UTC) at the given hour/minute, so event dates never go stale. */
+const futureDate = (daysAhead: number, hour = 9, minute = 0): string => {
+  const d = new Date();
+  d.setUTCDate(d.getUTCDate() + daysAhead);
+  d.setUTCHours(hour, minute, 0, 0);
+  return d.toISOString();
+};
+
 /**
  * Data layer containing the test values used across API test suites.
  * Test specs pass these values directly into concern methods to assemble payloads.
@@ -9,7 +17,10 @@ import { USER } from '../../config';
 export const apiTestData = {
   auth: {
     // Same account as the UI tests; comes from .env / GitHub secrets (see config.ts)
-    credentials: { email: USER.email, password: USER.password },
+    // Getter: reads USER only when a test uses it, so public (health/config) specs run without credentials
+    get credentials() {
+      return { email: USER.email, password: USER.password };
+    },
     // Dynamic generator for fresh registration tests
     generateNewUser(prefix = 'apitest') {
       const stamp = Date.now();
@@ -57,7 +68,7 @@ export const apiTestData = {
       category: 'Conference' as Category,
       venue: 'Bangalore International Exhibition Centre',
       city: 'Bangalore',
-      eventDate: '2026-11-20T10:00:00.000Z',
+      eventDate: futureDate(14, 10),
       price: 1500,
       totalSeats: 100,
       imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87',
@@ -71,7 +82,7 @@ export const apiTestData = {
         category: 'Conference' as Category,
         venue: 'Bangalore Tech Park',
         city: 'Bangalore',
-        eventDate: '2026-12-15T09:30:00.000Z',
+        eventDate: futureDate(30, 9, 30),
         price: 999,
         totalSeats: 50,
         imageUrl: null,
@@ -83,7 +94,7 @@ export const apiTestData = {
       category: 'Workshop' as Category,
       venue: 'Innovation Lab',
       city: 'Mumbai',
-      eventDate: '2026-12-05T14:00:00.000Z',
+      eventDate: futureDate(21, 14),
       price: 1200,
       totalSeats: 30,
       imageUrl: null,
@@ -94,7 +105,7 @@ export const apiTestData = {
       category: 'Workshop' as Category,
       venue: 'Private Suite A',
       city: 'Bangalore',
-      eventDate: '2026-10-10T11:00:00.000Z',
+      eventDate: futureDate(10, 11),
       price: 5000,
       totalSeats: 1,
       imageUrl: null,
@@ -116,7 +127,7 @@ export const apiTestData = {
       category: 'Conference' as Category,
       venue: 'Venue 1',
       city: 'Delhi',
-      eventDate: '2026-11-20T10:00:00.000Z',
+      eventDate: futureDate(14, 10),
       price: 500,
       totalSeats: 20,
     },
@@ -125,7 +136,7 @@ export const apiTestData = {
       category: 'InvalidCategoryName',
       venue: 'Venue 2',
       city: 'Delhi',
-      eventDate: '2026-11-20T10:00:00.000Z',
+      eventDate: futureDate(14, 10),
       price: 500,
       totalSeats: 20,
     },

@@ -6,5 +6,4 @@ export * from './events-api';
 export * from './bookings-api';
 export * from './health-api';
 export * from './builders';
-export * from './concerns';
 export * from './data/api-test-data';

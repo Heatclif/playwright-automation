@@ -19,7 +19,7 @@ Only the combined report is uploaded as a report (`allure-report_combined`, **5 
 
 ### Credentials
 
-Test login comes from `EVENTHUB_EMAIL` / `EVENTHUB_PASSWORD` (no defaults; `config.ts` throws if missing). Locally they live in
+Test login comes from `EVENTHUB_EMAIL` / `EVENTHUB_PASSWORD` (no defaults; `USER` in `config.ts` throws when read if missing, so public specs such as `@api_health` run without them). Locally they live in
 `.env` (gitignored; copy `.env.example`). In CI, add them as repo secrets; `regression.yml` passes them to
 `helper-playwright-common.yml` (declared under `workflow_call.secrets`), which sets them as `env` on the test step.
 
