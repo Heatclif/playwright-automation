@@ -13,9 +13,9 @@ The `chromium` project ignores that folder. Run one tag locally: `npx playwright
 | `data/api-test-data.ts` | Data layer: static values and generators (`generateNewUser`, `generateUniqueEvent`). |
 | `types.ts` | Request/response types. |
 
-## Fixtures (`src/eventhub/api-fixtures.ts`)
+## Fixtures (`src/eventhub/api/api-fixtures.ts`)
 
-API specs import `test`/`expect` from `src/eventhub/api-fixtures` (UI specs use `fixtures.ts`) and take services from fixtures; they do not
+API specs import `test`/`expect` from `src/eventhub/api/api-fixtures` (UI specs use `ui/ui-fixtures.ts`) and take services from fixtures; they do not
 build or dispose an `ApiClient` themselves.
 
 | Fixture | Gives |
@@ -27,7 +27,7 @@ build or dispose an `ApiClient` themselves.
 test('creates an event', async ({ authedApi: { eventsApi } }) => { ... });
 ```
 
-A new endpoint group = new `*Api` class + add it to `ApiServices` and `buildApiServices` in `api-fixtures.ts`.
+A new endpoint group = new `*Api` class + add it to `ApiServices` and `buildApiServices` in `api/api-fixtures.ts`.
 
 Flow in a spec: data layer -> builder -> `*Api` method -> assertions in the spec (assertions stay in specs, as for UI).
 
@@ -43,7 +43,7 @@ Flow in a spec: data layer -> builder -> `*Api` method -> assertions in the spec
 - **Logging**: each call is printed to the console and attached to the test (so it appears in Allure). `password`, `token` and
   `authorization` values are masked as `***` by `redact()` in `api-client.ts`. Add any new secret field name to `SENSITIVE_KEYS`.
 - API URL: `API_BASE_URL` in `config.ts` (`EVENTHUB_API_URL`, default `https://api.eventhub.rahulshettyacademy.com/api`) is the only place the default lives; `ApiClient` imports it.
-- **No browser for API tests**: `api-fixtures.ts` extends plain `@playwright/test` and has no UI login, so API specs never launch a browser. Don't import `fixtures.ts` in API specs (its `storageState` logs in through the UI for every test).
+- **No browser for API tests**: `api/api-fixtures.ts` extends plain `@playwright/test` and has no UI login, so API specs never launch a browser. Don't import `ui/ui-fixtures.ts` in API specs (its `storageState` logs in through the UI for every test).
 - **Parallel workers**: CI runs with `workers: 1`. Locally, many workers creating events at once can make the backend return
   404 `Record not found` on `POST /events`; if that happens run the API project with `--workers=1`.
 - Prefer unique data per test (`generateUniqueEvent`) since the backend is shared.

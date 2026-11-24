@@ -1,5 +1,5 @@
 // tests/eventhub/api/api-auth.spec.ts
-import { test, expect } from '../../../src/eventhub/api-fixtures';
+import { test, expect } from '../../../src/eventhub/api/api-fixtures';
 import { AuthBuilder } from '../../../src/eventhub/api/builders/auth-builder';
 import { apiTestData } from '../../../src/eventhub/api/data/api-test-data';
 

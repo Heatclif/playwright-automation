@@ -1,5 +1,5 @@
 // tests/eventhub/api/api-health.spec.ts
-import { test, expect } from '../../../src/eventhub/api-fixtures';
+import { test, expect } from '../../../src/eventhub/api/api-fixtures';
 import { HealthBuilder } from '../../../src/eventhub/api/builders/health-builder';
 import { apiTestData } from '../../../src/eventhub/api/data/api-test-data';
 

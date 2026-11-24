@@ -1,5 +1,5 @@
 // tests/eventhub/api/api-events.spec.ts
-import { test, expect } from '../../../src/eventhub/api-fixtures';
+import { test, expect } from '../../../src/eventhub/api/api-fixtures';
 import { EventBuilder, EventFilterBuilder } from '../../../src/eventhub/api/builders/event-builder';
 import { apiTestData } from '../../../src/eventhub/api/data/api-test-data';
 

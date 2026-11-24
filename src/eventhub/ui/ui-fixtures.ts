@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { PageFactory } from './PageFactory';
 import { LoginPage } from './pages/LoginPage';
-import { BASE_URL, USER } from './config';
+import { BASE_URL, USER } from '../config';
 
 type TestFixtures = { app: PageFactory };
 type WorkerFixtures = { workerStorageState: string };

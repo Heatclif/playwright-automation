@@ -1,5 +1,5 @@
 // tests/eventhub/api/api-bookings.spec.ts
-import { test, expect } from '../../../src/eventhub/api-fixtures';
+import { test, expect } from '../../../src/eventhub/api/api-fixtures';
 import { EventBuilder } from '../../../src/eventhub/api/builders/event-builder';
 import { BookingBuilder, BookingFilterBuilder } from '../../../src/eventhub/api/builders/booking-builder';
 import { apiTestData } from '../../../src/eventhub/api/data/api-test-data';

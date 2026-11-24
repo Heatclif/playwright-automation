@@ -6,11 +6,11 @@ All code lives in `src/eventhub/`. Specs only talk to page objects through the `
 
 | Layer | Location | Responsibility |
 | --- | --- | --- |
-| Page object | `pages/<Name>Page.ts` | Locators and actions for one page. Extends `BasePage`. |
-| Component | `components/<Name>.ts` | A reusable UI piece used by several pages (form, nav bar, dialog). |
-| Factory | `PageFactory.ts` | One lazily created, cached instance of each page per Playwright `page`. |
-| Types | `types.ts` | Shared interfaces / unions (`EventDetails`, `Category`). |
-| Test data | `test-data.ts` | Static data and builders. |
+| Page object | `ui/pages/<Name>Page.ts` | Locators and actions for one page. Extends `BasePage`. |
+| Component | `ui/components/<Name>.ts` | A reusable UI piece used by several pages (form, nav bar, dialog). |
+| Factory | `ui/PageFactory.ts` | One lazily created, cached instance of each page per Playwright `page`. |
+| Types | `ui/types.ts` | Shared interfaces / unions (`EventDetails`, `Category`). |
+| Test data | `ui/test-data.ts` | Static data and builders. |
 | Config | `config.ts` | `BASE_URL` (env-overridable), `USER` (required `EVENTHUB_EMAIL`/`EVENTHUB_PASSWORD` from `.env` or secrets). |
 
 Do not mix these: no test data in page objects, no locators in `test-data.ts`.
@@ -65,7 +65,7 @@ export class LoginPage extends BasePage {
 }
 ```
 
-## Components (`components/`)
+## Components (`ui/components/`)
 
 A component wraps a **root `Locator`** (or the `Page` for global UI) and exposes locators/actions scoped under it.
 
@@ -80,10 +80,10 @@ A component wraps a **root `Locator`** (or the `Page` for global UI) and exposes
 
 ## Creating a new page object
 
-1. Create `pages/<Name>Page.ts`, class `<Name>Page extends BasePage` (PascalCase, ends in `Page`).
+1. Create `ui/pages/<Name>Page.ts`, class `<Name>Page extends BasePage` (PascalCase, ends in `Page`).
 2. Set `readonly path = '/route';` and declare locators/components in the constructor after `super(page)`.
 3. Add actions as methods.
-4. **Register it in `PageFactory.ts`**:
+4. **Register it in `ui/PageFactory.ts`**:
    - import the class,
    - add a getter in the same style as the others:
 
@@ -93,12 +93,12 @@ A component wraps a **root `Locator`** (or the `Page` for global UI) and exposes
 
    Getter name = class name in camelCase (`CheckoutPage` -> `checkoutPage`). One page = one getter; never instantiate a page elsewhere.
 5. Use it in specs as `app.checkoutPage`.
-6. Add any new shared types to `types.ts` and any new data/builders to `test-data.ts`.
+6. Add any new shared types to `ui/types.ts` and any new data/builders to `ui/test-data.ts`.
 7. Update this folder's docs if you introduced a new pattern.
 
 ## Reusability: preferred, not forced
 
-- **Prefer reuse.** Before writing a new locator or helper, check `BasePage` and `components/`. If an existing component does the job, use it.
+- **Prefer reuse.** Before writing a new locator or helper, check `BasePage` and `ui/components/`. If an existing component does the job, use it.
 - If the same logic is needed by a second page, extract it into a component (or `BasePage` if every page needs it).
 - **Do not force reuse.** If a page has a one-off element or behaviour that does not fit a component cleanly,
   keep it local to that page rather than bending a component with flags and special cases.

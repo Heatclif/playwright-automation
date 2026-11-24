@@ -1,11 +1,11 @@
 import { test as base, expect } from '@playwright/test';
-import { USER } from './config';
-import { ApiClient } from './api/api-client';
-import { AuthApi } from './api/auth-api';
-import { EventsApi } from './api/events-api';
-import { BookingsApi } from './api/bookings-api';
-import { HealthApi } from './api/health-api';
-import { AuthBuilder } from './api/builders/auth-builder';
+import { USER } from '../config';
+import { ApiClient } from './api-client';
+import { AuthApi } from './auth-api';
+import { EventsApi } from './events-api';
+import { BookingsApi } from './bookings-api';
+import { HealthApi } from './health-api';
+import { AuthBuilder } from './builders/auth-builder';
 
 /** Everything an API test needs: the client plus one class per endpoint group. */
 export type ApiServices = {
@@ -25,7 +25,7 @@ type ApiFixtures = {
 
 /**
  * Fixtures for API specs only. No browser, no UI login.
- * UI specs use `fixtures.ts` instead.
+ * UI specs use `ui/ui-fixtures.ts` instead.
  */
 export const test = base.extend<ApiFixtures>({
   api: async ({}, use) => {

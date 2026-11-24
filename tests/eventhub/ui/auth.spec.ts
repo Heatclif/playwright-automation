@@ -1,5 +1,5 @@
-import { expect, test } from '../../src/eventhub/fixtures';
-import { USER } from '../../src/eventhub/config';
+import { expect, test } from '../../../src/eventhub/ui/ui-fixtures';
+import { USER } from '../../../src/eventhub/config';
 
 test.describe('Authentication', { tag: '@auth' }, () => {
   test.use({ storageState: { cookies: [], origins: [] } });

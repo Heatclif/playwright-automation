@@ -1,5 +1,5 @@
-import { expect, test } from '../../src/eventhub/fixtures';
-import { FEATURED_EVENT } from '../../src/eventhub/test-data';
+import { expect, test } from '../../../src/eventhub/ui/ui-fixtures';
+import { FEATURED_EVENT } from '../../../src/eventhub/ui/test-data';
 
 test.describe('Browse events', { tag: '@events' }, () => {
   test.beforeEach(async ({ app }) => {

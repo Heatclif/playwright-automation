@@ -30,19 +30,19 @@ Include untracked files from the list.
 
 Judge every changed file against the guides you loaded. Beyond the per-guide rules, always look at these cross-cutting points, because they span files and are easy to miss:
 
-- **Layering**: locators only in page objects, assertions only in specs. Specs import `test`/`expect` from `src/eventhub/fixtures` and reach pages via `app`.
+- **Layering**: locators only in page objects, assertions only in specs. Specs import `test`/`expect` from `src/eventhub/ui/ui-fixtures` and reach pages via `app`.
 - **Wiring**: a new page object is registered in `PageFactory`; a new component is used through its page.
 - **Tags and CI**: a new spec has a new tag, listed in the tag table of `spec-writing-conventions.md` and in the `regression.yml` matrix (without `@`). Check the spec, the table and the matrix agree.
 - **Docs in the same change**: a framework change (structure, base class, fixture, factory, tag, workflow, convention) must update the matching `.ai_documentation/` file. If code and docs now disagree, flag it and say which side looks wrong.
 - **Test robustness**: anything that makes a test pass by weakening it (`waitForTimeout`, loosened assertions, unexplained `.first()`, `test.skip`/`test.fail`). `skill-shared-rules.md` section 3 explains why; flag the pattern wherever it appears, not just in skills.
-- **Test data**: static data and builders belong in `test-data.ts`; credentials and URLs come from `config.ts`, never inline.
+- **Test data**: static data and builders belong in `ui/test-data.ts`; credentials and URLs come from `config.ts`, never inline.
 
 Cheap greps to seed the search (confirm each hit by reading the code, they are leads, not verdicts):
 
 ```bash
 grep -rnE "waitForTimeout|test\.(skip|fail)|\.first\(\)" tests src
 grep -rn "from '@playwright/test'" tests
-grep -rnE "expect\(" src/eventhub/pages src/eventhub/components
+grep -rnE "expect\(" src/eventhub/ui/pages src/eventhub/ui/components
 grep -rnE "getBy|locator\(" tests
 ```
 

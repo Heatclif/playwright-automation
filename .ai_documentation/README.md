@@ -25,14 +25,14 @@ Any change to the framework **must update the matching file in the same change**
 ```
 src/eventhub/
   config.ts          BASE_URL, API_BASE_URL (env-overridable), USER (required from .env / GitHub secrets)
-  types.ts           shared TypeScript types / interfaces
-  test-data.ts       static data and builders (buildEvent, CUSTOMER, ...)
-  fixtures.ts        custom `test` for UI specs: baseURL, login-once storageState, `app` (PageFactory)
-  api-fixtures.ts    custom `test` for API specs: `api` / `authedApi` (API services), no browser
-  PageFactory.ts     one lazily created instance of every page object
-  components/        reusable UI pieces (Form, NavBar, ConfirmDialog)
-  pages/             one class per page, extending BasePage
-  api/               ApiClient, per-endpoint API classes, builders, data layer (see api-layer-conventions.md)
+  ui/                UI layer (mirrors api/)
+    ui-fixtures.ts   custom `test` for UI specs: baseURL, login-once storageState, `app` (PageFactory)
+    types.ts         shared TypeScript types / interfaces
+    test-data.ts     static data and builders (buildEvent, CUSTOMER, ...)
+    PageFactory.ts   one lazily created instance of every page object
+    components/      reusable UI pieces (Form, NavBar, ConfirmDialog)
+    pages/           one class per page, extending BasePage
+  api/               api-fixtures.ts (custom `test` for API specs: `api` / `authedApi`, no browser), ApiClient, per-endpoint API classes, builders, data layer (see api-layer-conventions.md)
 tests/eventhub/      specs (one file per feature area); tests/eventhub/api/ runs on the `api` project
 .github/workflows/   regression.yml (matrix) + helper-*.yml (reusable)
 ```

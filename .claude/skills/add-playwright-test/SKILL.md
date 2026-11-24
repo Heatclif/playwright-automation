@@ -20,7 +20,7 @@ Read `.ai_documentation/README.md`, then:
 - `spec-writing-conventions.md` before touching `tests/eventhub/` or choosing a tag
 - `github-actions-tags.md` only if a new tag is needed
 
-Then skim the existing code the change could touch: `src/eventhub/pages/`, `components/`, `PageFactory.ts`, `test-data.ts` and the `tests/eventhub/*.spec.ts` names. You need this to judge confidence and to reuse what exists.
+Then skim the existing code the change could touch: `src/eventhub/ui/pages/`, `ui/components/`, `ui/PageFactory.ts`, `ui/test-data.ts` and the `tests/eventhub/*.spec.ts` names. You need this to judge confidence and to reuse what exists.
 
 ## Step 1: Choose the path
 
@@ -43,7 +43,7 @@ State the path and the one-line reason in your reply before starting, e.g. "Path
 2. Add missing locators/actions to the right page object or component. A new page also gets a `PageFactory` getter.
 3. Add the spec. Placement follows the doc: same feature goes in the existing spec's describe, unrelated feature gets a new spec file and tag (and then `github-actions-tags.md` applies: add to `regression.yml` matrix and the tag table).
 4. Codegen has no assertions. Derive them from the scenario's expected results. If the scenario states none, add the most obvious user-visible outcome and mention in the summary that you inferred it.
-5. Data: credentials from `USER` in `config.ts`, reusable data/builders in `test-data.ts`; never hardcode in specs.
+5. Data: credentials from `USER` in `config.ts`, reusable data/builders in `ui/test-data.ts`; never hardcode in specs.
 6. Go to **Run and fix**.
 
 ## Path B: explore with Playwright MCP
