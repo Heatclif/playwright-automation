@@ -64,6 +64,7 @@ Only `regression.yml` needs editing to add a tag. The helpers are generic and us
 - A tag missing from the matrix will **not run in CI**. A tag in the matrix with no matching tests makes the job fail with "No tests found".
 - Jobs run with `fail-fast: false`, so one failing tag does not stop the others; `combine-report` still runs (`if: !cancelled()`).
 - `max-parallel` in `regression.yml` limits concurrent tag jobs; raise it if the tag list grows and runtime matters.
-- To run a different browser for a tag, pass the `project` input to the common workflow (default `chromium`).
+- To run a tag on a different project, add it under `matrix.include` with a `project` (default `chromium`). API tags use `project: api`:
+  `- { tag: api_auth, project: api }`. The common workflow skips the browser install for `api`. See `api-layer-conventions.md`.
 - Intentionally failing tags (`failing_demo`) turn the run red by design; leave them out of the matrix if that is not wanted.
 - If a workflow file is renamed or the matrix moves, update this document in the same change.

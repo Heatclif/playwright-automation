@@ -7,6 +7,7 @@ Guidelines and patterns for AI assistants (and humans) working on this framework
 | --- | --- |
 | [spec-writing-conventions.md](spec-writing-conventions.md) | adding or changing a test / spec file, or choosing tags |
 | [page-object-conventions.md](page-object-conventions.md) | adding elements, components or pages under `src/eventhub/` |
+| [api-layer-conventions.md](api-layer-conventions.md) | adding or changing API tests, builders, API classes or `ApiClient` |
 | [github-actions-tags.md](github-actions-tags.md) | introducing a new tag that must run in CI |
 | [skill-shared-rules.md](skill-shared-rules.md) | writing or running a skill in `.claude/skills/` (Allure data handling, stop-on-error, never weaken tests, no commits) |
 
@@ -23,13 +24,15 @@ Any change to the framework **must update the matching file in the same change**
 
 ```
 src/eventhub/
-  config.ts          BASE_URL (env-overridable), USER (required from .env / GitHub secrets)
+  config.ts          BASE_URL, API_BASE_URL (env-overridable), USER (required from .env / GitHub secrets)
   types.ts           shared TypeScript types / interfaces
   test-data.ts       static data and builders (buildEvent, CUSTOMER, ...)
-  fixtures.ts        custom `test`: baseURL, login-once storageState, `app` (PageFactory)
+  fixtures.ts        custom `test` for UI specs: baseURL, login-once storageState, `app` (PageFactory)
+  api-fixtures.ts    custom `test` for API specs: `api` / `authedApi` (API services), no browser
   PageFactory.ts     one lazily created instance of every page object
   components/        reusable UI pieces (Form, NavBar, ConfirmDialog)
   pages/             one class per page, extending BasePage
-tests/eventhub/      specs (one file per feature area)
+  api/               ApiClient, per-endpoint API classes, builders, data layer (see api-layer-conventions.md)
+tests/eventhub/      specs (one file per feature area); tests/eventhub/api/ runs on the `api` project
 .github/workflows/   regression.yml (matrix) + helper-*.yml (reusable)
 ```

@@ -24,9 +24,16 @@ jobs:
           - booking
           - admin_event
           - failing_demo
+        include:
+          # API tags run on the `api` Playwright project (no browser)
+          - { tag: api_auth, project: api }
+          - { tag: api_events, project: api }
+          - { tag: api_bookings, project: api }
+          - { tag: api_health, project: api }
     uses: ./.github/workflows/helper-playwright-common.yml
     with:
       tag: ${{ matrix.tag }}
+      project: ${{ matrix.project || 'chromium' }}
     secrets:
       EVENTHUB_EMAIL: ${{ secrets.EVENTHUB_EMAIL }}
       EVENTHUB_PASSWORD: ${{ secrets.EVENTHUB_PASSWORD }}

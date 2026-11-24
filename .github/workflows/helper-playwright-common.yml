@@ -9,7 +9,7 @@ on:
         required: true
         type: string
       project:
-        description: 'Playwright project (browser) to run'
+        description: 'Playwright project to run (chromium, or api for API tests)'
         required: false
         type: string
         default: chromium
@@ -36,6 +36,7 @@ jobs:
         run: npm ci
 
       - name: Install Playwright browsers
+        if: ${{ inputs.project != 'api' }}
         run: npx playwright install --with-deps ${{ inputs.project }}
 
       - name: Run tests tagged @${{ inputs.tag }}
