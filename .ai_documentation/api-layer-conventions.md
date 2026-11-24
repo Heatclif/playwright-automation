@@ -1,7 +1,7 @@
 # API layer conventions
 
-API tests live in `tests/eventhub/api/` and run on the dedicated Playwright **`api`** project (no browser).
-The `chromium` project ignores that folder. Run one tag locally: `npx playwright test --project=api --grep @api_auth`.
+API tests live in `tests/eventhub/api/` and need no browser: `api/api-fixtures.ts` never requests one, so there is no separate Playwright project.
+Run one tag locally: `npx playwright test --project=chromium --grep @api_auth`. In CI they run in the `api-regression` job.
 
 ## Structure (`src/eventhub/api/`)
 
@@ -45,7 +45,7 @@ Flow in a spec: data layer -> builder -> `*Api` method -> assertions in the spec
 - API URL: `API_BASE_URL` in `config.ts` (`EVENTHUB_API_URL`, default `https://api.eventhub.rahulshettyacademy.com/api`) is the only place the default lives; `ApiClient` imports it.
 - **No browser for API tests**: `api/api-fixtures.ts` extends plain `@playwright/test` and has no UI login, so API specs never launch a browser. Don't import `ui/ui-fixtures.ts` in API specs (its `storageState` logs in through the UI for every test).
 - **Parallel workers**: CI runs with `workers: 1`. Locally, many workers creating events at once can make the backend return
-  404 `Record not found` on `POST /events`; if that happens run the API project with `--workers=1`.
+  404 `Record not found` on `POST /events`; if that happens run with `--workers=1`.
 - Prefer unique data per test (`generateUniqueEvent`) since the backend is shared.
 
 ## Tags
@@ -57,4 +57,4 @@ Flow in a spec: data layer -> builder -> `*Api` method -> assertions in the spec
 | `@api_bookings` | `api-bookings.spec.ts` |
 | `@api_health` | `api-health.spec.ts` |
 
-All are in the CI matrix with `project: api` (see `github-actions-tags.md`).
+All are in the `api-regression` matrix in `regression.yml` (see `github-actions-tags.md`).

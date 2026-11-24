@@ -7,8 +7,8 @@ uploads its own Allure results, and a final job merges them all into one report 
 
 | File | Role |
 | --- | --- |
-| `.github/workflows/regression.yml` | Entry point. Triggers (cron `30 3 * * 1-5` = 09:00 IST Mon-Fri, `workflow_dispatch`). Holds the `matrix.tag` list. |
-| `.github/workflows/helper-playwright-common.yml` | Reusable. Checkout, Node, `npm ci`, install browser, run tests for one tag, upload `allure-results_<tag>` only (no per-tag report). |
+| `.github/workflows/regression.yml` | Entry point. Triggers (cron `30 3 * * 1-5` = 09:00 IST Mon-Fri, `workflow_dispatch`). Two jobs, each with its own `matrix.tag` list: `ui-regression` (UI tags) and `api-regression` (API tags, no browser install). |
+| `.github/workflows/helper-playwright-common.yml` | Reusable. Checkout, Node, `npm ci`, install browser (skipped when `install_browsers: false`), run tests for one tag, upload `allure-results_<tag>` only (no per-tag report). |
 | `.github/workflows/helper-post-gh-page.yml` | Reusable. Downloads every `allure-results_*`, restores history from gh-pages, generates the combined report, uploads it and publishes to gh-pages. |
 | `.github/workflows/helper-claude-analysis.yml` | Reusable, optional. Checks out gh-pages into `allure-report_combined`, starts Claude Code with the `allure-report` MCP allowed, runs the `failure-analysis` skill and prints the tables in the job log and summary. |
 
@@ -33,12 +33,12 @@ Test login comes from `EVENTHUB_EMAIL` / `EVENTHUB_PASSWORD` (no defaults; `conf
 - MCP server: `mcp/allure-report` (needs Node 24). Skill: `.claude/skills/failure-analysis`. Claude is limited to that skill, the
   `list_all_tests` tool and the two skill scripts (the sync script skips itself in GHA, since gh-pages is already checked out); the workflow itself prints `allure-analysis/all-tests-tables.txt`.
 
-Only `regression.yml` needs editing to add a tag. The helpers are generic and use the tag as an input.
+Only `regression.yml` needs editing to add a tag: UI tags go in `ui-regression`, API tags (`api_*`) in `api-regression`. The helpers are generic and use the tag as an input.
 
 ## Steps
 
 1. **Tag the spec** (see `spec-writing-conventions.md`): `test.describe('Name', { tag: '@my_tag' }, ...)`.
-2. **Add the tag to the matrix** in `regression.yml`, **without the `@`**:
+2. **Add the tag to the matrix** of the right job in `regression.yml` (`ui-regression` or `api-regression`), **without the `@`**:
 
    ```yaml
    matrix:
@@ -62,9 +62,9 @@ Only `regression.yml` needs editing to add a tag. The helpers are generic and us
 - `--grep` is a regex match: a tag that is a prefix of another (e.g. `event` vs `events`) will also select the longer one.
   Choose tags that are not prefixes of each other, or the same tests will run twice.
 - A tag missing from the matrix will **not run in CI**. A tag in the matrix with no matching tests makes the job fail with "No tests found".
-- Jobs run with `fail-fast: false`, so one failing tag does not stop the others; `combine-report` still runs (`if: !cancelled()`).
-- `max-parallel` in `regression.yml` limits concurrent tag jobs; raise it if the tag list grows and runtime matters.
-- To run a tag on a different project, add it under `matrix.include` with a `project` (default `chromium`). API tags use `project: api`:
-  `- { tag: api_auth, project: api }`. The common workflow skips the browser install for `api`. See `api-layer-conventions.md`.
+- Jobs run with `fail-fast: false`, so one failing tag does not stop the others; `combine-report` (needs both jobs) still runs (`if: !cancelled()`).
+- `max-parallel` in `regression.yml` limits concurrent tag jobs per job (`ui-regression`, `api-regression`); raise it if the tag list grows and runtime matters.
+- UI and API tags are separate jobs on the same `chromium` project. `api-regression` passes `install_browsers: false`, since API specs
+  import `api/api-fixtures.ts` and never launch a browser. See `api-layer-conventions.md`.
 - Intentionally failing tags (`failing_demo`) turn the run red by design; leave them out of the matrix if that is not wanted.
 - If a workflow file is renamed or the matrix moves, update this document in the same change.

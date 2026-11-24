@@ -5,14 +5,19 @@ on:
   workflow_call:
     inputs:
       tag:
-        description: 'Tag name without the leading @ (e.g. auth, events, booking, admin_event)'
+        description: 'Tag name without the leading @ (e.g. auth, events, api_auth)'
         required: true
         type: string
       project:
-        description: 'Playwright project to run (chromium, or api for API tests)'
+        description: 'Playwright project to run'
         required: false
         type: string
         default: chromium
+      install_browsers:
+        description: 'Install the Playwright browser (false for API tags, which never launch one)'
+        required: false
+        type: boolean
+        default: true
     secrets:
       EVENTHUB_EMAIL:
         required: true
@@ -36,7 +41,7 @@ jobs:
         run: npm ci
 
       - name: Install Playwright browsers
-        if: ${{ inputs.project != 'api' }}
+        if: ${{ inputs.install_browsers }}
         run: npx playwright install --with-deps ${{ inputs.project }}
 
       - name: Run tests tagged @${{ inputs.tag }}

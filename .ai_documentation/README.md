@@ -33,6 +33,6 @@ src/eventhub/
     components/      reusable UI pieces (Form, NavBar, ConfirmDialog)
     pages/           one class per page, extending BasePage
   api/               api-fixtures.ts (custom `test` for API specs: `api` / `authedApi`, no browser), ApiClient, per-endpoint API classes, builders, data layer (see api-layer-conventions.md)
-tests/eventhub/      specs (one file per feature area); tests/eventhub/api/ runs on the `api` project
+tests/eventhub/      specs (one file per feature area); tests/eventhub/api/ runs in the `api-regression` CI job
 .github/workflows/   regression.yml (matrix) + helper-*.yml (reusable)
 ```
