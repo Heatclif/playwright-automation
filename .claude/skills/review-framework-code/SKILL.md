@@ -1,6 +1,6 @@
 ---
 name: review-framework-code
-description: Review changes to this EventHub Playwright framework (specs, page objects, components, PageFactory, fixtures, tags, workflow files, skills) against the conventions in `.ai_documentation/`. Use whenever the user asks to review, check, audit or "look over" their changes, a diff, a branch, a PR, or specific spec/page-object files for this repo, or asks "does this follow our conventions / standards", even if they don't say "code review" or name the skill. Reports findings only; does not edit files unless asked.
+description: Review changes to this EventHub Playwright framework (specs, page objects, components, PageFactory, API classes, builders and data, fixtures, tags, workflow files, skills) against the conventions in `.ai_documentation/`. Use whenever the user asks to review, check, audit or "look over" their changes, a diff, a branch, a PR, or specific spec/page-object files for this repo, or asks "does this follow our conventions / standards", even if they don't say "code review" or name the skill. Reports findings only; does not edit files unless asked.
 ---
 
 # Review framework code
