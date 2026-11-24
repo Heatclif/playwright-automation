@@ -7,8 +7,8 @@ uploads its own Allure results, and a final job merges them all into one report 
 
 | File | Role |
 | --- | --- |
-| `.github/workflows/regression.yml` | Entry point. Triggers (cron `30 3 * * 1-5` = 09:00 IST Mon-Fri, `workflow_dispatch`). Holds the `matrix.tag` list. |
-| `.github/workflows/helper-playwright-common.yml` | Reusable. Checkout, Node, `npm ci`, install browser, run tests for one tag, upload `allure-results_<tag>` only (no per-tag report). |
+| `.github/workflows/regression.yml` | Entry point. Triggers (cron `30 3 * * 1-5` = 09:00 IST Mon-Fri, `workflow_dispatch`). Two jobs, each with its own `matrix.tag` list: `ui-regression` (UI tags) and `api-regression` (API tags, no browser install). |
+| `.github/workflows/helper-playwright-common.yml` | Reusable. Checkout, Node, `npm ci`, install browser (skipped when `install_browsers: false`), run tests for one tag, upload `allure-results_<tag>` only (no per-tag report). |
 | `.github/workflows/helper-post-gh-page.yml` | Reusable. Downloads every `allure-results_*`, restores history from gh-pages, generates the combined report, uploads it and publishes to gh-pages. |
 | `.github/workflows/helper-claude-analysis.yml` | Reusable, optional. Checks out gh-pages into `allure-report_combined`, starts Claude Code with the `allure-report` MCP allowed, runs the `failure-analysis` skill and prints the tables in the job log and summary. |
 
@@ -19,7 +19,7 @@ Only the combined report is uploaded as a report (`allure-report_combined`, **5 
 
 ### Credentials
 
-Test login comes from `EVENTHUB_EMAIL` / `EVENTHUB_PASSWORD` (no defaults; `config.ts` throws if missing). Locally they live in
+Test login comes from `EVENTHUB_EMAIL` / `EVENTHUB_PASSWORD` (no defaults; `USER` in `config.ts` throws when read if missing, so public specs such as `@api_health` run without them). Locally they live in
 `.env` (gitignored; copy `.env.example`). In CI, add them as repo secrets; `regression.yml` passes them to
 `helper-playwright-common.yml` (declared under `workflow_call.secrets`), which sets them as `env` on the test step.
 
@@ -33,12 +33,12 @@ Test login comes from `EVENTHUB_EMAIL` / `EVENTHUB_PASSWORD` (no defaults; `conf
 - MCP server: `mcp/allure-report` (needs Node 24). Skill: `.claude/skills/failure-analysis`. Claude is limited to that skill, the
   `list_all_tests` tool and the two skill scripts (the sync script skips itself in GHA, since gh-pages is already checked out); the workflow itself prints `allure-analysis/all-tests-tables.txt`.
 
-Only `regression.yml` needs editing to add a tag. The helpers are generic and use the tag as an input.
+Only `regression.yml` needs editing to add a tag: UI tags go in `ui-regression`, API tags (`api_*`) in `api-regression`. The helpers are generic and use the tag as an input.
 
 ## Steps
 
 1. **Tag the spec** (see `spec-writing-conventions.md`): `test.describe('Name', { tag: '@my_tag' }, ...)`.
-2. **Add the tag to the matrix** in `regression.yml`, **without the `@`**:
+2. **Add the tag to the matrix** of the right job in `regression.yml` (`ui-regression` or `api-regression`), **without the `@`**:
 
    ```yaml
    matrix:
@@ -62,8 +62,9 @@ Only `regression.yml` needs editing to add a tag. The helpers are generic and us
 - `--grep` is a regex match: a tag that is a prefix of another (e.g. `event` vs `events`) will also select the longer one.
   Choose tags that are not prefixes of each other, or the same tests will run twice.
 - A tag missing from the matrix will **not run in CI**. A tag in the matrix with no matching tests makes the job fail with "No tests found".
-- Jobs run with `fail-fast: false`, so one failing tag does not stop the others; `combine-report` still runs (`if: !cancelled()`).
-- `max-parallel` in `regression.yml` limits concurrent tag jobs; raise it if the tag list grows and runtime matters.
-- To run a different browser for a tag, pass the `project` input to the common workflow (default `chromium`).
+- Jobs run with `fail-fast: false`, so one failing tag does not stop the others; `combine-report` (needs both jobs) still runs (`if: !cancelled()`).
+- `max-parallel` in `regression.yml` limits concurrent tag jobs per job (`ui-regression`, `api-regression`); raise it if the tag list grows and runtime matters.
+- UI and API tags are separate jobs on the same `chromium` project. `api-regression` passes `install_browsers: false`, since API specs
+  import `api/api-fixtures.ts` and never launch a browser. See `api-layer-conventions.md`.
 - Intentionally failing tags (`failing_demo`) turn the run red by design; leave them out of the matrix if that is not wanted.
 - If a workflow file is renamed or the matrix moves, update this document in the same change.

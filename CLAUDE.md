@@ -19,7 +19,7 @@ must update the matching file in `.ai_documentation/` **in the same change**. If
 
 ## Essentials
 
-- Import `test`/`expect` from `src/eventhub/fixtures`, not `@playwright/test`; reach pages via the `app` fixture.
+- Import `test`/`expect` from `src/eventhub/ui/ui-fixtures`, not `@playwright/test`; reach pages via the `app` fixture. API specs import from `src/eventhub/api/api-fixtures` instead.
 - No raw selectors or assertions in the wrong layer: locators in page objects, assertions in specs.
-- New spec = new tag = add it to the `regression.yml` matrix (without `@`).
+- New spec = new tag = add it to the `regression.yml` matrix (without `@`): `ui-regression` for UI tags, `api-regression` for `api_*` tags.
 - Run a tag locally: `npx playwright test --project=chromium --grep @<tag>`.

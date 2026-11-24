@@ -1,5 +1,5 @@
-import { expect, test } from '../../src/eventhub/fixtures';
-import { buildEvent, CUSTOMER, FEATURED_EVENT } from '../../src/eventhub/test-data';
+import { expect, test } from '../../../src/eventhub/ui/ui-fixtures';
+import { buildEvent, CUSTOMER, FEATURED_EVENT } from '../../../src/eventhub/ui/test-data';
 
 test.describe('Bookings', { tag: '@booking' }, () => {
   test('book tickets for an event and cancel the booking', async ({ app }) => {

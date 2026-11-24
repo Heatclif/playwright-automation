@@ -24,7 +24,7 @@ Follow `.ai_documentation/skill-shared-rules.md`: section 1 (don't read raw Allu
 
 ## Step 0: Load the rules
 
-Read `.ai_documentation/README.md`, then `page-object-conventions.md` and/or `spec-writing-conventions.md` before editing anything under `src/eventhub/` or `tests/eventhub/`. Also read `.claude/skills/add-playwright-test/references/failure-triage.md`: its "do not retry" and "retry: fix the code" tables are the classification rubric used below.
+Read `.ai_documentation/README.md`, then `page-object-conventions.md` (UI), `api-layer-conventions.md` (API: specs under `tests/eventhub/api/`, tags `api_*`) and/or `spec-writing-conventions.md` before editing anything under `src/eventhub/` or `tests/eventhub/`. Also read `.claude/skills/add-playwright-test/references/failure-triage.md`: its "do not retry" and "retry: fix the code" tables are the classification rubric used below.
 
 ## Step 1: Refresh the report (personal computer only)
 
@@ -65,6 +65,7 @@ Work through the targets one at a time. Start from the failure reason Allure gav
    ```bash
    npx playwright test --project=chromium <spec-path> -g "<test name>"
    ```
+   API tests run the same way (no browser is launched). If an API test fails only when run with others, repeat with `--workers=1`.
    - **Passes locally**: likely flaky or CI-environment-specific. Run it up to 3 times (`--repeat-each=3`) to see. If it passes every time, report "not reproducible locally" with the Allure reason and stop on this test; don't change code.
    - **Fails the same way**: continue.
    - **Fails differently**: note both errors; diagnose the local one but mention the difference.
@@ -72,14 +73,15 @@ Work through the targets one at a time. Start from the failure reason Allure gav
    - **Environmental / data** (credentials, lockout, network or site down, 5xx, missing browsers, missing seed data, permissions): not fixable in code. Go to step 6 for this test. Do not retry (retrying can lock the account).
    - **Code problem** (locator, strict-mode violation, stale expectation, timing the framework should cover, missing factory registration, TypeScript error): continue.
    - **Possible product bug**: continue to step 5 to confirm with the live app first.
-3. **Inspect the live app with Playwright MCP** whenever the cause involves what's on the page (locator not found, strict mode, text/URL mismatch). The `mcp__playwright__*` tools may need loading via ToolSearch. Navigate to `BASE_URL` from `src/eventhub/config.ts`, log in with `USER` if the flow needs it, replay the test's steps and take `browser_snapshot` where it fails. Compare the snapshot (roles, names, labels, text) with what the page object or spec expects. If the Playwright MCP tools are unavailable, say so and rely on the Playwright trace/error-context from the local run rather than guessing.
-4. State the diagnosis in one sentence backed by evidence (error line plus what the snapshot showed). If you can't, you're guessing: go to step 6.
+3. **API targets** (`eventhub/api/...`, tags `api_*`): there is no page to snapshot. Each call is printed in the run output (`[API] METHOD url -> status` plus request/response JSON, secrets masked) and attached to the test, so use the logged status and response body as the evidence. To confirm the live behaviour, call the endpoint once (for example `curl` against `API_BASE_URL` in `src/eventhub/config.ts`, logging in with `.env` credentials; never print the password or token). Then continue at point 5. Before calling a failure a code problem, check the API rows in `failure-triage.md`: a `POST /events` `404 "Record not found"` that passes with `--workers=1` is the known backend flake (report it, don't edit the test), and a failing `API login` in the `authedApi` fixture is a credentials/environment problem.
+4. **Inspect the live app with Playwright MCP** (UI targets) whenever the cause involves what's on the page (locator not found, strict mode, text/URL mismatch). The `mcp__playwright__*` tools may need loading via ToolSearch. Navigate to `BASE_URL` from `src/eventhub/config.ts`, log in with `USER` if the flow needs it, replay the test's steps and take `browser_snapshot` where it fails. Compare the snapshot (roles, names, labels, text) with what the page object or spec expects. If the Playwright MCP tools are unavailable, say so and rely on the Playwright trace/error-context from the local run rather than guessing.
+5. State the diagnosis in one sentence backed by evidence (error line plus what the snapshot or the logged API response showed). If you can't, you're guessing: go to step 6.
 
 ## Step 5: Fix (max 2 attempts per test)
 
 Is the *test* wrong or the *app* wrong?
 
-- **Test wrong** (the app still does something reasonable, the test's locator/expectation is outdated): fix in the correct layer, following the conventions (locators in page objects, assertions in specs; prefer role/label locators; `PageFactory` getter for any new page). Touch the minimum.
+- **Test wrong** (the app still does something reasonable, the test's locator/expectation is outdated): fix in the correct layer, following the conventions (locators in page objects, assertions in specs; prefer role/label locators; `PageFactory` getter for any new page). For API tests: payloads in builders, values in `api/data/api-test-data.ts`, calls in the `*Api` class (no assertions), assertions in the spec. Touch the minimum.
 - **App wrong** (the scenario's intent is no longer met, e.g. a validation message disappeared, a redirect broke): the test is right. Don't edit it. Report a probable product defect (step 6).
 
 After each fix, re-run the single test, then the whole tag to check neighbours:

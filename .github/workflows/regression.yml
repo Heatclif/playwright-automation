@@ -12,8 +12,8 @@ on:
         default: false
 
 jobs:
-  regression:
-    name: regression (${{ matrix.tag }})
+  ui-regression:
+    name: ui-regression (${{ matrix.tag }})
     strategy:
       fail-fast: false
       max-parallel: 5
@@ -31,9 +31,28 @@ jobs:
       EVENTHUB_EMAIL: ${{ secrets.EVENTHUB_EMAIL }}
       EVENTHUB_PASSWORD: ${{ secrets.EVENTHUB_PASSWORD }}
 
+  api-regression:
+    name: api-regression (${{ matrix.tag }})
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        tag:
+          - api_auth
+          - api_events
+          - api_bookings
+          - api_health
+    uses: ./.github/workflows/helper-playwright-common.yml
+    with:
+      tag: ${{ matrix.tag }}
+      install_browsers: false   # API specs use api-fixtures.ts, which never launches a browser
+    secrets:
+      EVENTHUB_EMAIL: ${{ secrets.EVENTHUB_EMAIL }}
+      EVENTHUB_PASSWORD: ${{ secrets.EVENTHUB_PASSWORD }}
+
   combine-report:
     name: combined allure report
-    needs: regression
+    needs: [ui-regression, api-regression]
     if: ${{ !cancelled() }}
     permissions:
       contents: write

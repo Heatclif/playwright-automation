@@ -1,5 +1,5 @@
-import { expect, test } from '../../src/eventhub/fixtures';
-import { buildEvent, CUSTOMER } from '../../src/eventhub/test-data';
+import { expect, test } from '../../../src/eventhub/ui/ui-fixtures';
+import { buildEvent, CUSTOMER } from '../../../src/eventhub/ui/test-data';
 
 test.describe('Admin - manage events', { tag: '@admin_event' }, () => {
   test.beforeEach(async ({ app }) => {

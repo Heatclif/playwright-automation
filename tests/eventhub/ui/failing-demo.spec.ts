@@ -1,5 +1,5 @@
-import { expect, test } from '../../src/eventhub/fixtures';
-import { USER } from '../../src/eventhub/config';
+import { expect, test } from '../../../src/eventhub/ui/ui-fixtures';
+import { USER } from '../../../src/eventhub/config';
 
 /**
  * Deliberately unreliable tests, useful for checking how reports, retries and

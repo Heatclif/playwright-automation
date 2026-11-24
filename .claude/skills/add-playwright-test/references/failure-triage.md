@@ -12,6 +12,7 @@ Decide first whether a failure is something the code can fix. Only code failures
 | `net::ERR_*`, DNS failure, timeouts on `goto`, 5xx | Site or network down | Report; try again later |
 | `Executable doesn't exist` / browsers not installed | Environment | `npx playwright install` |
 | 403 / "not authorized" for the scenario's role | `USER` lacks the permission | Say which role is needed |
+| API login in the `authedApi` fixture fails (`API login` status not 200) | Wrong credentials in `.env`, or the API is down | Check `EVENTHUB_EMAIL` / `EVENTHUB_PASSWORD` |
 
 A quick way to tell: if the *same* failure would occur no matter how the test code is written, it's environmental.
 
@@ -20,11 +21,16 @@ A quick way to tell: if the *same* failure would occur no matter how the test co
 | Symptom | Typical fix |
 | --- | --- |
 | `strict mode violation: ... resolved to N elements` | Make the locator more specific (scope under a component root, add `name`/`exact`). Understand why there are N before reaching for `.first()`. |
-| `waiting for locator(...)` timeout, element not found | Re-snapshot the page with Playwright MCP; the role/name/label is probably different from what you assumed. Check you're on the right page/state. |
+| `waiting for locator(...)` timeout, element not found | Re-snapshot the page with Playwright MCP (UI); the role/name/label is probably different from what you assumed. Check you're on the right page/state. |
 | `toHaveText`/`toHaveURL` mismatch | Compare with the app's actual output via snapshot. Fix the expectation only if the *expectation* was wrong (e.g. whitespace, regex), not to hide an app bug. |
 | TypeScript error / `app.xPage is not a function` | Missing import, missing `PageFactory` getter, or getter name isn't camelCase of the class. |
 | Test passes alone, fails with others | Shared/fixed test data; switch to unique data via builders; clean up. |
 | "No tests found" for the tag | Tag typo, or the tag isn't set on the top-level describe. |
+| API: `404` from a path that should exist | Leading `/` or wrong base URL (`ApiClient` strips leading slashes); check the path and `API_BASE_URL`. |
+| API: `POST /events` intermittently returns `404 "Record not found"` | Known backend flake when many requests overlap, not a test bug. Re-run with `--workers=1` to confirm; if it passes, report it as backend flakiness rather than editing the test. |
+| API: assertion on a price/total fails (`"999"` vs `999`) | Prices come back as strings; compare with `Number(...)`. |
+| API: booking ref mismatch | Refs are `<letter>-<6 alphanumerics>`; match `/^[A-Z]-[A-Z0-9]{6}$/`. |
+| API: `Cannot find module` / fixtures missing `eventsApi` etc. | The spec imports `ui/ui-fixtures`, or a new `*Api` isn't registered in `api/api-fixtures.ts`. |
 
 ## Evidence rule
 

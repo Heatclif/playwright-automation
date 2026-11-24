@@ -5,7 +5,7 @@
 Always import `test` and `expect` from the custom fixtures, never from `@playwright/test`:
 
 ```ts
-import { expect, test } from '../../src/eventhub/fixtures';
+import { expect, test } from '../../src/eventhub/ui/ui-fixtures';
 ```
 
 - Use the `app` fixture (the `PageFactory`) to reach page objects: `app.loginPage`, `app.eventsPage`, ...
@@ -13,7 +13,7 @@ import { expect, test } from '../../src/eventhub/fixtures';
 - Sessions: every test is logged in by default (login once per worker via `storageState`).
   For logged-out scenarios add `test.use({ storageState: { cookies: [], origins: [] } });` inside the describe.
 - Credentials come from `USER` in `src/eventhub/config.ts`; reusable data and builders come from
-  `src/eventhub/test-data.ts`. Never hardcode them in specs.
+  `src/eventhub/ui/test-data.ts`. Never hardcode them in specs.
 
 ## How tests are arranged
 
@@ -36,7 +36,7 @@ import { expect, test } from '../../src/eventhub/fixtures';
 Skeleton:
 
 ```ts
-import { expect, test } from '../../src/eventhub/fixtures';
+import { expect, test } from '../../src/eventhub/ui/ui-fixtures';
 
 test.describe('Feature name', { tag: '@feature_name' }, () => {
   test.beforeEach(async ({ app }) => {
@@ -69,6 +69,10 @@ test.describe('Feature name', { tag: '@feature_name' }, () => {
 | `@booking` | `booking.spec.ts` | yes |
 | `@admin_event` | `admin-events.spec.ts` | yes |
 | `@failing_demo` | `failing-demo.spec.ts` | yes (intentionally failing, see below) |
+| `@api_auth` | `api/api-auth.spec.ts` | yes (`api-regression` job) |
+| `@api_events` | `api/api-events.spec.ts` | yes (`api-regression` job) |
+| `@api_bookings` | `api/api-bookings.spec.ts` | yes (`api-regression` job) |
+| `@api_health` | `api/api-health.spec.ts` | yes (`api-regression` job) |
 
 Keep this table in sync with the matrix in `.github/workflows/regression.yml`.
 
