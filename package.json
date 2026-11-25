@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "planner": "tsx src/eventhub/agents/planner/cli.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -12,9 +14,12 @@
     "@playwright/test": "^1.64.0",
     "@types/node": "^26.6.5",
     "allure-commandline": "^2.46.1",
-    "allure-playwright": "^3.14.0"
+    "allure-playwright": "^3.14.0",
+    "tsx": "^4.23.15"
   },
   "dependencies": {
+    "@apidevtools/swagger-parser": "^13.1.0",
+    "ajv": "^8.20.0",
     "dotenv": "^18.0.7"
   }
 }

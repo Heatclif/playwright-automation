@@ -42,6 +42,11 @@ jobs:
           - api_events
           - api_bookings
           - api_health
+          - api_planner_contract
+          - api_planner_openapi
+          - api_planner_analyzer
+          - api_planner_scenarios
+          - api_planner_pipeline
     uses: ./.github/workflows/helper-playwright-common.yml
     with:
       tag: ${{ matrix.tag }}

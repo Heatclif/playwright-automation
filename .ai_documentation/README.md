@@ -8,6 +8,11 @@ Guidelines and patterns for AI assistants (and humans) working on this framework
 | [spec-writing-conventions.md](spec-writing-conventions.md) | adding or changing a test / spec file, or choosing tags |
 | [page-object-conventions.md](page-object-conventions.md) | adding elements, components or pages under `src/eventhub/` |
 | [api-layer-conventions.md](api-layer-conventions.md) | adding or changing API tests, builders, API classes or `ApiClient` |
+| [planner-output-contract.md](planner-output-contract.md) | defining or consuming the Planner-to-Generator JSON contract |
+| [planner-openapi-loader.md](planner-openapi-loader.md) | adding or changing the Planner's OpenAPI file loader |
+| [planner-operation-analyzer.md](planner-operation-analyzer.md) | adding or changing Planner operation analysis |
+| [planner-scenario-generation.md](planner-scenario-generation.md) | adding or changing deterministic Planner scenario generation |
+| [planner-pipeline.md](planner-pipeline.md) | adding or changing end-to-end Planner orchestration |
 | [github-actions-tags.md](github-actions-tags.md) | introducing a new tag that must run in CI |
 | [skill-shared-rules.md](skill-shared-rules.md) | writing or running a skill in `.claude/skills/` (Allure data handling, stop-on-error, never weaken tests, no commits) |
 
@@ -33,6 +38,8 @@ src/eventhub/
     components/      reusable UI pieces (Form, NavBar, ConfirmDialog)
     pages/           one class per page, extending BasePage
   api/               api-fixtures.ts (custom `test` for API specs: `api` / `authedApi`, no browser), ApiClient, per-endpoint API classes, builders, data layer (see api-layer-conventions.md)
+  agents/planner/    PlannerOutput v1 types, OpenAPI loader, operation analyzer, scenario generator, and validated pipeline
 tests/eventhub/      specs (one file per feature area); tests/eventhub/api/ runs in the `api-regression` CI job
+  agents/            Planner output contract, loader, operation analyzer, scenario generator, and pipeline tests
 .github/workflows/   regression.yml (matrix) + helper-*.yml (reusable)
 ```

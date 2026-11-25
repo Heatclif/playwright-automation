@@ -73,6 +73,11 @@ test.describe('Feature name', { tag: '@feature_name' }, () => {
 | `@api_events` | `api/api-events.spec.ts` | yes (`api-regression` job) |
 | `@api_bookings` | `api/api-bookings.spec.ts` | yes (`api-regression` job) |
 | `@api_health` | `api/api-health.spec.ts` | yes (`api-regression` job) |
+| `@api_planner_contract` | `agents/planner-output.spec.ts` | yes (`api-regression` job) |
+| `@api_planner_openapi` | `agents/planner-openapi.spec.ts` | yes (`api-regression` job) |
+| `@api_planner_analyzer` | `agents/planner-operation-analyzer.spec.ts` | yes (`api-regression` job) |
+| `@api_planner_scenarios` | `agents/planner-scenario-generator.spec.ts` | yes (`api-regression` job) |
+| `@api_planner_pipeline` | `agents/planner-pipeline.spec.ts` | yes (`api-regression` job) |
 
 Keep this table in sync with the matrix in `.github/workflows/regression.yml`.
 

@@ -1,0 +1,47 @@
+{
+  "contractVersion": "1.0",
+  "source": {
+    "openApiVersion": "3.1.0",
+    "title": "Example API",
+    "version": "1.0.0"
+  },
+  "testCases": [
+    {
+      "id": "get-pet-by-id-positive-valid-id",
+      "category": "positive",
+      "title": "Gets a pet by ID",
+      "operation": {
+        "operationId": "getPetById",
+        "method": "GET",
+        "path": "/pets/{petId}"
+      },
+      "request": {
+        "pathParams": {
+          "petId": 123
+        },
+        "queryParams": {},
+        "headers": {},
+        "cookies": {},
+        "body": null
+      },
+      "expected": {
+        "statusCode": 200,
+        "statusCodeSource": "openapi",
+        "responseSchema": {
+          "type": "object",
+          "required": ["id", "name"],
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "preconditions": [],
+      "executionReadiness": "ready"
+    }
+  ]
+}

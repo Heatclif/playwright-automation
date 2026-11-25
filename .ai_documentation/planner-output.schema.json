@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlannerOutput v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "source", "testCases"],
+  "properties": {
+    "contractVersion": {
+      "const": "1.0"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["openApiVersion", "title", "version"],
+      "properties": {
+        "openApiVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "testCases": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/testCase"
+      }
+    }
+  },
+  "$defs": {
+    "jsonValue": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        {
+          "$ref": "#/$defs/jsonObject"
+        }
+      ]
+    },
+    "jsonObject": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/jsonValue"
+      }
+    },
+    "testCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "category",
+        "title",
+        "operation",
+        "request",
+        "expected",
+        "preconditions",
+        "executionReadiness"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "category": {
+          "enum": ["positive", "negative", "boundary", "edge"]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["method", "path"],
+          "properties": {
+            "operationId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "method": {
+              "enum": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE",
+                "HEAD",
+                "OPTIONS",
+                "TRACE"
+              ]
+            },
+            "path": {
+              "type": "string",
+              "pattern": "^/"
+            }
+          }
+        },
+        "request": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pathParams",
+            "queryParams",
+            "headers",
+            "cookies",
+            "body"
+          ],
+          "properties": {
+            "pathParams": {
+              "$ref": "#/$defs/jsonObject"
+            },
+            "queryParams": {
+              "$ref": "#/$defs/jsonObject"
+            },
+            "headers": {
+              "$ref": "#/$defs/jsonObject"
+            },
+            "cookies": {
+              "$ref": "#/$defs/jsonObject"
+            },
+            "body": {
+              "$ref": "#/$defs/jsonValue"
+            }
+          }
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "statusCode",
+            "statusCodeSource",
+            "responseSchema"
+          ],
+          "properties": {
+            "statusCode": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "minimum": 100,
+                  "maximum": 599
+                },
+                {
+                  "type": "string",
+                  "enum": ["1XX", "2XX", "3XX", "4XX", "5XX"]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "statusCodeSource": {
+              "enum": ["openapi", "unspecified"]
+            },
+            "responseSchema": {
+              "oneOf": [
+                {
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "statusCodeSource": {
+                    "const": "unspecified"
+                  }
+                },
+                "required": ["statusCodeSource"]
+              },
+              "then": {
+                "properties": {
+                  "statusCode": {
+                    "type": "null"
+                  },
+                  "responseSchema": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "statusCodeSource": {
+                    "const": "openapi"
+                  }
+                },
+                "required": ["statusCodeSource"]
+              },
+              "then": {
+                "properties": {
+                  "statusCode": {
+                    "oneOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 100,
+                        "maximum": 599
+                      },
+                      {
+                        "type": "string",
+                        "enum": ["1XX", "2XX", "3XX", "4XX", "5XX"]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "preconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "executionReadiness": {
+          "enum": ["ready", "needs_oracle"]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "executionReadiness": {
+                "const": "ready"
+              }
+            },
+            "required": ["executionReadiness"]
+          },
+          "then": {
+            "properties": {
+              "expected": {
+                "type": "object",
+                "properties": {
+                  "statusCodeSource": {
+                    "const": "openapi"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "expected": {
+                "type": "object",
+                "properties": {
+                  "statusCodeSource": {
+                    "const": "unspecified"
+                  }
+                },
+                "required": ["statusCodeSource"]
+              }
+            },
+            "required": ["expected"]
+          },
+          "then": {
+            "properties": {
+              "executionReadiness": {
+                "const": "needs_oracle"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
