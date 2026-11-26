@@ -241,13 +241,21 @@ test('${batch[0].title}', async ({ request }) => {
     }
   }
 
-  // Write output files to framework tests/eventhub/api/
-  // Specs go directly into the framework's api test directory
-  const manualCasesPath = path.join(specsDir, 'manual-cases.json');
-  const rtmPath = path.join(specsDir, 'rtm.json');
-
+  // Write generated specs to framework tests directory
+  fs.mkdirSync(specsDir, { recursive: true });
   fs.writeFileSync(path.join(specsDir, ...generatedSpecs.map(g => g.fileName)), 
     generatedSpecs.map(g => g.content).join('\n\n'));
+
+  // Write manual-cases.json and rtm.json to artifacts folder (not framework tests dir)
+  // This ensures they are under artifacts/inputs/ and artifacts/rtm/ per the updated protocol
+  const artifactsDir = path.join(PROJECT_ROOT, 'artifacts');
+  fs.mkdirSync(artifactsDir, { recursive: true });
+
+  const manualCasesPath = path.join(artifactsDir, 'inputs', 'manual-cases.json');
+  const rtmPath = path.join(artifactsDir, 'rtm', 'rtm.json');
+
+  fs.mkdirSync(path.dirname(manualCasesPath), { recursive: true });
+  fs.mkdirSync(path.dirname(rtmPath), { recursive: true });
 
   fs.writeFileSync(manualCasesPath, JSON.stringify(manualCases, null, 2));
   fs.writeFileSync(rtmPath, JSON.stringify(rtmEntries, null, 2));
@@ -272,11 +280,11 @@ test('${batch[0].title}', async ({ request }) => {
 // ============================================================
 
 async function runReviewStage(args: Map<string, string>): Promise<any> {
-  const specsPath = args.get('specs') || path.join(PLAYWRIGHT_DIR, 'tests', 'eventhub', '*.spec.ts');
   // Reviewer inspects specs from both tests/eventhub/ (UI) and
-  // tests/eventhub/api/ (API) folders based on import-source analysis
-  // (fixtures vs adapters), not folder location alone
-  const findingsPath = args.get('findings');
+  // tests/eventhub/api/ (API) based on import-source analysis
+  const specsPath = args.get('specs') || path.join(PLAYWRIGHT_DIR, 'tests', 'eventhub', 'ui', '*.spec.ts') + ',' + path.join(PLAYWRIGHT_DIR, 'tests', 'eventhub', 'api', '*.spec.ts');
+  // Findings are written to artifacts/inputs/review-findings.json
+  const findingsPath = args.get('findings') || path.join(PROJECT_ROOT, 'artifacts', 'inputs', 'review-findings.json');
 
   console.log(`  specsPath: ${specsPath}`);
   console.log(`  findingsPath: ${findingsPath}`);
@@ -387,7 +395,14 @@ async function runReviewStage(args: Map<string, string>): Promise<any> {
     findings: reviews
   };
 
-  fs.mkdirSync(reviewDir, { recursive: true });
+  // Ensure findings output goes to artifacts/inputs/ folder
+  const findingsOutputDir = path.dirname(findingsPath);
+  if (!findingsOutputDir.includes('artifacts')) {
+    // Redirect to artifacts/inputs/review-findings.json if not already there
+    fs.mkdirSync(path.join(PROJECT_ROOT, 'artifacts', 'inputs'), { recursive: true });
+    findingsPath = path.join(PROJECT_ROOT, 'artifacts', 'inputs', 'review-findings.json');
+  }
+  fs.mkdirSync(path.dirname(findingsPath), { recursive: true });
   fs.writeFileSync(findingsPath, JSON.stringify(findingsData, null, 2));
 
   console.log(`  Review complete: ${passedCount}/${specFiles} specs passed (${passRate})`);
@@ -403,8 +418,8 @@ async function runHealerStage(args: Map<string, string>): Promise<any> {
   const maxAttempts = parseInt(args.get('maxAttempts') || '2');
   // Healer operates on existing specs regardless of folder —
   // heals flaky tests and locator issues via Playwright MCP wherever specs reside
-  // Default to framework tests hub — heals UI and/or API specs as found
-  const outputDir = args.get('outputDir') || path.join(PLAYWRIGHT_DIR, 'tests', 'eventhub');
+  // Default to artifacts folder for analysis output — heals UI and/or API specs as found
+  const outputDir = args.get('outputDir') || path.join(PROJECT_ROOT, 'artifacts', 'healer-analysis');
 
   console.log(`  failuresPath: ${failuresPath}`);
   console.log(`  maxAttempts: ${maxAttempts}`);
@@ -451,8 +466,9 @@ async function runHealerStage(args: Map<string, string>): Promise<any> {
     outputDir
   };
 
-  fs.mkdirSync(PLAN_DIR, { recursive: true });
-  fs.writeFileSync(path.join(PLAN_DIR, 'healer-analysis.json'), JSON.stringify(analysisData, null, 2));
+  // Write healer analysis to artifacts folder
+  fs.mkdirSync(path.dirname(outputDir), { recursive: true });
+  fs.writeFileSync(outputDir + '.json', JSON.stringify(analysisData, null, 2));
 
   console.log(`  Healer complete: ${healedCount} healed, ${fixedCount} fixed, ${skippedCount} skipped`);
   return { status: 'completed', analysis: analysisData };
@@ -536,7 +552,8 @@ async function main() {
       // Step 3: Review
       console.log('─ PHASE 3: REVIEW ─');
       const reviewArgs = new Map<string, string>();
-      reviewArgs.set('specs', path.join(PLAYWRIGHT_DIR, 'tests', 'eventhub', 'api', '*.spec.ts'));
+      // Review specs from both UI (fixtures) and API (adapters) directories
+      reviewArgs.set('specs', path.join(PLAYWRIGHT_DIR, 'tests', 'eventhub', 'ui', '*.spec.ts') + ',' + path.join(PLAYWRIGHT_DIR, 'tests', 'eventhub', 'api', '*.spec.ts'));
       reviewArgs.set('requirements', options.get('requirements') || path.join(PROJECT_ROOT, 'input', 'requirements.md'));
       if (options.get('findings')) reviewArgs.set('findings', options.get('findings'));
 
@@ -546,7 +563,8 @@ async function main() {
       // Step 4: Healer
       console.log('─ PHASE 4: HEALER ─');
       const healerArgs = new Map<string, string>();
-      healerArgs.set('failures', path.join(PLAN_DIR, 'review-findings.json'));
+      // Review findings are now in artifacts/inputs/review-findings.json
+      healerArgs.set('failures', path.join(PROJECT_ROOT, 'artifacts', 'inputs', 'review-findings.json'));
       healerArgs.set('maxAttempts', options.get('maxAttempts') || '2');
       healerArgs.set('outputDir', args.get('outputDir'));
 
@@ -561,7 +579,7 @@ async function main() {
         workflow: 'full',
         planner: { status: 'completed', scenariosGenerated: (await fs.promises.readFile(path.join(ARTIFACT_SUBFOLDERS.planner, 'api-scenarios.json'), 'utf-8')).split('"id"').length || 0 },
         generator: { status: 'completed', specsGenerated: result?.specsGenerated || 0, passRate: result?.passRate || '0%' },
-        review: { status: 'completed', findings: result?.findings?.passRate || '0%', findingsPath: path.join(ARTIFACT_SUBFOLDERS.review, 'review-findings.json') },
+        review: { status: 'completed', findings: result?.findings?.passRate || '0%', findingsPath: path.join(PROJECT_ROOT, 'artifacts', 'inputs', 'review-findings.json') },
         healer: { status: 'completed', testsHealed: result?.analysis?.testsHealed || 0, testsFixed: result?.analysis?.testsFixed || 0 },
         summary: {
           totalTests: (result?.specsGenerated || 0) + (result?.analysis?.testsFixed || 0),
@@ -571,7 +589,7 @@ async function main() {
           overallStatus: 'success'
         },
         outputs: {
-          specsDirectory: `playwright-automation/tests/eventhub/`,
+          specsDirectory: `playwright-automation/tests/eventhub (UI: tests/eventhub/ui/; API: tests/eventhub/api/)`,
           reportPath: path.join(ARTIFACTS_DIR, 'summary-report.md'),
           statePath: path.join(PLAN_DIR, 'orchestrator-state.json'),
           gitCommit: '[PW-0000] Orchestrator run completed'
