@@ -56,6 +56,10 @@ Return ONLY a valid JSON object with this structure:
     ],
     "totalGaps": <number>
   },
+  "requirementsCoverageGaps": {
+    "count": <number>,
+    "uncoveredACs": ["<AC-ID-1>", "<AC-ID-2>", ..."]
+  },
   "rtmEntries": [
     {
       "acId": "<SC_N>",

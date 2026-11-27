@@ -34,6 +34,10 @@ Use `.agents/skills/orchestrator/scripts/orchestrator.ps1` to invoke the orchest
 | `--workflow` | `generate`, `heal`, or `full` | `--workflow full` |
 | `--requirements` | Path to requirements markdown | `--requirements input/requirements.md` |
 | `--openapi` | Path to OpenAPI JSON spec | `--openapi playwright-automation/openapi.json` |
+| `--variant-mode` | Variant generation mode: `automatic` (default) or `manual` | `--variant-mode automatic` |
+| `--max-gap-iterations` | Max gap analysis loop iterations (default: 3) | `--max-gap-iterations 3` |
+| `--gap-analysis` | Enable gap analysis loop (default: true) | `--gap-analysis true` |
+| `--reviewer-integration` | Enable reviewer stage after gap clearance (default: true) | `--reviewer-integration true` |
 | `--timeout` | Test timeout in milliseconds | `--timeout 60000` |
 | `--maxAttempts` | Max healing attempts per test | `--maxAttempts 2` |
 | `--statePath` | Path to persist orchestrator state | `--statePath plan/orchestrator-state.json` |
@@ -48,10 +52,27 @@ Use `.agents/skills/orchestrator/scripts/orchestrator.ps1` to invoke the orchest
   --maxAttempts 2
 ```
 
-This will:
-1. Run the Planner agent to parse the OpenAPI spec into 100+ test scenarios
-2. Run the Generator agent to convert scenarios into 81+ `.spec.ts` files
-3. Run the Reviewer agent for adversarial principle-based review
-4. Run the Healer agent to fix failing tests via Playwright MCP
-5. Write `plan/orchestrator-state.json` with full pipeline results
-6. Write `plan/summary-report.md` with metrics for the exit checkpoint
+# Gap-aware pipeline examples
+
+```powershell
+# Full pipeline with gap analysis (default: automatic variants, 3 max iterations)
+.\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 full `
+  --requirements input/requirements.md `
+  --openapi playwright-automation/openapi.json `
+  --gap-analysis true `
+  --max-gap-iterations 3
+
+# Full pipeline with manual variant review (no auto-generation, user approval required)
+.\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 full `
+  --requirements input/requirements.md `
+  --openapi playwright-automation/openapi.json `
+  --gap-analysis true `
+  --max-gap-iterations 3 `
+  --variant-mode manual
+
+# Generate-only with variant mode
+.\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 generate `
+  --requirements input/requirements.md `
+  --openapi playwright-automation/openapi.json `
+  --variant-mode automatic
+```

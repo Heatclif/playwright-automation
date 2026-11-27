@@ -23,6 +23,10 @@ All inputs are provided as strings within the delegation context, plus CLI argum
 | `--loop` | boolean (CLI argument, default: `false`) | Enable loop control: re-run planner→generator→review→heal cycle until quality gate is satisfied or maxIterations reached. |
 | `--maxIterations` | number (CLI argument, default: `3`) | Maximum number of loop iterations when `--loop true`. |
 | `--qualityGate` | string (CLI argument, default: `"passRate>=95%"`) | Quality gate condition to determine loop termination (e.g., `"passRate>=95%"`, `"passRate>=90%"`). |
+| `--variant-mode` | string (CLI argument, default: `automatic`) | Variant generation mode: `automatic` — auto-generate variants for detected gaps; `manual` — produce gap descriptions for user approval without generating variants. Independent of `--mode` flag. |
+| `--max-gap-iterations` | number (CLI argument, default: `3`) | Maximum gap analysis loop iterations. Controls how many gap→variant→re-generate cycles before proceeding to reviewer. |
+| `--gap-analysis` | boolean (CLI argument, default: `true`) | Enable gap analysis loop between generator and reviewer. When `false`, skip gap detection and proceed directly to reviewer with existing specs. |
+| `--reviewer-integration` | boolean (CLI argument, default: `true`) | Enable reviewer stage after gap clearance (or after full pipeline if no gap loop). When `false`, skip reviewer and proceed to healer. |
 | `requirementsPath` | string | File path to `input/requirements.md` (user stories + acceptance criteria) |
 | `openapiPath` | string | File path to `playwright-automation/openapi.json` (API spec) |
 | `testTimeout` | number | Optional. Milliseconds per test default: `60000` |
@@ -98,7 +102,9 @@ Return ONLY a valid JSON object with this structure:
 ### `planner` stage
 - Parses the OpenAPI specification into a test scenario matrix
 - Outputs `artifacts/sprint<N>/planner/api-scenarios.json`
+- Populates `requirementsCoverageGaps` and `specCoverageGaps` in output JSON
 - Hand-off to generator: `artifacts/sprint<N>/planner/api-scenarios.json` → generator agent or CLI `generate` stage
+- Gap analysis hand-off: outputs `spec-coverage-gaps` (from OpenAPI) and `requirements-coverage-gaps` (from requirements) for orchestrator loop control
 
 ### `generator` stage
 - Ingests the scenario JSON and generates typed Playwright `.spec.ts` files
@@ -107,7 +113,11 @@ Return ONLY a valid JSON object with this structure:
   UI specs write to `playwright-automation/tests/eventhub/ui/` (import from `src/eventhub/fixtures`, use `app` fixture, Page Objects)
   API specs write to `playwright-automation/tests/eventhub/api/` (import from `@playhub/api`, use `request` context for API calls)
 - Writes `artifacts/inputs/manual-cases.json` and `artifacts/rtm/rtm.json` (not framework tests dir)
-- Hand-off to reviewer: generated `.spec.ts` files + `artifacts/inputs/manual-cases.json` + `artifacts/rtm/rtm.json`
+- Produces `gap-report.json` written to `artifacts/sprint<N>/generator/gap-report.json` with schema: gapsDetected, coveragePercent, uncoveredACs, gapDetails, requirementsCoverageGaps, specCoverageGaps
+- Variant generation controlled by `--variant-mode` flag:
+  - `automatic`: auto-generates test variants for all gaps in gap-report.json
+  - `manual`: produces gap descriptions only; orchestrator prompts for user approval
+- Hand-off to reviewer: generated `.spec.ts` files + `artifacts/inputs/manual-cases.json` + `artifacts/rtm/rtm.json` + `gap-report.json`
 
 ### `review` stage
 - Reviews all generated `.spec.ts` files against 14 adversarial principles
@@ -133,6 +143,12 @@ Return ONLY a valid JSON object with this structure:
 ### `full` stage (complete pipeline)
 - Executes all four stages in sequence: planner → generator → review → healer
 - If any phase fails, continues to next phase where possible, but marks `phase.status = "failed"`
+- **Gap analysis loop** (optional, controlled by `--gap-analysis true` default):
+  - After generator stage, orchestrator reads `gap-report.json`
+  - If `gapsDetected: 0` AND `requirementsCoverageGaps: 0` → proceed to reviewer
+  - If `gapsDetected > 0` → invoke generator with `--variant-mode automatic` (or manual prompt) → re-run generator → re-read gap report
+  - Loop repeats until gaps cleared or `--max-gap-iterations` (default: 3) reached
+  - If loop exits with gaps remaining, gap summary included in orchestrator-state.json
 - Final output includes all phase results in a single `orchestrator-state.json`
 - Produces consolidated `artifacts/summary-report.md` with metrics for exit checkpoint
 
@@ -289,11 +305,24 @@ npx ts-node scripts/orchestrate.ts manual-review --sprint 1 --mode manual --sour
 # Full pipeline with auto-loop and custom artifacts:
 npx ts-node scripts/orchestrate.ts full --sprint 1 --loop true --maxIterations 3 --qualityGate "passRate>=95%" --artifacts-dir playwright-automation/artifacts --requirements input/requirements.md openapi=playwright-automation/openapi.json
 
+# Full pipeline with gap analysis (default: automatic variants, 3 max iterations):
+npx ts-node scripts/orchestrate.ts full --sprint 1 --gap-analysis true --max-gap-iterations 3 --requirements input/requirements.md openapi=playwright-automation/openapi.json
+
+# Full pipeline with manual variant review (no auto-generation, user approval required):
+npx ts-node scripts/orchestrate.ts full --sprint 1 --gap-analysis true --max-gap-iterations 3 --variant-mode manual --requirements input/requirements.md openapi=playwright-automation/openapi.json
+
 # Planner-only (quick look) with custom artifacts:
 npx ts-node scripts/orchestrate.ts planner-only --sprint 1 --artifacts-dir playwright-automation/artifacts --requirements input/requirements.md openapi=playwright-automation/openapi.json
 ```
 
 ## New CLI Flags (additive, backward-compatible)
+
+| Flag | Default | Description | Interacts With |
+|------|---------|-------------|----------------|
+| `--variant-mode` | `automatic` | `automatic` — auto-generate variants for detected gaps; `manual` — produce gap descriptions for user approval without generating variants. Independent of `--mode`. | `--mode` (generator: independent concern) |
+| `--max-gap-iterations` | `3` | Maximum gap analysis loop iterations. Controls how many gap→variant→re-generate cycles before proceeding to reviewer. | `--loop` (independent: max-gap-iterations limits gap loop, `--loop` controls full pipeline loop) |
+| `--gap-analysis` | `true` | Enable gap analysis loop between generator and reviewer. When `false`, skip gap detection and proceed directly to reviewer with existing specs. | Independent of `--loop` and `--reviewer-integration` |
+| `--reviewer-integration` | `true` | Enable reviewer stage after gap clearance (or after full pipeline if no gap loop). When `false`, skip reviewer and proceed to healer. | Independent of `--gap-analysis`; does not affect gap loop mechanics |
 
 ```bash
 # Manual-only review path
@@ -302,9 +331,12 @@ npx ts-node scripts/orchestrate.ts manual-review --sprint 1 --mode manual --sour
 # Full pipeline with auto-loop
 npx ts-node scripts/orchestrate.ts full --sprint 1 --loop true --maxIterations 3 --qualityGate "passRate>=95%" --requirements input/requirements.md openapi=playwright-automation/openapi.json
 
-# Planner-only (quick look)
-npx ts-node scripts/orchestrate.ts planner-only --sprint 1 --requirements input/requirements.md openapi=playwright-automation/openapi.json
-
 # Full pipeline without new flags (backward compatible — same as before)
 npx ts-node scripts/orchestrate.ts full --sprint 1 requirements=input/requirements.md openapi=playwright-automation/openapi.json
+
+# Full pipeline with gap analysis (default: automatic variants, 3 max iterations):
+npx ts-node scripts/orchestrate.ts full --sprint 1 --gap-analysis true --max-gap-iterations 3 --requirements input/requirements.md openapi=playwright-automation/openapi.json
+
+# Full pipeline with manual variant review (no auto-generation, user approval required):
+npx ts-node scripts/orchestrate.ts full --sprint 1 --gap-analysis true --max-gap-iterations 3 --variant-mode manual --requirements input/requirements.md openapi=playwright-automation/openapi.json
 ```
