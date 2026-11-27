@@ -33,6 +33,13 @@ src/eventhub/
     components/      reusable UI pieces (Form, NavBar, ConfirmDialog)
     pages/           one class per page, extending BasePage
   api/               api-fixtures.ts (custom `test` for API specs: `api` / `authedApi`, no browser), ApiClient, per-endpoint API classes, builders, data layer (see api-layer-conventions.md)
-tests/eventhub/      specs (one file per feature area); tests/eventhub/api/ runs in the `api-regression` CI job
+tests/eventhub/      specs (one file per feature area; generated specs use `gen_<NN>_<slug>.spec.ts`); tests/eventhub/api/ runs in the `api-regression` CI job
+artifacts/           agentic QA inputs & outputs
+  inputs/            requirements.md, openapi.json
+  rtm/rtm.json       cross-sprint Requirements Traceability Matrix
+  outputs/sprint<N>/ planner/, generator/, manual-cases.json, review-findings.json, healer-analysis.json, orchestrator-state.json, summary-report.md
+scripts/
+  orchestrate.ts     deterministic pipeline runner (`npx tsx scripts/orchestrate.ts <stage>`)
+.agents/             canonical agent definitions (`agents/*/*.md`) and skill wrappers (`skills/*/`)
 .github/workflows/   regression.yml (matrix) + helper-*.yml (reusable)
 ```

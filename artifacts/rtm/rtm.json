@@ -11,7 +11,7 @@
       "@Auth"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "POST--auth-register",
     "specFile": "gen_01_register-a-new-user.spec.ts"
   },
@@ -27,7 +27,7 @@
       "@Auth"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "POST--auth-login",
     "specFile": "gen_02_log-in-with-existing-credentials.spec.ts"
   },
@@ -43,7 +43,7 @@
       "@Auth"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "GET--auth-me",
     "specFile": "gen_03_get-the-currently-authenticated-user.spec.ts"
   },
@@ -59,7 +59,7 @@
       "@Bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "GET--bookings",
     "specFile": "gen_04_list-all-bookings.spec.ts"
   },
@@ -75,7 +75,7 @@
       "@Bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "POST--bookings",
     "specFile": "gen_05_create-a-booking-buy-tickets.spec.ts"
   },
@@ -91,7 +91,7 @@
       "@Bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "GET--bookings-ref--ref-",
     "specFile": "gen_06_look-up-a-booking-by-reference-code.spec.ts"
   },
@@ -107,7 +107,7 @@
       "@Bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "GET--bookings--id-",
     "specFile": "gen_07_get-a-single-booking-by-id.spec.ts"
   },
@@ -123,7 +123,7 @@
       "@Bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "DELETE--bookings--id-",
     "specFile": "gen_08_cancel-a-booking.spec.ts"
   },
@@ -139,7 +139,7 @@
       "@Events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "GET--events",
     "specFile": "gen_09_list-all-events.spec.ts"
   },
@@ -155,7 +155,7 @@
       "@Events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "POST--events",
     "specFile": "gen_10_create-a-new-event.spec.ts"
   },
@@ -171,7 +171,7 @@
       "@Events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "GET--events--id-",
     "specFile": "gen_11_get-a-single-event-by-id.spec.ts"
   },
@@ -187,7 +187,7 @@
       "@Events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "PUT--events--id-",
     "specFile": "gen_12_update-an-event.spec.ts"
   },
@@ -203,7 +203,7 @@
       "@Events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "DELETE--events--id-",
     "specFile": "gen_13_delete-an-event.spec.ts"
   },
@@ -219,7 +219,7 @@
       "@Health"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "GET--health",
     "specFile": "gen_14_api-health-check.spec.ts"
   },
@@ -235,7 +235,7 @@
       "@Config"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "GET--config",
     "specFile": "gen_15_get-public-feature-flags.spec.ts"
   },
@@ -251,7 +251,7 @@
       "@auth"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-LOGIN-001",
     "specFile": "gen_16_user-authentication-flow.spec.ts"
   },
@@ -267,7 +267,7 @@
       "@auth"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-LOGIN-002",
     "specFile": "gen_16_user-authentication-flow.spec.ts"
   },
@@ -283,7 +283,7 @@
       "@auth"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-LOGIN-003",
     "specFile": "gen_16_user-authentication-flow.spec.ts"
   },
@@ -299,7 +299,7 @@
       "@auth"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-LOGIN-004",
     "specFile": "gen_16_user-authentication-flow.spec.ts"
   },
@@ -316,7 +316,7 @@
       "@events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-HOME-001",
     "specFile": "gen_17_home-page-events-listing.spec.ts"
   },
@@ -332,7 +332,7 @@
       "@events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-HOME-002",
     "specFile": "gen_17_home-page-events-listing.spec.ts"
   },
@@ -348,7 +348,7 @@
       "@events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-HOME-003",
     "specFile": "gen_17_home-page-events-listing.spec.ts"
   },
@@ -364,7 +364,7 @@
       "@events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-HOME-004",
     "specFile": "gen_17_home-page-events-listing.spec.ts"
   },
@@ -380,7 +380,7 @@
       "@events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-HOME-005",
     "specFile": "gen_18_home-page-events-listing.spec.ts"
   },
@@ -397,7 +397,7 @@
       "@events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-EVENT-001",
     "specFile": "gen_19_event-details-page.spec.ts"
   },
@@ -413,7 +413,7 @@
       "@events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-EVENT-002",
     "specFile": "gen_19_event-details-page.spec.ts"
   },
@@ -429,7 +429,7 @@
       "@events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-EVENT-003",
     "specFile": "gen_19_event-details-page.spec.ts"
   },
@@ -445,7 +445,7 @@
       "@events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-EVENT-004",
     "specFile": "gen_19_event-details-page.spec.ts"
   },
@@ -461,7 +461,7 @@
       "@events"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-EVENT-005",
     "specFile": "gen_20_event-details-page.spec.ts"
   },
@@ -477,7 +477,7 @@
       "@bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-BOOK-001",
     "specFile": "gen_21_booking-flow.spec.ts"
   },
@@ -493,7 +493,7 @@
       "@bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-BOOK-002",
     "specFile": "gen_21_booking-flow.spec.ts"
   },
@@ -509,7 +509,7 @@
       "@bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-BOOK-003",
     "specFile": "gen_21_booking-flow.spec.ts"
   },
@@ -525,7 +525,7 @@
       "@bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-BOOK-004",
     "specFile": "gen_21_booking-flow.spec.ts"
   },
@@ -541,7 +541,7 @@
       "@bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-BOOK-005",
     "specFile": "gen_22_booking-flow.spec.ts"
   },
@@ -558,7 +558,7 @@
       "@bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-PROFILE-001",
     "specFile": "gen_23_user-profile-my-bookings.spec.ts"
   },
@@ -574,7 +574,7 @@
       "@bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-PROFILE-002",
     "specFile": "gen_23_user-profile-my-bookings.spec.ts"
   },
@@ -590,7 +590,7 @@
       "@bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-PROFILE-003",
     "specFile": "gen_23_user-profile-my-bookings.spec.ts"
   },
@@ -606,7 +606,7 @@
       "@bookings"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-PROFILE-004",
     "specFile": "gen_23_user-profile-my-bookings.spec.ts"
   },
@@ -622,7 +622,7 @@
       "@admin"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ADMIN-001",
     "specFile": "gen_24_admin-functions.spec.ts"
   },
@@ -638,7 +638,7 @@
       "@admin"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ADMIN-002",
     "specFile": "gen_24_admin-functions.spec.ts"
   },
@@ -654,7 +654,7 @@
       "@admin"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ADMIN-003",
     "specFile": "gen_24_admin-functions.spec.ts"
   },
@@ -670,7 +670,7 @@
       "@admin"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ADMIN-004",
     "specFile": "gen_24_admin-functions.spec.ts"
   },
@@ -685,7 +685,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-RESP-001",
     "specFile": "gen_25_responsive-design.spec.ts"
   },
@@ -700,7 +700,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-RESP-002",
     "specFile": "gen_25_responsive-design.spec.ts"
   },
@@ -715,7 +715,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-RESP-003",
     "specFile": "gen_25_responsive-design.spec.ts"
   },
@@ -730,7 +730,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-RESP-004",
     "specFile": "gen_25_responsive-design.spec.ts"
   },
@@ -745,7 +745,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ACC-001",
     "specFile": "gen_26_accessibility.spec.ts"
   },
@@ -760,7 +760,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ACC-002",
     "specFile": "gen_26_accessibility.spec.ts"
   },
@@ -775,7 +775,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ACC-003",
     "specFile": "gen_26_accessibility.spec.ts"
   },
@@ -790,7 +790,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ACC-004",
     "specFile": "gen_26_accessibility.spec.ts"
   },
@@ -805,7 +805,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ERR-001",
     "specFile": "gen_27_error-handling.spec.ts"
   },
@@ -820,7 +820,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ERR-002",
     "specFile": "gen_27_error-handling.spec.ts"
   },
@@ -835,7 +835,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ERR-003",
     "specFile": "gen_27_error-handling.spec.ts"
   },
@@ -850,7 +850,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-ERR-004",
     "specFile": "gen_27_error-handling.spec.ts"
   },
@@ -865,7 +865,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-PERF-001",
     "specFile": "gen_28_performance.spec.ts"
   },
@@ -880,7 +880,7 @@
       "@ui"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-PERF-002",
     "specFile": "gen_28_performance.spec.ts"
   },
@@ -895,7 +895,7 @@
       "@api"
     ],
     "status": "automated-generated",
-    "lastGenerated": "2026-11-27T12:16:50.604Z",
+    "lastGenerated": "2026-11-27T12:40:59.528Z",
     "manualCaseId": "AC-PERF-003",
     "specFile": "gen_29_performance.spec.ts"
   }

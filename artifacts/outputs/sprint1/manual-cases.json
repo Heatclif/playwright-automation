@@ -1,6 +1,6 @@
 [
   {
-    "id": "POST--auth-register-0",
+    "id": "POST--auth-register",
     "title": "POST /auth/register",
     "type": "automated",
     "preconditions": [
@@ -18,10 +18,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 5,
-    "sourceRef": "POST--auth-register-0"
+    "sourceRef": "POST--auth-register"
   },
   {
-    "id": "POST--auth-login-1",
+    "id": "POST--auth-login",
     "title": "POST /auth/login",
     "type": "automated",
     "preconditions": [
@@ -39,10 +39,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 5,
-    "sourceRef": "POST--auth-login-1"
+    "sourceRef": "POST--auth-login"
   },
   {
-    "id": "GET--auth-me-2",
+    "id": "GET--auth-me",
     "title": "GET /auth/me",
     "type": "automated",
     "preconditions": [
@@ -60,10 +60,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 5,
-    "sourceRef": "GET--auth-me-2"
+    "sourceRef": "GET--auth-me"
   },
   {
-    "id": "GET--bookings-3",
+    "id": "GET--bookings",
     "title": "GET /bookings",
     "type": "automated",
     "preconditions": [
@@ -81,10 +81,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 3,
-    "sourceRef": "GET--bookings-3"
+    "sourceRef": "GET--bookings"
   },
   {
-    "id": "POST--bookings-4",
+    "id": "POST--bookings",
     "title": "POST /bookings",
     "type": "automated",
     "preconditions": [
@@ -102,10 +102,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 3,
-    "sourceRef": "POST--bookings-4"
+    "sourceRef": "POST--bookings"
   },
   {
-    "id": "GET--bookings-ref--ref--5",
+    "id": "GET--bookings-ref--ref-",
     "title": "GET /bookings/ref/{ref}",
     "type": "automated",
     "preconditions": [
@@ -123,10 +123,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 3,
-    "sourceRef": "GET--bookings-ref--ref--5"
+    "sourceRef": "GET--bookings-ref--ref-"
   },
   {
-    "id": "GET--bookings--id--6",
+    "id": "GET--bookings--id-",
     "title": "GET /bookings/{id}",
     "type": "automated",
     "preconditions": [
@@ -144,10 +144,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 3,
-    "sourceRef": "GET--bookings--id--6"
+    "sourceRef": "GET--bookings--id-"
   },
   {
-    "id": "DELETE--bookings--id--7",
+    "id": "DELETE--bookings--id-",
     "title": "DELETE /bookings/{id}",
     "type": "automated",
     "preconditions": [
@@ -165,10 +165,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 3,
-    "sourceRef": "DELETE--bookings--id--7"
+    "sourceRef": "DELETE--bookings--id-"
   },
   {
-    "id": "GET--events-8",
+    "id": "GET--events",
     "title": "GET /events",
     "type": "automated",
     "preconditions": [
@@ -186,10 +186,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 3,
-    "sourceRef": "GET--events-8"
+    "sourceRef": "GET--events"
   },
   {
-    "id": "POST--events-9",
+    "id": "POST--events",
     "title": "POST /events",
     "type": "automated",
     "preconditions": [
@@ -207,10 +207,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 3,
-    "sourceRef": "POST--events-9"
+    "sourceRef": "POST--events"
   },
   {
-    "id": "GET--events--id--10",
+    "id": "GET--events--id-",
     "title": "GET /events/{id}",
     "type": "automated",
     "preconditions": [
@@ -228,10 +228,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 3,
-    "sourceRef": "GET--events--id--10"
+    "sourceRef": "GET--events--id-"
   },
   {
-    "id": "PUT--events--id--11",
+    "id": "PUT--events--id-",
     "title": "PUT /events/{id}",
     "type": "automated",
     "preconditions": [
@@ -249,10 +249,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 3,
-    "sourceRef": "PUT--events--id--11"
+    "sourceRef": "PUT--events--id-"
   },
   {
-    "id": "DELETE--events--id--12",
+    "id": "DELETE--events--id-",
     "title": "DELETE /events/{id}",
     "type": "automated",
     "preconditions": [
@@ -270,10 +270,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 3,
-    "sourceRef": "DELETE--events--id--12"
+    "sourceRef": "DELETE--events--id-"
   },
   {
-    "id": "GET--health-13",
+    "id": "GET--health",
     "title": "GET /health",
     "type": "automated",
     "preconditions": [
@@ -291,10 +291,10 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 5,
-    "sourceRef": "GET--health-13"
+    "sourceRef": "GET--health"
   },
   {
-    "id": "GET--config-14",
+    "id": "GET--config",
     "title": "GET /config",
     "type": "automated",
     "preconditions": [
@@ -312,7 +312,7 @@
     ],
     "oracle": "characterisation",
     "coverageGapWeight": 3,
-    "sourceRef": "GET--config-14"
+    "sourceRef": "GET--config"
   },
   {
     "id": "AC-LOGIN-001",
@@ -1320,320 +1320,5 @@
     "oracle": "characterisation",
     "coverageGapWeight": 3,
     "sourceRef": "AC-PERF-003"
-  },
-  {
-    "id": "POST--auth-register",
-    "title": "POST /auth/register",
-    "type": "automated",
-    "preconditions": [
-      "Register a new user"
-    ],
-    "steps": [
-      "Send POST request to /auth/register"
-    ],
-    "expectedResult": "Register a new user",
-    "priority": "P1",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Auth"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 5,
-    "sourceRef": "POST--auth-register"
-  },
-  {
-    "id": "POST--auth-login",
-    "title": "POST /auth/login",
-    "type": "automated",
-    "preconditions": [
-      "Log in with existing credentials"
-    ],
-    "steps": [
-      "Send POST request to /auth/login"
-    ],
-    "expectedResult": "Log in with existing credentials",
-    "priority": "P1",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Auth"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 5,
-    "sourceRef": "POST--auth-login"
-  },
-  {
-    "id": "GET--auth-me",
-    "title": "GET /auth/me",
-    "type": "automated",
-    "preconditions": [
-      "Get the currently authenticated user"
-    ],
-    "steps": [
-      "Send GET request to /auth/me"
-    ],
-    "expectedResult": "Get the currently authenticated user",
-    "priority": "P1",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Auth"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 5,
-    "sourceRef": "GET--auth-me"
-  },
-  {
-    "id": "GET--bookings",
-    "title": "GET /bookings",
-    "type": "automated",
-    "preconditions": [
-      "List all bookings"
-    ],
-    "steps": [
-      "Send GET request to /bookings"
-    ],
-    "expectedResult": "List all bookings",
-    "priority": "P2",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Bookings"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 3,
-    "sourceRef": "GET--bookings"
-  },
-  {
-    "id": "POST--bookings",
-    "title": "POST /bookings",
-    "type": "automated",
-    "preconditions": [
-      "Create a booking (buy tickets)"
-    ],
-    "steps": [
-      "Send POST request to /bookings"
-    ],
-    "expectedResult": "Create a booking (buy tickets)",
-    "priority": "P2",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Bookings"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 3,
-    "sourceRef": "POST--bookings"
-  },
-  {
-    "id": "GET--bookings-ref--ref-",
-    "title": "GET /bookings/ref/{ref}",
-    "type": "automated",
-    "preconditions": [
-      "Look up a booking by reference code"
-    ],
-    "steps": [
-      "Send GET request to /bookings/ref/{ref}"
-    ],
-    "expectedResult": "Look up a booking by reference code",
-    "priority": "P2",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Bookings"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 3,
-    "sourceRef": "GET--bookings-ref--ref-"
-  },
-  {
-    "id": "GET--bookings--id-",
-    "title": "GET /bookings/{id}",
-    "type": "automated",
-    "preconditions": [
-      "Get a single booking by ID"
-    ],
-    "steps": [
-      "Send GET request to /bookings/{id}"
-    ],
-    "expectedResult": "Get a single booking by ID",
-    "priority": "P2",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Bookings"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 3,
-    "sourceRef": "GET--bookings--id-"
-  },
-  {
-    "id": "DELETE--bookings--id-",
-    "title": "DELETE /bookings/{id}",
-    "type": "automated",
-    "preconditions": [
-      "Cancel a booking"
-    ],
-    "steps": [
-      "Send DELETE request to /bookings/{id}"
-    ],
-    "expectedResult": "Cancel a booking",
-    "priority": "P2",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Bookings"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 3,
-    "sourceRef": "DELETE--bookings--id-"
-  },
-  {
-    "id": "GET--events",
-    "title": "GET /events",
-    "type": "automated",
-    "preconditions": [
-      "List all events"
-    ],
-    "steps": [
-      "Send GET request to /events"
-    ],
-    "expectedResult": "List all events",
-    "priority": "P2",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Events"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 3,
-    "sourceRef": "GET--events"
-  },
-  {
-    "id": "POST--events",
-    "title": "POST /events",
-    "type": "automated",
-    "preconditions": [
-      "Create a new event"
-    ],
-    "steps": [
-      "Send POST request to /events"
-    ],
-    "expectedResult": "Create a new event",
-    "priority": "P2",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Events"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 3,
-    "sourceRef": "POST--events"
-  },
-  {
-    "id": "GET--events--id-",
-    "title": "GET /events/{id}",
-    "type": "automated",
-    "preconditions": [
-      "Get a single event by ID"
-    ],
-    "steps": [
-      "Send GET request to /events/{id}"
-    ],
-    "expectedResult": "Get a single event by ID",
-    "priority": "P2",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Events"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 3,
-    "sourceRef": "GET--events--id-"
-  },
-  {
-    "id": "PUT--events--id-",
-    "title": "PUT /events/{id}",
-    "type": "automated",
-    "preconditions": [
-      "Update an event"
-    ],
-    "steps": [
-      "Send PUT request to /events/{id}"
-    ],
-    "expectedResult": "Update an event",
-    "priority": "P2",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Events"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 3,
-    "sourceRef": "PUT--events--id-"
-  },
-  {
-    "id": "DELETE--events--id-",
-    "title": "DELETE /events/{id}",
-    "type": "automated",
-    "preconditions": [
-      "Delete an event"
-    ],
-    "steps": [
-      "Send DELETE request to /events/{id}"
-    ],
-    "expectedResult": "Delete an event",
-    "priority": "P2",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Events"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 3,
-    "sourceRef": "DELETE--events--id-"
-  },
-  {
-    "id": "GET--health",
-    "title": "GET /health",
-    "type": "automated",
-    "preconditions": [
-      "API health check"
-    ],
-    "steps": [
-      "Send GET request to /health"
-    ],
-    "expectedResult": "API health check",
-    "priority": "P1",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Health"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 5,
-    "sourceRef": "GET--health"
-  },
-  {
-    "id": "GET--config",
-    "title": "GET /config",
-    "type": "automated",
-    "preconditions": [
-      "Get public feature flags"
-    ],
-    "steps": [
-      "Send GET request to /config"
-    ],
-    "expectedResult": "Get public feature flags",
-    "priority": "P2",
-    "tags": [
-      "@regression",
-      "@api",
-      "@Config"
-    ],
-    "oracle": "characterisation",
-    "coverageGapWeight": 3,
-    "sourceRef": "GET--config"
   }
 ]

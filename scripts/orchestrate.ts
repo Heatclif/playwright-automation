@@ -435,6 +435,19 @@ async function runPlannerStage(cfg: CliConfig) {
   const uiScenarios = parseMarkdownRequirements(cfg.requirementsPath);
   const allScenarios = [...apiScenarios, ...uiScenarios];
 
+  if (allScenarios.length === 0) {
+    console.error(`  [Planner] ERROR: 0 scenarios parsed from ${cfg.openapiPath} and ${cfg.requirementsPath}`);
+    return {
+      status: 'failed' as const,
+      error: `No scenarios parsed from ${cfg.openapiPath} or ${cfg.requirementsPath}`,
+      scenariosGenerated: 0,
+      uiScenarios: 0,
+      apiScenarios: 0,
+      scenariosPath,
+      planPath
+    };
+  }
+
   const rtm = loadAndNormalizeRtm(cfg.rtmPath);
   const existingAcIds = new Set(rtm.map(e => e.acId));
   const now = new Date().toISOString();
@@ -523,11 +536,44 @@ function buildValidUiSpec(groupName: string, batch: Scenario[]): string {
   const tests = batch
     .map(sc => {
       const title = `${sc.id}: ${sc.title}`.replace(/'/g, "\\'");
-      return `  test('${title}', async ({ app, page }) => {
+      const id = sc.id.toUpperCase();
+
+      if (id.startsWith('AC-LOGIN-')) {
+        return `  test('${title}', async ({ app, page }) => {
+    await app.loginPage.goto();
+    await expect(page).toHaveURL(/\\/login/);
+    await expect(app.loginPage.heading).toBeVisible();
+  });`;
+      }
+      if (id.startsWith('AC-HOME-')) {
+        return `  test('${title}', async ({ app, page }) => {
+    await app.homePage.goto();
+    await expect(page).toHaveURL(/\\//);
+    await expect(app.homePage.heading).toBeVisible();
+  });`;
+      }
+      if (id.startsWith('AC-EVENT-')) {
+        return `  test('${title}', async ({ app, page }) => {
     await app.eventsPage.goto();
     await expect(page).toHaveURL(/\\/events/);
     await expect(app.eventsPage.searchInput).toBeVisible();
   });`;
+      }
+      if (id.startsWith('AC-PROFILE-')) {
+        return `  test('${title}', async ({ app, page }) => {
+    await app.myBookingsPage.goto();
+    await expect(page).toHaveURL(/\\/my-bookings/);
+  });`;
+      }
+      if (id.startsWith('AC-ADMIN-')) {
+        return `  test('${title}', async ({ app, page }) => {
+    await app.adminEventsPage.goto();
+    await expect(page).toHaveURL(/\\/admin/);
+  });`;
+      }
+      throw new Error(
+        `Deterministic UI generator cannot scaffold ${sc.id}; use @generator agent with @add-playwright-test for scenario-specific assertions.`
+      );
     })
     .join('\n\n');
 
@@ -1244,6 +1290,9 @@ async function main() {
       planner: plannerResult,
       overallStatus: plannerResult.status === 'completed' ? 'success' : 'failed'
     });
+    if (plannerResult.status === 'failed') {
+      process.exit(1);
+    }
     return;
   }
 

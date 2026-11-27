@@ -1,7 +1,9 @@
 {
-  "runId": "orchestrator-manual-review-2026-11-27T12:16:50.609Z",
-  "timestamp": "2026-11-27T12:16:50.609Z",
-  "workflow": "manual-review",
+  "runId": "orchestrator-2026-11-27T12-41-02-271Z",
+  "timestamp": "2026-11-27T12:41:02.271Z",
+  "workflow": "full",
+  "sprintNumber": 1,
+  "iterationsExecuted": 1,
   "planner": {
     "status": "completed",
     "scenariosGenerated": 57,
@@ -12,25 +14,44 @@
   },
   "generator": {
     "status": "completed",
-    "mode": "manual",
-    "specsGenerated": 0,
-    "uiSpecsCount": 0,
-    "apiSpecsCount": 0,
-    "manualCasesWritten": 0,
+    "mode": "both",
+    "specsGenerated": 29,
+    "uiSpecsCount": 13,
+    "apiSpecsCount": 16,
+    "manualCasesWritten": 57,
     "manualCasesPath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\outputs\\sprint1\\manual-cases.json",
     "gapReportPath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\outputs\\sprint1\\generator\\gap-report.json",
     "gapsDetected": 0
   },
   "review": {
     "status": "completed",
-    "source": "manual",
-    "totalSpecs": 72,
-    "passed": 72,
+    "source": "spec",
+    "totalSpecs": 38,
+    "passed": 38,
     "failed": 0,
     "passRate": "100.0%",
     "findingsCount": 0,
     "findingsPath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\outputs\\sprint1\\review-findings.json",
     "reviews": []
   },
-  "overallStatus": "success"
+  "healer": {
+    "status": "completed",
+    "testsFixed": 0,
+    "testsSkipped": 0,
+    "needsHuman": 0,
+    "healRate": "100.0%",
+    "outputPath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\outputs\\sprint1\\healer-analysis.json"
+  },
+  "summary": {
+    "totalTests": 29,
+    "reviewPassRate": "100.0%",
+    "healRate": "100.0%",
+    "overallStatus": "success"
+  },
+  "outputs": {
+    "specsDirectory": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\tests\\eventhub",
+    "rtmPath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\rtm\\rtm.json",
+    "reportPath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\outputs\\sprint1\\summary-report.md",
+    "statePath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\outputs\\sprint1\\orchestrator-state.json"
+  }
 }
