@@ -1,0 +1,80 @@
+---
+name: orchestrator
+description: Lightweight deterministic CLI runner that chains Planner → Generator → Review → Healer agents in a unified workflow. Outputs orchestrator-state.json with pipeline state and final results.
+---
+# Orchestrator — OpenCode Skill Wrapper
+
+**Canonical source:** `.agents/agents/orchestrator/orchestrator.md` (read that file for the full agent definition and workflow logic).
+
+This OpenCode skill wraps the Orchestrator agent at `.agents/agents/orchestrator/`. The skill provides a CLI entry point for running the full test generation and healing pipeline without direct model delegation.
+
+## Invocation
+
+Triggered as `@orchestrator` via OpenCode, or load via `skill` tool with id `orchestrator`.
+
+## Wrapper Script
+
+Use `.agents/skills/orchestrator/scripts/orchestrator.ps1` to invoke the orchestrator workflow:
+
+```powershell
+# Planner only
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow planner-only
+
+# Manual review workflow
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow manual-review
+
+# Full pipeline (Planner -> Generator -> Review -> Healer)
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow full -RequirementsPath artifacts/inputs/requirements.md -OpenApiPath artifacts/inputs/openapi.json -MaxHealingAttempts 2
+
+# Heal only (on existing findings)
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow heal -MaxHealingAttempts 2
+```
+
+## Workflow Flags
+
+| Flag | Description | Example |
+|------|-------------|---------|
+| `--workflow` | `generate`, `heal`, or `full` | `--workflow full` |
+| `--requirements` | Path to requirements markdown | `--requirements input/requirements.md` |
+| `--openapi` | Path to OpenAPI JSON spec | `--openapi artifacts/inputs/openapi.json` |
+| `--variant-mode` | Variant generation mode: `automatic` (default) or `manual` | `--variant-mode automatic` |
+| `--max-gap-iterations` | Max gap analysis loop iterations (default: 3) | `--max-gap-iterations 3` |
+| `--gap-analysis` | Enable gap analysis loop (default: true) | `--gap-analysis true` |
+| `--reviewer-integration` | Enable reviewer stage after gap clearance (default: true) | `--reviewer-integration true` |
+| `--timeout` | Test timeout in milliseconds | `--timeout 60000` |
+| `--maxAttempts` | Max healing attempts per test | `--maxAttempts 2` |
+| `--statePath` | Path to persist orchestrator state | `--statePath artifacts/outputs/sprint1/orchestrator-state.json` |
+
+**Usage example (PowerShell from playwright-automation/):**
+```powershell
+# Full end-to-end pipeline
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 `
+  -Workflow full `
+  -RequirementsPath artifacts/inputs/requirements.md `
+  -OpenApiPath artifacts/inputs/openapi.json `
+  -MaxHealingAttempts 2
+
+# Full pipeline with gap analysis (default: automatic variants, 3 max iterations)
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 `
+  -Workflow full `
+  -RequirementsPath artifacts/inputs/requirements.md `
+  -OpenApiPath artifacts/inputs/openapi.json `
+  -GapAnalysis true `
+  -MaxGapIterations 3
+
+# Full pipeline with manual variant review (no auto-generation)
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 `
+  -Workflow full `
+  -RequirementsPath artifacts/inputs/requirements.md `
+  -OpenApiPath artifacts/inputs/openapi.json `
+  -GapAnalysis true `
+  -MaxGapIterations 3 `
+  -VariantMode manual
+
+# Generator-only with automatic variant mode
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 `
+  -Workflow generator `
+  -RequirementsPath artifacts/inputs/requirements.md `
+  -OpenApiPath artifacts/inputs/openapi.json `
+  -VariantMode automatic
+```

@@ -1,0 +1,13 @@
+{
+  "runId": "heal-2026-11-27T12:40:59.544Z",
+  "timestamp": "2026-11-27T12:40:59.544Z",
+  "summary": {
+    "totalTests": 0,
+    "testsFixed": 0,
+    "testsSkipped": 0,
+    "healRate": "100.0%",
+    "status": "completed"
+  },
+  "testsHealed": [],
+  "rtmUpdates": []
+}

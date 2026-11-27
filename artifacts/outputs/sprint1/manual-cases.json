@@ -1,0 +1,1324 @@
+[
+  {
+    "id": "POST--auth-register",
+    "title": "POST /auth/register",
+    "type": "automated",
+    "preconditions": [
+      "Register a new user"
+    ],
+    "steps": [
+      "Send POST request to /auth/register"
+    ],
+    "expectedResult": "Register a new user",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Auth"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 5,
+    "sourceRef": "POST--auth-register"
+  },
+  {
+    "id": "POST--auth-login",
+    "title": "POST /auth/login",
+    "type": "automated",
+    "preconditions": [
+      "Log in with existing credentials"
+    ],
+    "steps": [
+      "Send POST request to /auth/login"
+    ],
+    "expectedResult": "Log in with existing credentials",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Auth"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 5,
+    "sourceRef": "POST--auth-login"
+  },
+  {
+    "id": "GET--auth-me",
+    "title": "GET /auth/me",
+    "type": "automated",
+    "preconditions": [
+      "Get the currently authenticated user"
+    ],
+    "steps": [
+      "Send GET request to /auth/me"
+    ],
+    "expectedResult": "Get the currently authenticated user",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Auth"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 5,
+    "sourceRef": "GET--auth-me"
+  },
+  {
+    "id": "GET--bookings",
+    "title": "GET /bookings",
+    "type": "automated",
+    "preconditions": [
+      "List all bookings"
+    ],
+    "steps": [
+      "Send GET request to /bookings"
+    ],
+    "expectedResult": "List all bookings",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "GET--bookings"
+  },
+  {
+    "id": "POST--bookings",
+    "title": "POST /bookings",
+    "type": "automated",
+    "preconditions": [
+      "Create a booking (buy tickets)"
+    ],
+    "steps": [
+      "Send POST request to /bookings"
+    ],
+    "expectedResult": "Create a booking (buy tickets)",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "POST--bookings"
+  },
+  {
+    "id": "GET--bookings-ref--ref-",
+    "title": "GET /bookings/ref/{ref}",
+    "type": "automated",
+    "preconditions": [
+      "Look up a booking by reference code"
+    ],
+    "steps": [
+      "Send GET request to /bookings/ref/{ref}"
+    ],
+    "expectedResult": "Look up a booking by reference code",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "GET--bookings-ref--ref-"
+  },
+  {
+    "id": "GET--bookings--id-",
+    "title": "GET /bookings/{id}",
+    "type": "automated",
+    "preconditions": [
+      "Get a single booking by ID"
+    ],
+    "steps": [
+      "Send GET request to /bookings/{id}"
+    ],
+    "expectedResult": "Get a single booking by ID",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "GET--bookings--id-"
+  },
+  {
+    "id": "DELETE--bookings--id-",
+    "title": "DELETE /bookings/{id}",
+    "type": "automated",
+    "preconditions": [
+      "Cancel a booking"
+    ],
+    "steps": [
+      "Send DELETE request to /bookings/{id}"
+    ],
+    "expectedResult": "Cancel a booking",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "DELETE--bookings--id-"
+  },
+  {
+    "id": "GET--events",
+    "title": "GET /events",
+    "type": "automated",
+    "preconditions": [
+      "List all events"
+    ],
+    "steps": [
+      "Send GET request to /events"
+    ],
+    "expectedResult": "List all events",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "GET--events"
+  },
+  {
+    "id": "POST--events",
+    "title": "POST /events",
+    "type": "automated",
+    "preconditions": [
+      "Create a new event"
+    ],
+    "steps": [
+      "Send POST request to /events"
+    ],
+    "expectedResult": "Create a new event",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "POST--events"
+  },
+  {
+    "id": "GET--events--id-",
+    "title": "GET /events/{id}",
+    "type": "automated",
+    "preconditions": [
+      "Get a single event by ID"
+    ],
+    "steps": [
+      "Send GET request to /events/{id}"
+    ],
+    "expectedResult": "Get a single event by ID",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "GET--events--id-"
+  },
+  {
+    "id": "PUT--events--id-",
+    "title": "PUT /events/{id}",
+    "type": "automated",
+    "preconditions": [
+      "Update an event"
+    ],
+    "steps": [
+      "Send PUT request to /events/{id}"
+    ],
+    "expectedResult": "Update an event",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "PUT--events--id-"
+  },
+  {
+    "id": "DELETE--events--id-",
+    "title": "DELETE /events/{id}",
+    "type": "automated",
+    "preconditions": [
+      "Delete an event"
+    ],
+    "steps": [
+      "Send DELETE request to /events/{id}"
+    ],
+    "expectedResult": "Delete an event",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "DELETE--events--id-"
+  },
+  {
+    "id": "GET--health",
+    "title": "GET /health",
+    "type": "automated",
+    "preconditions": [
+      "API health check"
+    ],
+    "steps": [
+      "Send GET request to /health"
+    ],
+    "expectedResult": "API health check",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Health"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 5,
+    "sourceRef": "GET--health"
+  },
+  {
+    "id": "GET--config",
+    "title": "GET /config",
+    "type": "automated",
+    "preconditions": [
+      "Get public feature flags"
+    ],
+    "steps": [
+      "Send GET request to /config"
+    ],
+    "expectedResult": "Get public feature flags",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Config"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "GET--config"
+  },
+  {
+    "id": "AC-LOGIN-001",
+    "title": "Valid credentials authenticate the user",
+    "type": "automated",
+    "preconditions": [
+      "User Authentication Flow"
+    ],
+    "steps": [
+      "Navigate to `/login` page",
+      "Enter valid/invalid email and password",
+      "Click Sign In button",
+      "Verify redirection or error message",
+      "Verify password masking"
+    ],
+    "expectedResult": "User can login with valid email and password and is redirected to the home page",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@auth"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-LOGIN-001"
+  },
+  {
+    "id": "AC-LOGIN-002",
+    "title": "Invalid credentials show error message",
+    "type": "automated",
+    "preconditions": [
+      "User Authentication Flow"
+    ],
+    "steps": [
+      "Navigate to `/login` page",
+      "Enter valid/invalid email and password",
+      "Click Sign In button",
+      "Verify redirection or error message",
+      "Verify password masking"
+    ],
+    "expectedResult": "User sees authentication error when entering incorrect credentials",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@auth"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-LOGIN-002"
+  },
+  {
+    "id": "AC-LOGIN-003",
+    "title": "Password field masks input",
+    "type": "automated",
+    "preconditions": [
+      "User Authentication Flow"
+    ],
+    "steps": [
+      "Navigate to `/login` page",
+      "Enter valid/invalid email and password",
+      "Click Sign In button",
+      "Verify redirection or error message",
+      "Verify password masking"
+    ],
+    "expectedResult": "Password characters are masked with dots/asterisks",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@auth"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-LOGIN-003"
+  },
+  {
+    "id": "AC-LOGIN-004",
+    "title": "\"Remember me\" checkbox functionality",
+    "type": "automated",
+    "preconditions": [
+      "User Authentication Flow"
+    ],
+    "steps": [
+      "Navigate to `/login` page",
+      "Enter valid/invalid email and password",
+      "Click Sign In button",
+      "Verify redirection or error message",
+      "Verify password masking"
+    ],
+    "expectedResult": "Remember me checkbox persists login across sessions",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@auth"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-LOGIN-004"
+  },
+  {
+    "id": "AC-HOME-001",
+    "title": "Events page loads successfully",
+    "type": "automated",
+    "preconditions": [
+      "Home Page / Events Listing"
+    ],
+    "steps": [
+      "Navigate to home page",
+      "Verify event cards render",
+      "Apply category filter",
+      "Use search functionality",
+      "Navigate through pages"
+    ],
+    "expectedResult": "Home page displays event listings without errors",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@smoke",
+      "@events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 5,
+    "sourceRef": "AC-HOME-001"
+  },
+  {
+    "id": "AC-HOME-002",
+    "title": "Event cards display correct information",
+    "type": "automated",
+    "preconditions": [
+      "Home Page / Events Listing"
+    ],
+    "steps": [
+      "Navigate to home page",
+      "Verify event cards render",
+      "Apply category filter",
+      "Use search functionality",
+      "Navigate through pages"
+    ],
+    "expectedResult": "Title, category, price, and city are shown for each event",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-HOME-002"
+  },
+  {
+    "id": "AC-HOME-003",
+    "title": "Filter by category works",
+    "type": "automated",
+    "preconditions": [
+      "Home Page / Events Listing"
+    ],
+    "steps": [
+      "Navigate to home page",
+      "Verify event cards render",
+      "Apply category filter",
+      "Use search functionality",
+      "Navigate through pages"
+    ],
+    "expectedResult": "Users can filter events by category (Festival, Workshop, Conference)",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-HOME-003"
+  },
+  {
+    "id": "AC-HOME-004",
+    "title": "Search events by keyword",
+    "type": "automated",
+    "preconditions": [
+      "Home Page / Events Listing"
+    ],
+    "steps": [
+      "Navigate to home page",
+      "Verify event cards render",
+      "Apply category filter",
+      "Use search functionality",
+      "Navigate through pages"
+    ],
+    "expectedResult": "Search bar filters events by title/description",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-HOME-004"
+  },
+  {
+    "id": "AC-HOME-005",
+    "title": "Pagination works correctly",
+    "type": "automated",
+    "preconditions": [
+      "Home Page / Events Listing"
+    ],
+    "steps": [
+      "Navigate to home page",
+      "Verify event cards render",
+      "Apply category filter",
+      "Use search functionality",
+      "Navigate through pages"
+    ],
+    "expectedResult": "Events paginate correctly across pages",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-HOME-005"
+  },
+  {
+    "id": "AC-EVENT-001",
+    "title": "Event details page loads",
+    "type": "automated",
+    "preconditions": [
+      "Event Details Page"
+    ],
+    "steps": [
+      "Click on event card from home page",
+      "Verify page URL and heading",
+      "Check all details fields",
+      "Test booking functionality (if applicable)"
+    ],
+    "expectedResult": "Clicking an event card navigates to details page",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@smoke",
+      "@events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 5,
+    "sourceRef": "AC-EVENT-001"
+  },
+  {
+    "id": "AC-EVENT-002",
+    "title": "Event details display correctly",
+    "type": "automated",
+    "preconditions": [
+      "Event Details Page"
+    ],
+    "steps": [
+      "Click on event card from home page",
+      "Verify page URL and heading",
+      "Check all details fields",
+      "Test booking functionality (if applicable)"
+    ],
+    "expectedResult": "Title, description, date, time, price, and venue are shown",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-EVENT-002"
+  },
+  {
+    "id": "AC-EVENT-003",
+    "title": "Book event button functionality",
+    "type": "automated",
+    "preconditions": [
+      "Event Details Page"
+    ],
+    "steps": [
+      "Click on event card from home page",
+      "Verify page URL and heading",
+      "Check all details fields",
+      "Test booking functionality (if applicable)"
+    ],
+    "expectedResult": "Clicking \"Book\" navigates to booking flow",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-EVENT-003"
+  },
+  {
+    "id": "AC-EVENT-004",
+    "title": "Delete event option (admin)",
+    "type": "automated",
+    "preconditions": [
+      "Event Details Page"
+    ],
+    "steps": [
+      "Click on event card from home page",
+      "Verify page URL and heading",
+      "Check all details fields",
+      "Test booking functionality (if applicable)"
+    ],
+    "expectedResult": "Admin users can delete events",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-EVENT-004"
+  },
+  {
+    "id": "AC-EVENT-005",
+    "title": "Event image displays",
+    "type": "automated",
+    "preconditions": [
+      "Event Details Page"
+    ],
+    "steps": [
+      "Click on event card from home page",
+      "Verify page URL and heading",
+      "Check all details fields",
+      "Test booking functionality (if applicable)"
+    ],
+    "expectedResult": "Event image loads and has appropriate alt text",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-EVENT-005"
+  },
+  {
+    "id": "AC-BOOK-001",
+    "title": "User can book an event",
+    "type": "automated",
+    "preconditions": [
+      "Booking Flow"
+    ],
+    "steps": [
+      "Navigate to event details page",
+      "Select number of seats",
+      "Verify price updates dynamically",
+      "Proceed to confirmation",
+      "Test cancel functionality (if applicable)"
+    ],
+    "expectedResult": "User selects tickets and proceeds to booking",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-BOOK-001"
+  },
+  {
+    "id": "AC-BOOK-002",
+    "title": "Seat selection works",
+    "type": "automated",
+    "preconditions": [
+      "Booking Flow"
+    ],
+    "steps": [
+      "Navigate to event details page",
+      "Select number of seats",
+      "Verify price updates dynamically",
+      "Proceed to confirmation",
+      "Test cancel functionality (if applicable)"
+    ],
+    "expectedResult": "User can select number of seats (1-10)",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-BOOK-002"
+  },
+  {
+    "id": "AC-BOOK-003",
+    "title": "Price calculation is correct",
+    "type": "automated",
+    "preconditions": [
+      "Booking Flow"
+    ],
+    "steps": [
+      "Navigate to event details page",
+      "Select number of seats",
+      "Verify price updates dynamically",
+      "Proceed to confirmation",
+      "Test cancel functionality (if applicable)"
+    ],
+    "expectedResult": "Total price = unit price × number of seats",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-BOOK-003"
+  },
+  {
+    "id": "AC-BOOK-004",
+    "title": "Booking confirmation displayed",
+    "type": "automated",
+    "preconditions": [
+      "Booking Flow"
+    ],
+    "steps": [
+      "Navigate to event details page",
+      "Select number of seats",
+      "Verify price updates dynamically",
+      "Proceed to confirmation",
+      "Test cancel functionality (if applicable)"
+    ],
+    "expectedResult": "Confirmation page shows booking details",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-BOOK-004"
+  },
+  {
+    "id": "AC-BOOK-005",
+    "title": "Cancel booking functionality",
+    "type": "automated",
+    "preconditions": [
+      "Booking Flow"
+    ],
+    "steps": [
+      "Navigate to event details page",
+      "Select number of seats",
+      "Verify price updates dynamically",
+      "Proceed to confirmation",
+      "Test cancel functionality (if applicable)"
+    ],
+    "expectedResult": "User can cancel a booking within time limits",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-BOOK-005"
+  },
+  {
+    "id": "AC-PROFILE-001",
+    "title": "My bookings page loads",
+    "type": "automated",
+    "preconditions": [
+      "User Profile / My Bookings"
+    ],
+    "steps": [
+      "Navigate to My Bookings section",
+      "Verify bookings list",
+      "Test cancel functionality",
+      "Verify status indicators"
+    ],
+    "expectedResult": "User navigates to My Bookings section",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@smoke",
+      "@bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 5,
+    "sourceRef": "AC-PROFILE-001"
+  },
+  {
+    "id": "AC-PROFILE-002",
+    "title": "Bookings list displays correctly",
+    "type": "automated",
+    "preconditions": [
+      "User Profile / My Bookings"
+    ],
+    "steps": [
+      "Navigate to My Bookings section",
+      "Verify bookings list",
+      "Test cancel functionality",
+      "Verify status indicators"
+    ],
+    "expectedResult": "All user bookings are listed with details",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-PROFILE-002"
+  },
+  {
+    "id": "AC-PROFILE-003",
+    "title": "Cancel booking from profile",
+    "type": "automated",
+    "preconditions": [
+      "User Profile / My Bookings"
+    ],
+    "steps": [
+      "Navigate to My Bookings section",
+      "Verify bookings list",
+      "Test cancel functionality",
+      "Verify status indicators"
+    ],
+    "expectedResult": "User can cancel a booking from their profile",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-PROFILE-003"
+  },
+  {
+    "id": "AC-PROFILE-004",
+    "title": "Booking status indicators",
+    "type": "automated",
+    "preconditions": [
+      "User Profile / My Bookings"
+    ],
+    "steps": [
+      "Navigate to My Bookings section",
+      "Verify bookings list",
+      "Test cancel functionality",
+      "Verify status indicators"
+    ],
+    "expectedResult": "Status shows confirmed, cancelled, or pending",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-PROFILE-004"
+  },
+  {
+    "id": "AC-ADMIN-001",
+    "title": "Admin can create new event",
+    "type": "automated",
+    "preconditions": [
+      "Admin Functions"
+    ],
+    "steps": [
+      "Login as admin user",
+      "Access admin dashboard",
+      "Create/edit/delete events",
+      "Verify permission restrictions"
+    ],
+    "expectedResult": "Admin adds event with all details",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@admin"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ADMIN-001"
+  },
+  {
+    "id": "AC-ADMIN-002",
+    "title": "Admin can edit existing event",
+    "type": "automated",
+    "preconditions": [
+      "Admin Functions"
+    ],
+    "steps": [
+      "Login as admin user",
+      "Access admin dashboard",
+      "Create/edit/delete events",
+      "Verify permission restrictions"
+    ],
+    "expectedResult": "Admin modifies event details",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@admin"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ADMIN-002"
+  },
+  {
+    "id": "AC-ADMIN-003",
+    "title": "Admin can delete event",
+    "type": "automated",
+    "preconditions": [
+      "Admin Functions"
+    ],
+    "steps": [
+      "Login as admin user",
+      "Access admin dashboard",
+      "Create/edit/delete events",
+      "Verify permission restrictions"
+    ],
+    "expectedResult": "Admin removes event from system",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@admin"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ADMIN-003"
+  },
+  {
+    "id": "AC-ADMIN-004",
+    "title": "Admin permissions check",
+    "type": "automated",
+    "preconditions": [
+      "Admin Functions"
+    ],
+    "steps": [
+      "Login as admin user",
+      "Access admin dashboard",
+      "Create/edit/delete events",
+      "Verify permission restrictions"
+    ],
+    "expectedResult": "Non-admin users cannot access admin functions",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@admin"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ADMIN-004"
+  },
+  {
+    "id": "AC-RESP-001",
+    "title": "Page renders on mobile",
+    "type": "automated",
+    "preconditions": [
+      "Responsive Design"
+    ],
+    "steps": [
+      "Resize browser to mobile (375px x 667px)",
+      "Resize to tablet (768px x 1024px)",
+      "Resize to desktop (1440px x 900px)",
+      "Verify layout and navigation"
+    ],
+    "expectedResult": "Layout adapts to mobile screen sizes",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-RESP-001"
+  },
+  {
+    "id": "AC-RESP-002",
+    "title": "Page renders on tablet",
+    "type": "automated",
+    "preconditions": [
+      "Responsive Design"
+    ],
+    "steps": [
+      "Resize browser to mobile (375px x 667px)",
+      "Resize to tablet (768px x 1024px)",
+      "Resize to desktop (1440px x 900px)",
+      "Verify layout and navigation"
+    ],
+    "expectedResult": "Layout adapts to tablet screen sizes",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-RESP-002"
+  },
+  {
+    "id": "AC-RESP-003",
+    "title": "Navigation works on all sizes",
+    "type": "automated",
+    "preconditions": [
+      "Responsive Design"
+    ],
+    "steps": [
+      "Resize browser to mobile (375px x 667px)",
+      "Resize to tablet (768px x 1024px)",
+      "Resize to desktop (1440px x 900px)",
+      "Verify layout and navigation"
+    ],
+    "expectedResult": "Menu/navbar functions on mobile/tablet/desktop",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-RESP-003"
+  },
+  {
+    "id": "AC-RESP-004",
+    "title": "Touch targets are appropriate",
+    "type": "automated",
+    "preconditions": [
+      "Responsive Design"
+    ],
+    "steps": [
+      "Resize browser to mobile (375px x 667px)",
+      "Resize to tablet (768px x 1024px)",
+      "Resize to desktop (1440px x 900px)",
+      "Verify layout and navigation"
+    ],
+    "expectedResult": "Buttons and links have minimum 44px height",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-RESP-004"
+  },
+  {
+    "id": "AC-ACC-001",
+    "title": "Color contrast meets WCAG AA",
+    "type": "automated",
+    "preconditions": [
+      "Accessibility"
+    ],
+    "steps": [
+      "Run axe accessibility scanner",
+      "Verify color contrast ratios",
+      "Test keyboard-only navigation",
+      "Check form label associations"
+    ],
+    "expectedResult": "All text has sufficient contrast ratio",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ACC-001"
+  },
+  {
+    "id": "AC-ACC-002",
+    "title": "Form labels are associated",
+    "type": "automated",
+    "preconditions": [
+      "Accessibility"
+    ],
+    "steps": [
+      "Run axe accessibility scanner",
+      "Verify color contrast ratios",
+      "Test keyboard-only navigation",
+      "Check form label associations"
+    ],
+    "expectedResult": "All form fields have proper labels",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ACC-002"
+  },
+  {
+    "id": "AC-ACC-003",
+    "title": "Keyboard navigation works",
+    "type": "automated",
+    "preconditions": [
+      "Accessibility"
+    ],
+    "steps": [
+      "Run axe accessibility scanner",
+      "Verify color contrast ratios",
+      "Test keyboard-only navigation",
+      "Check form label associations"
+    ],
+    "expectedResult": "All interactive elements reachable via Tab",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ACC-003"
+  },
+  {
+    "id": "AC-ACC-004",
+    "title": "ARIA labels where needed",
+    "type": "automated",
+    "preconditions": [
+      "Accessibility"
+    ],
+    "steps": [
+      "Run axe accessibility scanner",
+      "Verify color contrast ratios",
+      "Test keyboard-only navigation",
+      "Check form label associations"
+    ],
+    "expectedResult": "Missing ARIA labels are identified and added",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ACC-004"
+  },
+  {
+    "id": "AC-ERR-001",
+    "title": "404 page displays correctly",
+    "type": "automated",
+    "preconditions": [
+      "Error Handling"
+    ],
+    "steps": [
+      "Navigate to invalid route",
+      "Simulate network failure",
+      "Submit invalid form data",
+      "Wait for session timeout"
+    ],
+    "expectedResult": "Non-existent routes show proper error page",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ERR-001"
+  },
+  {
+    "id": "AC-ERR-002",
+    "title": "Network error handling",
+    "type": "automated",
+    "preconditions": [
+      "Error Handling"
+    ],
+    "steps": [
+      "Navigate to invalid route",
+      "Simulate network failure",
+      "Submit invalid form data",
+      "Wait for session timeout"
+    ],
+    "expectedResult": "User sees appropriate message on network failure",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ERR-002"
+  },
+  {
+    "id": "AC-ERR-003",
+    "title": "Form validation errors",
+    "type": "automated",
+    "preconditions": [
+      "Error Handling"
+    ],
+    "steps": [
+      "Navigate to invalid route",
+      "Simulate network failure",
+      "Submit invalid form data",
+      "Wait for session timeout"
+    ],
+    "expectedResult": "Invalid input shows clear error messages",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ERR-003"
+  },
+  {
+    "id": "AC-ERR-004",
+    "title": "Session timeout handling",
+    "type": "automated",
+    "preconditions": [
+      "Error Handling"
+    ],
+    "steps": [
+      "Navigate to invalid route",
+      "Simulate network failure",
+      "Submit invalid form data",
+      "Wait for session timeout"
+    ],
+    "expectedResult": "User is redirected to login after timeout",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-ERR-004"
+  },
+  {
+    "id": "AC-PERF-001",
+    "title": "Page load time under 3s",
+    "type": "automated",
+    "preconditions": [
+      "Performance"
+    ],
+    "steps": [
+      "Measure page load times using Playwright metrics",
+      "Measure API response times",
+      "Identify performance bottlenecks"
+    ],
+    "expectedResult": "Home page loads within 3 seconds",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-PERF-001"
+  },
+  {
+    "id": "AC-PERF-002",
+    "title": "Event card rendering is fast",
+    "type": "automated",
+    "preconditions": [
+      "Performance"
+    ],
+    "steps": [
+      "Measure page load times using Playwright metrics",
+      "Measure API response times",
+      "Identify performance bottlenecks"
+    ],
+    "expectedResult": "Event cards render within 500ms",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-PERF-002"
+  },
+  {
+    "id": "AC-PERF-003",
+    "title": "API responses are timely",
+    "type": "automated",
+    "preconditions": [
+      "Performance"
+    ],
+    "steps": [
+      "Measure page load times using Playwright metrics",
+      "Measure API response times",
+      "Identify performance bottlenecks"
+    ],
+    "expectedResult": "Event API responses under 2s",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api"
+    ],
+    "oracle": "characterisation",
+    "coverageGapWeight": 3,
+    "sourceRef": "AC-PERF-003"
+  }
+]

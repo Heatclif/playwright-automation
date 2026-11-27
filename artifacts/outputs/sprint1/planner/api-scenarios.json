@@ -1,0 +1,1206 @@
+{
+  "runId": "planner-2026-11-27T12:40:59.522Z",
+  "timestamp": "2026-11-27T12:40:59.522Z",
+  "workflow": "planner",
+  "totalScenarios": 57,
+  "uiScenarios": 41,
+  "apiScenarios": 16,
+  "scenarios": [
+    {
+      "id": "POST--auth-register",
+      "title": "POST /auth/register",
+      "testType": "api",
+      "story": "Register a new user",
+      "priority": "P1",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Auth"
+      ],
+      "method": "post",
+      "path": "/auth/register",
+      "description": "Register a new user",
+      "steps": [
+        "Send POST request to /auth/register"
+      ]
+    },
+    {
+      "id": "POST--auth-login",
+      "title": "POST /auth/login",
+      "testType": "api",
+      "story": "Log in with existing credentials",
+      "priority": "P1",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Auth"
+      ],
+      "method": "post",
+      "path": "/auth/login",
+      "description": "Log in with existing credentials",
+      "steps": [
+        "Send POST request to /auth/login"
+      ]
+    },
+    {
+      "id": "GET--auth-me",
+      "title": "GET /auth/me",
+      "testType": "api",
+      "story": "Get the currently authenticated user",
+      "priority": "P1",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Auth"
+      ],
+      "method": "get",
+      "path": "/auth/me",
+      "description": "Get the currently authenticated user",
+      "steps": [
+        "Send GET request to /auth/me"
+      ]
+    },
+    {
+      "id": "GET--bookings",
+      "title": "GET /bookings",
+      "testType": "api",
+      "story": "List all bookings",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Bookings"
+      ],
+      "method": "get",
+      "path": "/bookings",
+      "description": "List all bookings",
+      "steps": [
+        "Send GET request to /bookings"
+      ]
+    },
+    {
+      "id": "POST--bookings",
+      "title": "POST /bookings",
+      "testType": "api",
+      "story": "Create a booking (buy tickets)",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Bookings"
+      ],
+      "method": "post",
+      "path": "/bookings",
+      "description": "Create a booking (buy tickets)",
+      "steps": [
+        "Send POST request to /bookings"
+      ]
+    },
+    {
+      "id": "GET--bookings-ref--ref-",
+      "title": "GET /bookings/ref/{ref}",
+      "testType": "api",
+      "story": "Look up a booking by reference code",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Bookings"
+      ],
+      "method": "get",
+      "path": "/bookings/ref/{ref}",
+      "description": "Look up a booking by reference code",
+      "steps": [
+        "Send GET request to /bookings/ref/{ref}"
+      ]
+    },
+    {
+      "id": "GET--bookings--id-",
+      "title": "GET /bookings/{id}",
+      "testType": "api",
+      "story": "Get a single booking by ID",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Bookings"
+      ],
+      "method": "get",
+      "path": "/bookings/{id}",
+      "description": "Get a single booking by ID",
+      "steps": [
+        "Send GET request to /bookings/{id}"
+      ]
+    },
+    {
+      "id": "DELETE--bookings--id-",
+      "title": "DELETE /bookings/{id}",
+      "testType": "api",
+      "story": "Cancel a booking",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Bookings"
+      ],
+      "method": "delete",
+      "path": "/bookings/{id}",
+      "description": "Cancel a booking",
+      "steps": [
+        "Send DELETE request to /bookings/{id}"
+      ]
+    },
+    {
+      "id": "GET--events",
+      "title": "GET /events",
+      "testType": "api",
+      "story": "List all events",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Events"
+      ],
+      "method": "get",
+      "path": "/events",
+      "description": "List all events",
+      "steps": [
+        "Send GET request to /events"
+      ]
+    },
+    {
+      "id": "POST--events",
+      "title": "POST /events",
+      "testType": "api",
+      "story": "Create a new event",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Events"
+      ],
+      "method": "post",
+      "path": "/events",
+      "description": "Create a new event",
+      "steps": [
+        "Send POST request to /events"
+      ]
+    },
+    {
+      "id": "GET--events--id-",
+      "title": "GET /events/{id}",
+      "testType": "api",
+      "story": "Get a single event by ID",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Events"
+      ],
+      "method": "get",
+      "path": "/events/{id}",
+      "description": "Get a single event by ID",
+      "steps": [
+        "Send GET request to /events/{id}"
+      ]
+    },
+    {
+      "id": "PUT--events--id-",
+      "title": "PUT /events/{id}",
+      "testType": "api",
+      "story": "Update an event",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Events"
+      ],
+      "method": "put",
+      "path": "/events/{id}",
+      "description": "Update an event",
+      "steps": [
+        "Send PUT request to /events/{id}"
+      ]
+    },
+    {
+      "id": "DELETE--events--id-",
+      "title": "DELETE /events/{id}",
+      "testType": "api",
+      "story": "Delete an event",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Events"
+      ],
+      "method": "delete",
+      "path": "/events/{id}",
+      "description": "Delete an event",
+      "steps": [
+        "Send DELETE request to /events/{id}"
+      ]
+    },
+    {
+      "id": "GET--health",
+      "title": "GET /health",
+      "testType": "api",
+      "story": "API health check",
+      "priority": "P1",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Health"
+      ],
+      "method": "get",
+      "path": "/health",
+      "description": "API health check",
+      "steps": [
+        "Send GET request to /health"
+      ]
+    },
+    {
+      "id": "GET--config",
+      "title": "GET /config",
+      "testType": "api",
+      "story": "Get public feature flags",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@api",
+        "@Config"
+      ],
+      "method": "get",
+      "path": "/config",
+      "description": "Get public feature flags",
+      "steps": [
+        "Send GET request to /config"
+      ]
+    },
+    {
+      "id": "AC-LOGIN-001",
+      "title": "Valid credentials authenticate the user",
+      "testType": "ui",
+      "story": "User Authentication Flow",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@auth"
+      ],
+      "description": "User can login with valid email and password and is redirected to the home page",
+      "steps": [
+        "Navigate to `/login` page",
+        "Enter valid/invalid email and password",
+        "Click Sign In button",
+        "Verify redirection or error message",
+        "Verify password masking"
+      ]
+    },
+    {
+      "id": "AC-LOGIN-002",
+      "title": "Invalid credentials show error message",
+      "testType": "ui",
+      "story": "User Authentication Flow",
+      "priority": "P2",
+      "technique": "negative",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@auth"
+      ],
+      "description": "User sees authentication error when entering incorrect credentials",
+      "steps": [
+        "Navigate to `/login` page",
+        "Enter valid/invalid email and password",
+        "Click Sign In button",
+        "Verify redirection or error message",
+        "Verify password masking"
+      ]
+    },
+    {
+      "id": "AC-LOGIN-003",
+      "title": "Password field masks input",
+      "testType": "ui",
+      "story": "User Authentication Flow",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@auth"
+      ],
+      "description": "Password characters are masked with dots/asterisks",
+      "steps": [
+        "Navigate to `/login` page",
+        "Enter valid/invalid email and password",
+        "Click Sign In button",
+        "Verify redirection or error message",
+        "Verify password masking"
+      ]
+    },
+    {
+      "id": "AC-LOGIN-004",
+      "title": "\"Remember me\" checkbox functionality",
+      "testType": "ui",
+      "story": "User Authentication Flow",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@auth"
+      ],
+      "description": "Remember me checkbox persists login across sessions",
+      "steps": [
+        "Navigate to `/login` page",
+        "Enter valid/invalid email and password",
+        "Click Sign In button",
+        "Verify redirection or error message",
+        "Verify password masking"
+      ]
+    },
+    {
+      "id": "AC-HOME-001",
+      "title": "Events page loads successfully",
+      "testType": "ui",
+      "story": "Home Page / Events Listing",
+      "priority": "P1",
+      "technique": "negative",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@smoke",
+        "@events"
+      ],
+      "description": "Home page displays event listings without errors",
+      "steps": [
+        "Navigate to home page",
+        "Verify event cards render",
+        "Apply category filter",
+        "Use search functionality",
+        "Navigate through pages"
+      ]
+    },
+    {
+      "id": "AC-HOME-002",
+      "title": "Event cards display correct information",
+      "testType": "ui",
+      "story": "Home Page / Events Listing",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@events"
+      ],
+      "description": "Title, category, price, and city are shown for each event",
+      "steps": [
+        "Navigate to home page",
+        "Verify event cards render",
+        "Apply category filter",
+        "Use search functionality",
+        "Navigate through pages"
+      ]
+    },
+    {
+      "id": "AC-HOME-003",
+      "title": "Filter by category works",
+      "testType": "ui",
+      "story": "Home Page / Events Listing",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@events"
+      ],
+      "description": "Users can filter events by category (Festival, Workshop, Conference)",
+      "steps": [
+        "Navigate to home page",
+        "Verify event cards render",
+        "Apply category filter",
+        "Use search functionality",
+        "Navigate through pages"
+      ]
+    },
+    {
+      "id": "AC-HOME-004",
+      "title": "Search events by keyword",
+      "testType": "ui",
+      "story": "Home Page / Events Listing",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@events"
+      ],
+      "description": "Search bar filters events by title/description",
+      "steps": [
+        "Navigate to home page",
+        "Verify event cards render",
+        "Apply category filter",
+        "Use search functionality",
+        "Navigate through pages"
+      ]
+    },
+    {
+      "id": "AC-HOME-005",
+      "title": "Pagination works correctly",
+      "testType": "ui",
+      "story": "Home Page / Events Listing",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@events"
+      ],
+      "description": "Events paginate correctly across pages",
+      "steps": [
+        "Navigate to home page",
+        "Verify event cards render",
+        "Apply category filter",
+        "Use search functionality",
+        "Navigate through pages"
+      ]
+    },
+    {
+      "id": "AC-EVENT-001",
+      "title": "Event details page loads",
+      "testType": "ui",
+      "story": "Event Details Page",
+      "priority": "P1",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@smoke",
+        "@events"
+      ],
+      "description": "Clicking an event card navigates to details page",
+      "steps": [
+        "Click on event card from home page",
+        "Verify page URL and heading",
+        "Check all details fields",
+        "Test booking functionality (if applicable)"
+      ]
+    },
+    {
+      "id": "AC-EVENT-002",
+      "title": "Event details display correctly",
+      "testType": "ui",
+      "story": "Event Details Page",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@events"
+      ],
+      "description": "Title, description, date, time, price, and venue are shown",
+      "steps": [
+        "Click on event card from home page",
+        "Verify page URL and heading",
+        "Check all details fields",
+        "Test booking functionality (if applicable)"
+      ]
+    },
+    {
+      "id": "AC-EVENT-003",
+      "title": "Book event button functionality",
+      "testType": "ui",
+      "story": "Event Details Page",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@events"
+      ],
+      "description": "Clicking \"Book\" navigates to booking flow",
+      "steps": [
+        "Click on event card from home page",
+        "Verify page URL and heading",
+        "Check all details fields",
+        "Test booking functionality (if applicable)"
+      ]
+    },
+    {
+      "id": "AC-EVENT-004",
+      "title": "Delete event option (admin)",
+      "testType": "ui",
+      "story": "Event Details Page",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@events"
+      ],
+      "description": "Admin users can delete events",
+      "steps": [
+        "Click on event card from home page",
+        "Verify page URL and heading",
+        "Check all details fields",
+        "Test booking functionality (if applicable)"
+      ]
+    },
+    {
+      "id": "AC-EVENT-005",
+      "title": "Event image displays",
+      "testType": "ui",
+      "story": "Event Details Page",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@events"
+      ],
+      "description": "Event image loads and has appropriate alt text",
+      "steps": [
+        "Click on event card from home page",
+        "Verify page URL and heading",
+        "Check all details fields",
+        "Test booking functionality (if applicable)"
+      ]
+    },
+    {
+      "id": "AC-BOOK-001",
+      "title": "User can book an event",
+      "testType": "ui",
+      "story": "Booking Flow",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@bookings"
+      ],
+      "description": "User selects tickets and proceeds to booking",
+      "steps": [
+        "Navigate to event details page",
+        "Select number of seats",
+        "Verify price updates dynamically",
+        "Proceed to confirmation",
+        "Test cancel functionality (if applicable)"
+      ]
+    },
+    {
+      "id": "AC-BOOK-002",
+      "title": "Seat selection works",
+      "testType": "ui",
+      "story": "Booking Flow",
+      "priority": "P2",
+      "technique": "boundary",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@bookings"
+      ],
+      "description": "User can select number of seats (1-10)",
+      "steps": [
+        "Navigate to event details page",
+        "Select number of seats",
+        "Verify price updates dynamically",
+        "Proceed to confirmation",
+        "Test cancel functionality (if applicable)"
+      ]
+    },
+    {
+      "id": "AC-BOOK-003",
+      "title": "Price calculation is correct",
+      "testType": "ui",
+      "story": "Booking Flow",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@bookings"
+      ],
+      "description": "Total price = unit price × number of seats",
+      "steps": [
+        "Navigate to event details page",
+        "Select number of seats",
+        "Verify price updates dynamically",
+        "Proceed to confirmation",
+        "Test cancel functionality (if applicable)"
+      ]
+    },
+    {
+      "id": "AC-BOOK-004",
+      "title": "Booking confirmation displayed",
+      "testType": "ui",
+      "story": "Booking Flow",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@bookings"
+      ],
+      "description": "Confirmation page shows booking details",
+      "steps": [
+        "Navigate to event details page",
+        "Select number of seats",
+        "Verify price updates dynamically",
+        "Proceed to confirmation",
+        "Test cancel functionality (if applicable)"
+      ]
+    },
+    {
+      "id": "AC-BOOK-005",
+      "title": "Cancel booking functionality",
+      "testType": "ui",
+      "story": "Booking Flow",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@bookings"
+      ],
+      "description": "User can cancel a booking within time limits",
+      "steps": [
+        "Navigate to event details page",
+        "Select number of seats",
+        "Verify price updates dynamically",
+        "Proceed to confirmation",
+        "Test cancel functionality (if applicable)"
+      ]
+    },
+    {
+      "id": "AC-PROFILE-001",
+      "title": "My bookings page loads",
+      "testType": "ui",
+      "story": "User Profile / My Bookings",
+      "priority": "P1",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@smoke",
+        "@bookings"
+      ],
+      "description": "User navigates to My Bookings section",
+      "steps": [
+        "Navigate to My Bookings section",
+        "Verify bookings list",
+        "Test cancel functionality",
+        "Verify status indicators"
+      ]
+    },
+    {
+      "id": "AC-PROFILE-002",
+      "title": "Bookings list displays correctly",
+      "testType": "ui",
+      "story": "User Profile / My Bookings",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@bookings"
+      ],
+      "description": "All user bookings are listed with details",
+      "steps": [
+        "Navigate to My Bookings section",
+        "Verify bookings list",
+        "Test cancel functionality",
+        "Verify status indicators"
+      ]
+    },
+    {
+      "id": "AC-PROFILE-003",
+      "title": "Cancel booking from profile",
+      "testType": "ui",
+      "story": "User Profile / My Bookings",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@bookings"
+      ],
+      "description": "User can cancel a booking from their profile",
+      "steps": [
+        "Navigate to My Bookings section",
+        "Verify bookings list",
+        "Test cancel functionality",
+        "Verify status indicators"
+      ]
+    },
+    {
+      "id": "AC-PROFILE-004",
+      "title": "Booking status indicators",
+      "testType": "ui",
+      "story": "User Profile / My Bookings",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@bookings"
+      ],
+      "description": "Status shows confirmed, cancelled, or pending",
+      "steps": [
+        "Navigate to My Bookings section",
+        "Verify bookings list",
+        "Test cancel functionality",
+        "Verify status indicators"
+      ]
+    },
+    {
+      "id": "AC-ADMIN-001",
+      "title": "Admin can create new event",
+      "testType": "ui",
+      "story": "Admin Functions",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@admin"
+      ],
+      "description": "Admin adds event with all details",
+      "steps": [
+        "Login as admin user",
+        "Access admin dashboard",
+        "Create/edit/delete events",
+        "Verify permission restrictions"
+      ]
+    },
+    {
+      "id": "AC-ADMIN-002",
+      "title": "Admin can edit existing event",
+      "testType": "ui",
+      "story": "Admin Functions",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@admin"
+      ],
+      "description": "Admin modifies event details",
+      "steps": [
+        "Login as admin user",
+        "Access admin dashboard",
+        "Create/edit/delete events",
+        "Verify permission restrictions"
+      ]
+    },
+    {
+      "id": "AC-ADMIN-003",
+      "title": "Admin can delete event",
+      "testType": "ui",
+      "story": "Admin Functions",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@admin"
+      ],
+      "description": "Admin removes event from system",
+      "steps": [
+        "Login as admin user",
+        "Access admin dashboard",
+        "Create/edit/delete events",
+        "Verify permission restrictions"
+      ]
+    },
+    {
+      "id": "AC-ADMIN-004",
+      "title": "Admin permissions check",
+      "testType": "ui",
+      "story": "Admin Functions",
+      "priority": "P2",
+      "technique": "negative",
+      "tags": [
+        "@regression",
+        "@ui",
+        "@admin"
+      ],
+      "description": "Non-admin users cannot access admin functions",
+      "steps": [
+        "Login as admin user",
+        "Access admin dashboard",
+        "Create/edit/delete events",
+        "Verify permission restrictions"
+      ]
+    },
+    {
+      "id": "AC-RESP-001",
+      "title": "Page renders on mobile",
+      "testType": "ui",
+      "story": "Responsive Design",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "Layout adapts to mobile screen sizes",
+      "steps": [
+        "Resize browser to mobile (375px x 667px)",
+        "Resize to tablet (768px x 1024px)",
+        "Resize to desktop (1440px x 900px)",
+        "Verify layout and navigation"
+      ]
+    },
+    {
+      "id": "AC-RESP-002",
+      "title": "Page renders on tablet",
+      "testType": "ui",
+      "story": "Responsive Design",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "Layout adapts to tablet screen sizes",
+      "steps": [
+        "Resize browser to mobile (375px x 667px)",
+        "Resize to tablet (768px x 1024px)",
+        "Resize to desktop (1440px x 900px)",
+        "Verify layout and navigation"
+      ]
+    },
+    {
+      "id": "AC-RESP-003",
+      "title": "Navigation works on all sizes",
+      "testType": "ui",
+      "story": "Responsive Design",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "Menu/navbar functions on mobile/tablet/desktop",
+      "steps": [
+        "Resize browser to mobile (375px x 667px)",
+        "Resize to tablet (768px x 1024px)",
+        "Resize to desktop (1440px x 900px)",
+        "Verify layout and navigation"
+      ]
+    },
+    {
+      "id": "AC-RESP-004",
+      "title": "Touch targets are appropriate",
+      "testType": "ui",
+      "story": "Responsive Design",
+      "priority": "P2",
+      "technique": "boundary",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "Buttons and links have minimum 44px height",
+      "steps": [
+        "Resize browser to mobile (375px x 667px)",
+        "Resize to tablet (768px x 1024px)",
+        "Resize to desktop (1440px x 900px)",
+        "Verify layout and navigation"
+      ]
+    },
+    {
+      "id": "AC-ACC-001",
+      "title": "Color contrast meets WCAG AA",
+      "testType": "ui",
+      "story": "Accessibility",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "All text has sufficient contrast ratio",
+      "steps": [
+        "Run axe accessibility scanner",
+        "Verify color contrast ratios",
+        "Test keyboard-only navigation",
+        "Check form label associations"
+      ]
+    },
+    {
+      "id": "AC-ACC-002",
+      "title": "Form labels are associated",
+      "testType": "ui",
+      "story": "Accessibility",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "All form fields have proper labels",
+      "steps": [
+        "Run axe accessibility scanner",
+        "Verify color contrast ratios",
+        "Test keyboard-only navigation",
+        "Check form label associations"
+      ]
+    },
+    {
+      "id": "AC-ACC-003",
+      "title": "Keyboard navigation works",
+      "testType": "ui",
+      "story": "Accessibility",
+      "priority": "P2",
+      "technique": "positive",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "All interactive elements reachable via Tab",
+      "steps": [
+        "Run axe accessibility scanner",
+        "Verify color contrast ratios",
+        "Test keyboard-only navigation",
+        "Check form label associations"
+      ]
+    },
+    {
+      "id": "AC-ACC-004",
+      "title": "ARIA labels where needed",
+      "testType": "ui",
+      "story": "Accessibility",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "Missing ARIA labels are identified and added",
+      "steps": [
+        "Run axe accessibility scanner",
+        "Verify color contrast ratios",
+        "Test keyboard-only navigation",
+        "Check form label associations"
+      ]
+    },
+    {
+      "id": "AC-ERR-001",
+      "title": "404 page displays correctly",
+      "testType": "ui",
+      "story": "Error Handling",
+      "priority": "P2",
+      "technique": "negative",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "Non-existent routes show proper error page",
+      "steps": [
+        "Navigate to invalid route",
+        "Simulate network failure",
+        "Submit invalid form data",
+        "Wait for session timeout"
+      ]
+    },
+    {
+      "id": "AC-ERR-002",
+      "title": "Network error handling",
+      "testType": "ui",
+      "story": "Error Handling",
+      "priority": "P2",
+      "technique": "negative",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "User sees appropriate message on network failure",
+      "steps": [
+        "Navigate to invalid route",
+        "Simulate network failure",
+        "Submit invalid form data",
+        "Wait for session timeout"
+      ]
+    },
+    {
+      "id": "AC-ERR-003",
+      "title": "Form validation errors",
+      "testType": "ui",
+      "story": "Error Handling",
+      "priority": "P2",
+      "technique": "negative",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "Invalid input shows clear error messages",
+      "steps": [
+        "Navigate to invalid route",
+        "Simulate network failure",
+        "Submit invalid form data",
+        "Wait for session timeout"
+      ]
+    },
+    {
+      "id": "AC-ERR-004",
+      "title": "Session timeout handling",
+      "testType": "ui",
+      "story": "Error Handling",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "User is redirected to login after timeout",
+      "steps": [
+        "Navigate to invalid route",
+        "Simulate network failure",
+        "Submit invalid form data",
+        "Wait for session timeout"
+      ]
+    },
+    {
+      "id": "AC-PERF-001",
+      "title": "Page load time under 3s",
+      "testType": "ui",
+      "story": "Performance",
+      "priority": "P2",
+      "technique": "boundary",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "Home page loads within 3 seconds",
+      "steps": [
+        "Measure page load times using Playwright metrics",
+        "Measure API response times",
+        "Identify performance bottlenecks"
+      ]
+    },
+    {
+      "id": "AC-PERF-002",
+      "title": "Event card rendering is fast",
+      "testType": "ui",
+      "story": "Performance",
+      "priority": "P2",
+      "technique": "functional",
+      "tags": [
+        "@regression",
+        "@ui"
+      ],
+      "description": "Event cards render within 500ms",
+      "steps": [
+        "Measure page load times using Playwright metrics",
+        "Measure API response times",
+        "Identify performance bottlenecks"
+      ]
+    },
+    {
+      "id": "AC-PERF-003",
+      "title": "API responses are timely",
+      "testType": "api",
+      "story": "Performance",
+      "priority": "P2",
+      "technique": "boundary",
+      "tags": [
+        "@regression",
+        "@api"
+      ],
+      "description": "Event API responses under 2s",
+      "steps": [
+        "Measure page load times using Playwright metrics",
+        "Measure API response times",
+        "Identify performance bottlenecks"
+      ]
+    }
+  ],
+  "requirementsCoverageGaps": {
+    "count": 57,
+    "uncoveredACs": [
+      "POST--auth-register",
+      "POST--auth-login",
+      "GET--auth-me",
+      "GET--bookings",
+      "POST--bookings",
+      "GET--bookings-ref--ref-",
+      "GET--bookings--id-",
+      "DELETE--bookings--id-",
+      "GET--events",
+      "POST--events",
+      "GET--events--id-",
+      "PUT--events--id-",
+      "DELETE--events--id-",
+      "GET--health",
+      "GET--config",
+      "AC-LOGIN-001",
+      "AC-LOGIN-002",
+      "AC-LOGIN-003",
+      "AC-LOGIN-004",
+      "AC-HOME-001",
+      "AC-HOME-002",
+      "AC-HOME-003",
+      "AC-HOME-004",
+      "AC-HOME-005",
+      "AC-EVENT-001",
+      "AC-EVENT-002",
+      "AC-EVENT-003",
+      "AC-EVENT-004",
+      "AC-EVENT-005",
+      "AC-BOOK-001",
+      "AC-BOOK-002",
+      "AC-BOOK-003",
+      "AC-BOOK-004",
+      "AC-BOOK-005",
+      "AC-PROFILE-001",
+      "AC-PROFILE-002",
+      "AC-PROFILE-003",
+      "AC-PROFILE-004",
+      "AC-ADMIN-001",
+      "AC-ADMIN-002",
+      "AC-ADMIN-003",
+      "AC-ADMIN-004",
+      "AC-RESP-001",
+      "AC-RESP-002",
+      "AC-RESP-003",
+      "AC-RESP-004",
+      "AC-ACC-001",
+      "AC-ACC-002",
+      "AC-ACC-003",
+      "AC-ACC-004",
+      "AC-ERR-001",
+      "AC-ERR-002",
+      "AC-ERR-003",
+      "AC-ERR-004",
+      "AC-PERF-001",
+      "AC-PERF-002",
+      "AC-PERF-003"
+    ]
+  },
+  "specCoverageGaps": {
+    "count": 0,
+    "uncoveredEndpoints": []
+  },
+  "summary": {
+    "total": 57,
+    "ui": 41,
+    "api": 16,
+    "newlyPlanned": 57
+  }
+}
