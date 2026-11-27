@@ -1,4 +1,4 @@
-# script-healer.ps1 — OpenCode wrapper for script-healer skill
+﻿# script-healer.ps1 — OpenCode wrapper for script-healer skill
 #
 # Canonical implementation: .claude/skills/script-healer/
 # Delegates to scripts in .claude/skills/script-healer/scripts/ via absolute path.
@@ -18,7 +18,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 $scriptDir = Split-Path -Parent $PSCommandPath
-$projectRoot = Resolve-Path (Join-Path $scriptDir "..\..\..") -ErrorAction Stop
+$projectRoot = Resolve-Path (Join-Path $scriptDir "..\..\..\..") -ErrorAction Stop
 
 $canonicalScriptsDir = Join-Path $projectRoot ".claude\skills\script-healer\scripts"
 

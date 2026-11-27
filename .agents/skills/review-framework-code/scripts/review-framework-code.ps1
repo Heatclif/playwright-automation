@@ -1,4 +1,4 @@
-# review-framework-code.ps1 — OpenCode wrapper for review-framework-code skill
+﻿# review-framework-code.ps1 — OpenCode wrapper for review-framework-code skill
 #
 # Canonical implementation: .claude/skills/review-framework-code/SKILL.md
 # This skill has no executable scripts — it provides guidance only.
@@ -12,7 +12,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 $scriptDir = Split-Path -Parent $PSCommandPath
-$projectRoot = Resolve-Path (Join-Path $scriptDir "..\..\..") -ErrorAction Stop
+$projectRoot = Resolve-Path (Join-Path $scriptDir "..\..\..\..") -ErrorAction Stop
 $canonicalSkill = Join-Path $projectRoot ".claude\skills\review-framework-code\SKILL.md"
 
 switch ($Command) {

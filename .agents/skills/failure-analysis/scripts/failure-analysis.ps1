@@ -1,4 +1,4 @@
-# failure-analysis.ps1 — OpenCode wrapper for failure-analysis skill
+﻿# failure-analysis.ps1 — OpenCode wrapper for failure-analysis skill
 #
 # Canonical implementation: .claude/skills/failure-analysis/
 # Delegates to scripts in .claude/skills/failure-analysis/scripts/ via absolute path.
@@ -18,7 +18,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 $scriptDir = Split-Path -Parent $PSCommandPath
-$projectRoot = Resolve-Path (Join-Path $scriptDir "..\..\..") -ErrorAction Stop
+$projectRoot = Resolve-Path (Join-Path $scriptDir "..\..\..\..") -ErrorAction Stop
 
 $canonicalScriptsDir = Join-Path $projectRoot ".claude\skills\failure-analysis\scripts"
 
