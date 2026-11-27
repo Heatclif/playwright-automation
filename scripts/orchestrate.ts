@@ -647,8 +647,8 @@ async function runGeneratorStage(cfg: CliConfig, includeVariants = false) {
           ? buildValidApiSpec(story, batch)
           : buildValidUiSpec(story, batch);
 
-        // Guardrail: never overwrite existing non-generated spec files
-        if (cfg.writeSpecs && (!fs.existsSync(fullSpecPath) || specName.startsWith('gen_'))) {
+        // Guardrail: never overwrite existing spec files
+        if (cfg.writeSpecs && !fs.existsSync(fullSpecPath)) {
           fs.writeFileSync(fullSpecPath, content);
         }
         generatedSpecs.push({ filePath: fullSpecPath, fileName: specName, testType });
