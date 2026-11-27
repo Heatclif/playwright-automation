@@ -32,7 +32,7 @@ All inputs are provided as strings within the delegation context, plus CLI argum
 | `testTimeout` | number | Optional. Milliseconds per test default: `60000` |
 | `maxHealingAttempts` | number | Optional. Max retry per test default: `2` |
 | `statePath` | string | Optional. Path to persist/update `orchestrator-state.json` \
-  Default: `plan/orchestrator-state.json` |
+  Default: `artifacts/orchestrator-state.json` |
 
 ## Outputs
 
@@ -91,7 +91,7 @@ Return ONLY a valid JSON object with this structure:
   "outputs": {
     "specsDirectory": "playwright-automation/tests/eventhub/ (agent-determined: UI specs here; API specs may write to tests/eventhub/api/ per generator classification)",
     "reportPath": "artifacts/summary-report.md",
-    "statePath": "plan/orchestrator-state.json",
+    "statePath": "artifacts/orchestrator-state.json",
     "gitCommit": "[PW-xxxx] Orchestrator run completed"
   }
 }
@@ -221,7 +221,7 @@ Return ONLY a valid JSON object with this structure:
 - Must NOT attempt to heal on HTTP 502, 503, 504, 429, or `ECONNRESET` — these are network flakes
 - Must write `orchestrator-state.json` atomically — read-modify-write with backup
 - Must append every run to `.review/memory.jsonl` for audit trail
-- `plan/orchestrator-state.json` is the governance artifact for the 25% exit checkpoint
+- `artifacts/orchestrator-state.json` is the governance artifact for the 25% exit checkpoint
 
 ## Delegation Map
 
@@ -236,7 +236,7 @@ Return ONLY a valid JSON object with this structure:
   "stage": "planner",
   "requirementsPath": "input/requirements.md",
   "openapiPath": "playwright-automation/openapi.json",
-  "statePath": "plan/orchestrator-state.json"
+  "statePath": "artifacts/orchestrator-state.json"
 }
 ```
 
@@ -274,7 +274,7 @@ Return ONLY a valid JSON object with this structure:
   "openapiPath": "playwright-automation/openapi.json",
   "testTimeout": 120000,
   "maxHealingAttempts": 2,
-  "statePath": "plan/orchestrator-state.json"
+  "statePath": "artifacts/orchestrator-state.json"
 }
 ```
 

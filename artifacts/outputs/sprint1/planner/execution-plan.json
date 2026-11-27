@@ -1,0 +1,9 @@
+{
+  "planId": "sprint-1-plan",
+  "planTitle": "Sprint 1 — EventHub UI & API Execution Plan",
+  "totalScenarios": 57,
+  "uiScenarios": 41,
+  "apiScenarios": 16,
+  "singleSourceOfTruth": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\rtm\\rtm.json",
+  "scenariosPath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\outputs\\sprint1\\planner\\api-scenarios.json"
+}

@@ -16,9 +16,10 @@ All inputs are provided as strings within the delegation context:
 | Input | Type | Description |
 |-------|------|-------------|
 | specsPath | string | Directory path containing generated `.spec.ts` Playwright test specs (`${artifactsDir}/tests/eventhub/*.spec.ts`) |
-| manualPath | string | File path to `${artifactsDir}/inputs/manual-cases.json` (JSON array of manual test cases) |
-| requirementsPath | string | File path to `input/requirements.md` (acceptance criteria in markdown) |
-| agentGuidance | string | Contents of `.opencode/agents/reviewer/reviewer.md` (the AGENT.md governance document) |
+| manualPath | string | File path to `${artifactsDir}/outputs/sprint<N>/manual-cases.json` (JSON array of manual test cases) |
+| requirementsPath | string | File path to `artifacts/inputs/requirements.md` (acceptance criteria in markdown) |
+| openapiPath | string | Optional. File path to `artifacts/inputs/openapi.json` (OpenAPI spec for validating API endpoints, methods, and expected status codes) |
+| agentGuidance | string | Contents of `.agents/agents/reviewer/reviewer.md` (the AGENT.md governance document) |
 | model | string | LLM model identifier (default: `openrouter/gemma-4-31b-it:free`) |
 | outputPath | string | File path where the review report JSON will be written |
 | source | string | Optional. Review source mode: `"spec"` (default) — apply full 14‑rule adversarial suite; `"manual"` — apply relaxed manual‑case principles (steps non‑ambiguous, expectedResult verifiable, priority/tags consistent, coverageGapWeight 1/3/5) |
@@ -92,9 +93,10 @@ Evaluate each spec or manual case against these principles:
 - Must flag state-changing tests without before/after snapshot pattern
 - Must flag negative tests using valid positive inputs
 - Must NOT hardcode review logic in JavaScript — all findings come from LLM evaluation
-- **Source mode handling**: When `source: "manual"`, apply relaxed principles (a‑d) above. When `source: "spec"` (default), apply the full 14‑rule adversarial suite. The `source` flag is additive — it does not remove or override existing rules; it only changes which principle set is enforced during evaluation.
+- **Source mode handling**: When `source: "manual"`, apply relaxed principles (a‑d) above. When `source: "spec"` (default), apply the full 14‑rule adversarial suite. When `openapiPath` is provided, also validate API specs against the OpenAPI paths, methods, and response status codes. The `source` flag is additive — it does not remove or override existing rules; it only changes which principle set is enforced during evaluation.
 
 ## Delegation Map
 
 - **Delegates to**: None (terminal agent — reports to Orchestrator)
-- **Consults**: `.opencode/agents/reviewer/reviewer.md` for review principles
+- **Skills**: Loads `.claude/skills/review-framework-code/SKILL.md` (via `@review-framework-code`) as the canonical source for `.ai_documentation/` framework checks; `reviewer.md` focuses on AC/requirements coverage, negative-test quality, and OpenAPI validation
+- **Consults**: `.agents/agents/reviewer/reviewer.md` for review principles

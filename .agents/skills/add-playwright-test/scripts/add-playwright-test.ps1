@@ -1,4 +1,4 @@
-# add-playwright-test.ps1 — OpenCode wrapper for add-playwright-test skill
+﻿# add-playwright-test.ps1 — OpenCode wrapper for add-playwright-test skill
 #
 # Canonical implementation: .claude/skills/add-playwright-test/SKILL.md
 # This skill has no executable scripts — it provides guidance only.
@@ -12,7 +12,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 $scriptDir = Split-Path -Parent $PSCommandPath
-$projectRoot = Resolve-Path (Join-Path $scriptDir "..\..\..") -ErrorAction Stop
+$projectRoot = Resolve-Path (Join-Path $scriptDir "..\..\..\..") -ErrorAction Stop
 $canonicalSkill = Join-Path $projectRoot ".claude\skills\add-playwright-test\SKILL.md"
 
 switch ($Command) {

@@ -17,14 +17,17 @@ Triggered as `@orchestrator` via OpenCode, or load via `skill` tool with id `orc
 Use `.agents/skills/orchestrator/scripts/orchestrator.ps1` to invoke the orchestrator workflow:
 
 ```powershell
-# Generate only (Planner → Generator)
-.\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 generate --requirements input/requirements.md --openapi playwright-automation/openapi.json
+# Planner only
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow planner-only
 
-# Full pipeline (Planner → Generator → Review → Healer)
-.\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 full --requirements input/requirements.md --openapi playwright-automation/openapi.json --timeout 120000 --maxAttempts 2
+# Manual review workflow
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow manual-review
 
-# Heal only (on existing failures)
-.\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 heal --failures plan/failure-table.txt --maxAttempts 2
+# Full pipeline (Planner -> Generator -> Review -> Healer)
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow full -RequirementsPath artifacts/inputs/requirements.md -OpenApiPath artifacts/inputs/openapi.json -MaxHealingAttempts 2
+
+# Heal only (on existing findings)
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow heal -MaxHealingAttempts 2
 ```
 
 ## Workflow Flags
@@ -33,14 +36,14 @@ Use `.agents/skills/orchestrator/scripts/orchestrator.ps1` to invoke the orchest
 |------|-------------|---------|
 | `--workflow` | `generate`, `heal`, or `full` | `--workflow full` |
 | `--requirements` | Path to requirements markdown | `--requirements input/requirements.md` |
-| `--openapi` | Path to OpenAPI JSON spec | `--openapi playwright-automation/openapi.json` |
+| `--openapi` | Path to OpenAPI JSON spec | `--openapi artifacts/inputs/openapi.json` |
 | `--variant-mode` | Variant generation mode: `automatic` (default) or `manual` | `--variant-mode automatic` |
 | `--max-gap-iterations` | Max gap analysis loop iterations (default: 3) | `--max-gap-iterations 3` |
 | `--gap-analysis` | Enable gap analysis loop (default: true) | `--gap-analysis true` |
 | `--reviewer-integration` | Enable reviewer stage after gap clearance (default: true) | `--reviewer-integration true` |
 | `--timeout` | Test timeout in milliseconds | `--timeout 60000` |
 | `--maxAttempts` | Max healing attempts per test | `--maxAttempts 2` |
-| `--statePath` | Path to persist orchestrator state | `--statePath plan/orchestrator-state.json` |
+| `--statePath` | Path to persist orchestrator state | `--statePath artifacts/outputs/sprint1/orchestrator-state.json` |
 
 **Usage example (PowerShell from playwright-automation/):**
 ```powershell

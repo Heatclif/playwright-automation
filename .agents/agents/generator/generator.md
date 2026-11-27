@@ -24,8 +24,8 @@ All inputs are provided as strings within the delegation context:
 | Input | Type | Description |
 |-------|------|-------------|
 | requirementsPath | string | File path to `input/requirements.md` (user stories + acceptance criteria in markdown) |
-| outputPath | string | File path where manual test cases JSON will be written (`${artifactsDir}/inputs/manual-cases.json`) |
-| specsPath | string | Directory path where generated `.spec.ts` Playwright specs will be written (`${artifactsDir}/tests/eventhub/` – UI specs go to `ui/`, API specs to `api/` per classification) |
+| outputPath | string | File path where manual test cases JSON will be written (`${artifactsDir}/outputs/sprint<N>/manual-cases.json`) |
+| specsPath | string | Directory path where generated `.spec.ts` Playwright specs will be written (`tests/eventhub/` – UI specs go to `ui/`, API specs to `api/` per classification) |
 | rtmPath | string | File path to `rtm/rtm.json` on disk — read for dedup, entries appended to it (`${artifactsDir}/rtm/rtm.json`) |
 | requirements | string | Raw requirements markdown content (alternative to requirementsPath) |
 | mode | string | Optional. Output mode: `"manual"` — produce only manual cases; `"both"` (default) — produce manual cases + specs + rtmEntries; `"specs"` — produce only .spec.ts files (manual cases must exist or be generated in a separate prior run) | `--variant-mode` | string | Optional. Variant generation mode: `"automatic"` — auto-generate variants for all detected gaps; `"manual"` — produce gap descriptions for user approval without generating variants. Default: `automatic`. Variant generation is independent of output mode. |
@@ -195,4 +195,5 @@ Evaluate each acceptance scenario against these principles:
 ## Delegation Map
 
 - **Delegates to**: None (terminal agent — reports to Orchestrator)
+- **Skills**: Loads `.claude/skills/add-playwright-test/SKILL.md` (via `@add-playwright-test`) and `.ai_documentation/` (`spec-writing-conventions.md`, `page-object-conventions.md`, `api-layer-conventions.md`) when authoring `.spec.ts` files
 - **Consults**: `rtm/rtm.json` for deduplication state; existing `manual-cases.json` for dedup of manual cases

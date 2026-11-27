@@ -1,0 +1,902 @@
+[
+  {
+    "acId": "POST--auth-register-0",
+    "acText": "POST /auth/register",
+    "story": "Register a new user",
+    "technique": "positive",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Auth"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "POST--auth-register-0",
+    "specFile": "gen_01_register-a-new-user.spec.ts"
+  },
+  {
+    "acId": "POST--auth-login-1",
+    "acText": "POST /auth/login",
+    "story": "Log in with existing credentials",
+    "technique": "positive",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Auth"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "POST--auth-login-1",
+    "specFile": "gen_02_log-in-with-existing-credentials.spec.ts"
+  },
+  {
+    "acId": "GET--auth-me-2",
+    "acText": "GET /auth/me",
+    "story": "Get the currently authenticated user",
+    "technique": "positive",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Auth"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "GET--auth-me-2",
+    "specFile": "gen_03_get-the-currently-authenticated-user.spec.ts"
+  },
+  {
+    "acId": "GET--bookings-3",
+    "acText": "GET /bookings",
+    "story": "List all bookings",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "GET--bookings-3",
+    "specFile": "gen_04_list-all-bookings.spec.ts"
+  },
+  {
+    "acId": "POST--bookings-4",
+    "acText": "POST /bookings",
+    "story": "Create a booking (buy tickets)",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "POST--bookings-4",
+    "specFile": "gen_05_create-a-booking-buy-tickets.spec.ts"
+  },
+  {
+    "acId": "GET--bookings-ref--ref--5",
+    "acText": "GET /bookings/ref/{ref}",
+    "story": "Look up a booking by reference code",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "GET--bookings-ref--ref--5",
+    "specFile": "gen_06_look-up-a-booking-by-reference-code.spec.ts"
+  },
+  {
+    "acId": "GET--bookings--id--6",
+    "acText": "GET /bookings/{id}",
+    "story": "Get a single booking by ID",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "GET--bookings--id--6",
+    "specFile": "gen_07_get-a-single-booking-by-id.spec.ts"
+  },
+  {
+    "acId": "DELETE--bookings--id--7",
+    "acText": "DELETE /bookings/{id}",
+    "story": "Cancel a booking",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "DELETE--bookings--id--7",
+    "specFile": "gen_08_cancel-a-booking.spec.ts"
+  },
+  {
+    "acId": "GET--events-8",
+    "acText": "GET /events",
+    "story": "List all events",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "GET--events-8",
+    "specFile": "gen_09_list-all-events.spec.ts"
+  },
+  {
+    "acId": "POST--events-9",
+    "acText": "POST /events",
+    "story": "Create a new event",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "POST--events-9",
+    "specFile": "gen_10_create-a-new-event.spec.ts"
+  },
+  {
+    "acId": "GET--events--id--10",
+    "acText": "GET /events/{id}",
+    "story": "Get a single event by ID",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "GET--events--id--10",
+    "specFile": "gen_11_get-a-single-event-by-id.spec.ts"
+  },
+  {
+    "acId": "PUT--events--id--11",
+    "acText": "PUT /events/{id}",
+    "story": "Update an event",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "PUT--events--id--11",
+    "specFile": "gen_12_update-an-event.spec.ts"
+  },
+  {
+    "acId": "DELETE--events--id--12",
+    "acText": "DELETE /events/{id}",
+    "story": "Delete an event",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "DELETE--events--id--12",
+    "specFile": "gen_13_delete-an-event.spec.ts"
+  },
+  {
+    "acId": "GET--health-13",
+    "acText": "GET /health",
+    "story": "API health check",
+    "technique": "positive",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Health"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "GET--health-13",
+    "specFile": "gen_14_api-health-check.spec.ts"
+  },
+  {
+    "acId": "GET--config-14",
+    "acText": "GET /config",
+    "story": "Get public feature flags",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api",
+      "@Config"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "GET--config-14",
+    "specFile": "gen_15_get-public-feature-flags.spec.ts"
+  },
+  {
+    "acId": "AC-LOGIN-001",
+    "acText": "Valid credentials authenticate the user",
+    "story": "User Authentication Flow",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@auth"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-LOGIN-001",
+    "specFile": "gen_16_user-authentication-flow.spec.ts"
+  },
+  {
+    "acId": "AC-LOGIN-002",
+    "acText": "Invalid credentials show error message",
+    "story": "User Authentication Flow",
+    "technique": "negative",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@auth"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-LOGIN-002",
+    "specFile": "gen_16_user-authentication-flow.spec.ts"
+  },
+  {
+    "acId": "AC-LOGIN-003",
+    "acText": "Password field masks input",
+    "story": "User Authentication Flow",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@auth"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-LOGIN-003",
+    "specFile": "gen_16_user-authentication-flow.spec.ts"
+  },
+  {
+    "acId": "AC-LOGIN-004",
+    "acText": "\"Remember me\" checkbox functionality",
+    "story": "User Authentication Flow",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@auth"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-LOGIN-004",
+    "specFile": "gen_16_user-authentication-flow.spec.ts"
+  },
+  {
+    "acId": "AC-HOME-001",
+    "acText": "Events page loads successfully",
+    "story": "Home Page / Events Listing",
+    "technique": "negative",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@smoke",
+      "@events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-HOME-001",
+    "specFile": "gen_17_home-page-events-listing.spec.ts"
+  },
+  {
+    "acId": "AC-HOME-002",
+    "acText": "Event cards display correct information",
+    "story": "Home Page / Events Listing",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-HOME-002",
+    "specFile": "gen_17_home-page-events-listing.spec.ts"
+  },
+  {
+    "acId": "AC-HOME-003",
+    "acText": "Filter by category works",
+    "story": "Home Page / Events Listing",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-HOME-003",
+    "specFile": "gen_17_home-page-events-listing.spec.ts"
+  },
+  {
+    "acId": "AC-HOME-004",
+    "acText": "Search events by keyword",
+    "story": "Home Page / Events Listing",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-HOME-004",
+    "specFile": "gen_17_home-page-events-listing.spec.ts"
+  },
+  {
+    "acId": "AC-HOME-005",
+    "acText": "Pagination works correctly",
+    "story": "Home Page / Events Listing",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-HOME-005",
+    "specFile": "gen_18_home-page-events-listing.spec.ts"
+  },
+  {
+    "acId": "AC-EVENT-001",
+    "acText": "Event details page loads",
+    "story": "Event Details Page",
+    "technique": "positive",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@smoke",
+      "@events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-EVENT-001",
+    "specFile": "gen_19_event-details-page.spec.ts"
+  },
+  {
+    "acId": "AC-EVENT-002",
+    "acText": "Event details display correctly",
+    "story": "Event Details Page",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-EVENT-002",
+    "specFile": "gen_19_event-details-page.spec.ts"
+  },
+  {
+    "acId": "AC-EVENT-003",
+    "acText": "Book event button functionality",
+    "story": "Event Details Page",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-EVENT-003",
+    "specFile": "gen_19_event-details-page.spec.ts"
+  },
+  {
+    "acId": "AC-EVENT-004",
+    "acText": "Delete event option (admin)",
+    "story": "Event Details Page",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-EVENT-004",
+    "specFile": "gen_19_event-details-page.spec.ts"
+  },
+  {
+    "acId": "AC-EVENT-005",
+    "acText": "Event image displays",
+    "story": "Event Details Page",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@events"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-EVENT-005",
+    "specFile": "gen_20_event-details-page.spec.ts"
+  },
+  {
+    "acId": "AC-BOOK-001",
+    "acText": "User can book an event",
+    "story": "Booking Flow",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-BOOK-001",
+    "specFile": "gen_21_booking-flow.spec.ts"
+  },
+  {
+    "acId": "AC-BOOK-002",
+    "acText": "Seat selection works",
+    "story": "Booking Flow",
+    "technique": "boundary",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-BOOK-002",
+    "specFile": "gen_21_booking-flow.spec.ts"
+  },
+  {
+    "acId": "AC-BOOK-003",
+    "acText": "Price calculation is correct",
+    "story": "Booking Flow",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-BOOK-003",
+    "specFile": "gen_21_booking-flow.spec.ts"
+  },
+  {
+    "acId": "AC-BOOK-004",
+    "acText": "Booking confirmation displayed",
+    "story": "Booking Flow",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-BOOK-004",
+    "specFile": "gen_21_booking-flow.spec.ts"
+  },
+  {
+    "acId": "AC-BOOK-005",
+    "acText": "Cancel booking functionality",
+    "story": "Booking Flow",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-BOOK-005",
+    "specFile": "gen_22_booking-flow.spec.ts"
+  },
+  {
+    "acId": "AC-PROFILE-001",
+    "acText": "My bookings page loads",
+    "story": "User Profile / My Bookings",
+    "technique": "positive",
+    "priority": "P1",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@smoke",
+      "@bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-PROFILE-001",
+    "specFile": "gen_23_user-profile-my-bookings.spec.ts"
+  },
+  {
+    "acId": "AC-PROFILE-002",
+    "acText": "Bookings list displays correctly",
+    "story": "User Profile / My Bookings",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-PROFILE-002",
+    "specFile": "gen_23_user-profile-my-bookings.spec.ts"
+  },
+  {
+    "acId": "AC-PROFILE-003",
+    "acText": "Cancel booking from profile",
+    "story": "User Profile / My Bookings",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-PROFILE-003",
+    "specFile": "gen_23_user-profile-my-bookings.spec.ts"
+  },
+  {
+    "acId": "AC-PROFILE-004",
+    "acText": "Booking status indicators",
+    "story": "User Profile / My Bookings",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@bookings"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-PROFILE-004",
+    "specFile": "gen_23_user-profile-my-bookings.spec.ts"
+  },
+  {
+    "acId": "AC-ADMIN-001",
+    "acText": "Admin can create new event",
+    "story": "Admin Functions",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@admin"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ADMIN-001",
+    "specFile": "gen_24_admin-functions.spec.ts"
+  },
+  {
+    "acId": "AC-ADMIN-002",
+    "acText": "Admin can edit existing event",
+    "story": "Admin Functions",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@admin"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ADMIN-002",
+    "specFile": "gen_24_admin-functions.spec.ts"
+  },
+  {
+    "acId": "AC-ADMIN-003",
+    "acText": "Admin can delete event",
+    "story": "Admin Functions",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@admin"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ADMIN-003",
+    "specFile": "gen_24_admin-functions.spec.ts"
+  },
+  {
+    "acId": "AC-ADMIN-004",
+    "acText": "Admin permissions check",
+    "story": "Admin Functions",
+    "technique": "negative",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui",
+      "@admin"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ADMIN-004",
+    "specFile": "gen_24_admin-functions.spec.ts"
+  },
+  {
+    "acId": "AC-RESP-001",
+    "acText": "Page renders on mobile",
+    "story": "Responsive Design",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-RESP-001",
+    "specFile": "gen_25_responsive-design.spec.ts"
+  },
+  {
+    "acId": "AC-RESP-002",
+    "acText": "Page renders on tablet",
+    "story": "Responsive Design",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-RESP-002",
+    "specFile": "gen_25_responsive-design.spec.ts"
+  },
+  {
+    "acId": "AC-RESP-003",
+    "acText": "Navigation works on all sizes",
+    "story": "Responsive Design",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-RESP-003",
+    "specFile": "gen_25_responsive-design.spec.ts"
+  },
+  {
+    "acId": "AC-RESP-004",
+    "acText": "Touch targets are appropriate",
+    "story": "Responsive Design",
+    "technique": "boundary",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-RESP-004",
+    "specFile": "gen_25_responsive-design.spec.ts"
+  },
+  {
+    "acId": "AC-ACC-001",
+    "acText": "Color contrast meets WCAG AA",
+    "story": "Accessibility",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ACC-001",
+    "specFile": "gen_26_accessibility.spec.ts"
+  },
+  {
+    "acId": "AC-ACC-002",
+    "acText": "Form labels are associated",
+    "story": "Accessibility",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ACC-002",
+    "specFile": "gen_26_accessibility.spec.ts"
+  },
+  {
+    "acId": "AC-ACC-003",
+    "acText": "Keyboard navigation works",
+    "story": "Accessibility",
+    "technique": "positive",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ACC-003",
+    "specFile": "gen_26_accessibility.spec.ts"
+  },
+  {
+    "acId": "AC-ACC-004",
+    "acText": "ARIA labels where needed",
+    "story": "Accessibility",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ACC-004",
+    "specFile": "gen_26_accessibility.spec.ts"
+  },
+  {
+    "acId": "AC-ERR-001",
+    "acText": "404 page displays correctly",
+    "story": "Error Handling",
+    "technique": "negative",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ERR-001",
+    "specFile": "gen_27_error-handling.spec.ts"
+  },
+  {
+    "acId": "AC-ERR-002",
+    "acText": "Network error handling",
+    "story": "Error Handling",
+    "technique": "negative",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ERR-002",
+    "specFile": "gen_27_error-handling.spec.ts"
+  },
+  {
+    "acId": "AC-ERR-003",
+    "acText": "Form validation errors",
+    "story": "Error Handling",
+    "technique": "negative",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ERR-003",
+    "specFile": "gen_27_error-handling.spec.ts"
+  },
+  {
+    "acId": "AC-ERR-004",
+    "acText": "Session timeout handling",
+    "story": "Error Handling",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-ERR-004",
+    "specFile": "gen_27_error-handling.spec.ts"
+  },
+  {
+    "acId": "AC-PERF-001",
+    "acText": "Page load time under 3s",
+    "story": "Performance",
+    "technique": "boundary",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-PERF-001",
+    "specFile": "gen_28_performance.spec.ts"
+  },
+  {
+    "acId": "AC-PERF-002",
+    "acText": "Event card rendering is fast",
+    "story": "Performance",
+    "technique": "functional",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@ui"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-PERF-002",
+    "specFile": "gen_28_performance.spec.ts"
+  },
+  {
+    "acId": "AC-PERF-003",
+    "acText": "API responses are timely",
+    "story": "Performance",
+    "technique": "boundary",
+    "priority": "P2",
+    "tags": [
+      "@regression",
+      "@api"
+    ],
+    "status": "done",
+    "lastGenerated": "2026-11-27T10:42:36.723Z",
+    "manualCaseId": "AC-PERF-003",
+    "specFile": "gen_29_performance.spec.ts"
+  }
+]

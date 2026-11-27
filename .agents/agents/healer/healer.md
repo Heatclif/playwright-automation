@@ -88,7 +88,7 @@ All inputs are provided as strings within the delegation context:
   before proceeding with classification and patching |
 | maxAttempts | number | Optional. Max retry per test default: `3` |
 | statePath | string | Optional. Path to persist healer analysis \
-  Default: `plan/healer-analysis.json` |
+  Default: `artifacts/outputs/sprint<N>/healer-analysis.json` |
 | rtmPath | string | File path to `rtm/rtm.json` (requirements traceability matrix) |
 
 ### Outputs
@@ -179,3 +179,13 @@ Return ONLY a valid JSON object with this structure:
   "reason": "Healer exhausted 3 attempts, test still fails due to API schema change"
 }
 ```
+
+---
+
+## Delegation Map
+
+- **Delegates to**: None (terminal agent — reports to Orchestrator)
+- **Skills**:
+  - `.claude/skills/script-healer/SKILL.md` (via `@script-healer`) for Allure failure extraction (`extract-failures.mjs`) and healing hard rules
+  - `.claude/skills/failure-analysis/SKILL.md` (via `@failure-analysis`) for per-spec failure table rendering (`render-tables.mjs`)
+- **Consults**: `artifacts/rtm/rtm.json` for failure context and `artifacts/inputs/openapi.json` for API schema validation

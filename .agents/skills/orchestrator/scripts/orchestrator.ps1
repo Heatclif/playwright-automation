@@ -1,68 +1,94 @@
-# orchestrator.ps1 — OpenCode wrapper for orchestrator skill
+﻿# orchestrator.ps1 — OpenCode wrapper for orchestrator skill
 #
 # Canonical implementation: .agents/agents/orchestrator/orchestrator.md
 # Delegates to scripts/orchestrate.ts via npx ts-node.
 #
 # Usage (from playwright-automation/ directory):
-#   .\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 generate --requirements input/requirements.md --openapi playwright-automation/openapi.json
-#   .\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 full --requirements input/requirements.md --openapi playwright-automation/openapi.json --timeout 120000 --maxAttempts 2
-#   .\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 heal --failures plan/failure-table.txt --maxAttempts 2
+#   .\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow planner-only
+#   .\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow manual-review
+#   .\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow full -RequirementsPath artifacts/inputs/requirements.md -OpenApiPath artifacts/openapi.json
 #
 param(
   [Parameter(Mandatory=$true)]
+  [ValidateSet("planner", "generator", "review", "heal", "full", "manual-review", "planner-only", "route")]
   [string]$Workflow,
 
   [Parameter(Mandatory=$false)]
-  [string]$RequirementsPath = "input/requirements.md",
+  [int]$Sprint = 1,
 
   [Parameter(Mandatory=$false)]
-  [string]$OpenApiPath = "playwright-automation/openapi.json",
+  [string]$RequirementsPath = "artifacts/inputs/requirements.md",
 
   [Parameter(Mandatory=$false)]
-  [int]$TestTimeout = 60000,
+  [string]$OpenApiPath = "artifacts/inputs/openapi.json",
+
+  [Parameter(Mandatory=$false)]
+  [string]$Mode = "both",
+
+  [Parameter(Mandatory=$false)]
+  [string]$Source = "spec",
+
+  [Parameter(Mandatory=$false)]
+  [string]$VariantMode = "automatic",
+
+  [Parameter(Mandatory=$false)]
+  [int]$MaxGapIterations = 3,
+
+  [Parameter(Mandatory=$false)]
+  [string]$GapAnalysis = "true",
+
+  [Parameter(Mandatory=$false)]
+  [string]$ReviewerIntegration = "true",
+
+  [Parameter(Mandatory=$false)]
+  [string]$Loop = "false",
+
+  [Parameter(Mandatory=$false)]
+  [int]$MaxIterations = 3,
+
+  [Parameter(Mandatory=$false)]
+  [string]$QualityGate = "passRate>=95%",
 
   [Parameter(Mandatory=$false)]
   [int]$MaxHealingAttempts = 2,
 
   [Parameter(Mandatory=$false)]
-  [string]$StatePath = "plan/orchestrator-state.json"
+  [string]$StatePath = "artifacts/outputs/sprint1/orchestrator-state.json"
 )
 
 $ErrorActionPreference = "Stop"
 $scriptDir = Split-Path -Parent $PSCommandPath
-$projectRoot = Resolve-Path (Join-Path $scriptDir "..\..\") -ErrorAction Stop
+# .agents/skills/orchestrator/scripts -> 4 levels up to repo root
+$projectRoot = Resolve-Path (Join-Path $scriptDir "..\..\..\..") -ErrorAction Stop
 
-# Change to project root so relative paths resolve correctly
 Push-Location $projectRoot
 
 try {
-  $args = @()
-  $args += "-r"
-  $args += "requirements.txt"  # placeholder, not used by ts-node script
-  $args += "--workflow"
-  $args += $Workflow
-  $args += "--requirements"
-  $args += $RequirementsPath
-  $args += "--openapi"
-  $args += $OpenApiPath
-  $args += "--timeout"
-  $args += $TestTimeout.ToString()
-  $args += "--maxAttempts"
-  $args += $MaxHealingAttempts.ToString()
-  $args += "--statePath"
-  $args += $StatePath
-
-  # Run the TypeScript orchestrator script
   $tsScript = Join-Path $projectRoot "scripts/orchestrate.ts"
-  
   if (-Not (Test-Path $tsScript)) {
     Write-Error "Orchestrator TS script not found at $tsScript"
     exit 1
   }
 
-  # Invoke with node via ts-node
-  $result = & npx ts-node $tsScript @args
-  
+  $cliArgs = @(
+    $Workflow,
+    "--sprint", $Sprint.ToString(),
+    "--requirements", $RequirementsPath,
+    "--openapi", $OpenApiPath,
+    "--mode", $Mode,
+    "--source", $Source,
+    "--variant-mode", $VariantMode,
+    "--max-gap-iterations", $MaxGapIterations.ToString(),
+    "--gap-analysis", $GapAnalysis,
+    "--reviewer-integration", $ReviewerIntegration,
+    "--loop", $Loop,
+    "--maxIterations", $MaxIterations.ToString(),
+    "--qualityGate", $QualityGate,
+    "--maxAttempts", $MaxHealingAttempts.ToString(),
+    "--statePath", $StatePath
+  )
+
+  & npx tsx $tsScript @cliArgs
   exit $LASTEXITCODE
 } catch {
   Write-Error "Orchestrator workflow failed: $_"
