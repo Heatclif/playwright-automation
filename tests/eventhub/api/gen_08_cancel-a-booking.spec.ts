@@ -12,6 +12,9 @@ test.describe('Cancel a booking', { tag: '@api' }, () => {
     const eventId = eventRes.data.data.id;
 
     try {
+      const eventBefore = await eventsApi.get_event_by_id(eventId);
+      const seatsBefore = eventBefore.data.data.availableSeats;
+
       const bookingPayload = new BookingBuilder()
         .with_event_id(eventId)
         .with_data(apiTestData.bookings.singleTicketBooking)
@@ -24,6 +27,17 @@ test.describe('Cancel a booking', { tag: '@api' }, () => {
 
       expect(response.status).toBe(200);
       expect(response.data.success).toBe(true);
+
+      const getAfter = await bookingsApi.get_booking_by_id(bookingId);
+      if (getAfter.status === 200) {
+        expect(getAfter.data.data.status).toBe('cancelled');
+      } else {
+        expect(getAfter.status).toBe(404);
+      }
+
+      const eventAfter = await eventsApi.get_event_by_id(eventId);
+      expect(eventAfter.status).toBe(200);
+      expect(eventAfter.data.data.availableSeats).toBe(seatsBefore);
     } finally {
       await eventsApi.delete_event(eventId);
     }

@@ -48,34 +48,33 @@ Use `.agents/skills/orchestrator/scripts/orchestrator.ps1` to invoke the orchest
 **Usage example (PowerShell from playwright-automation/):**
 ```powershell
 # Full end-to-end pipeline
-.\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 full `
-  --requirements input/requirements.md `
-  --openapi playwright-automation/openapi.json `
-  --timeout 120000 `
-  --maxAttempts 2
-```
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 `
+  -Workflow full `
+  -RequirementsPath artifacts/inputs/requirements.md `
+  -OpenApiPath artifacts/inputs/openapi.json `
+  -MaxHealingAttempts 2
 
-# Gap-aware pipeline examples
-
-```powershell
 # Full pipeline with gap analysis (default: automatic variants, 3 max iterations)
-.\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 full `
-  --requirements input/requirements.md `
-  --openapi playwright-automation/openapi.json `
-  --gap-analysis true `
-  --max-gap-iterations 3
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 `
+  -Workflow full `
+  -RequirementsPath artifacts/inputs/requirements.md `
+  -OpenApiPath artifacts/inputs/openapi.json `
+  -GapAnalysis true `
+  -MaxGapIterations 3
 
-# Full pipeline with manual variant review (no auto-generation, user approval required)
-.\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 full `
-  --requirements input/requirements.md `
-  --openapi playwright-automation/openapi.json `
-  --gap-analysis true `
-  --max-gap-iterations 3 `
-  --variant-mode manual
+# Full pipeline with manual variant review (no auto-generation)
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 `
+  -Workflow full `
+  -RequirementsPath artifacts/inputs/requirements.md `
+  -OpenApiPath artifacts/inputs/openapi.json `
+  -GapAnalysis true `
+  -MaxGapIterations 3 `
+  -VariantMode manual
 
-# Generate-only with variant mode
-.\\.agents\\skills\\orchestrator\\scripts\\orchestrator.ps1 generate `
-  --requirements input/requirements.md `
-  --openapi playwright-automation/openapi.json `
-  --variant-mode automatic
+# Generator-only with automatic variant mode
+.\.agents\skills\orchestrator\scripts\orchestrator.ps1 `
+  -Workflow generator `
+  -RequirementsPath artifacts/inputs/requirements.md `
+  -OpenApiPath artifacts/inputs/openapi.json `
+  -VariantMode automatic
 ```

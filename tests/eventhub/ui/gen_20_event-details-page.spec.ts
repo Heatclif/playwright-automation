@@ -8,9 +8,8 @@ test.describe('Event Details Page', { tag: '@ui' }, () => {
     await app.eventsPage.bookEvent(FEATURED_EVENT.title);
 
     await expect(app.eventDetailsPage.title).toHaveText(FEATURED_EVENT.title);
-    const images = page.locator('img');
-    if ((await images.count()) > 0) {
-      await expect(images.first()).toBeVisible();
-    }
+    const eventImage = page.locator('img').first();
+    await expect(eventImage).toBeVisible();
+    await expect(eventImage).toHaveAttribute('alt', /.+/);
   });
 });

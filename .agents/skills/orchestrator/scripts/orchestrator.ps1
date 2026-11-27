@@ -1,7 +1,7 @@
 ﻿# orchestrator.ps1 — OpenCode wrapper for orchestrator skill
 #
 # Canonical implementation: .agents/agents/orchestrator/orchestrator.md
-# Delegates to scripts/orchestrate.ts via npx ts-node.
+# Delegates to scripts/orchestrate.ts via npx tsx.
 #
 # Usage (from playwright-automation/ directory):
 #   .\.agents\skills\orchestrator\scripts\orchestrator.ps1 -Workflow planner-only

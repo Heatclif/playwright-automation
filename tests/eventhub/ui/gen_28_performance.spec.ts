@@ -11,8 +11,8 @@ test.describe('Performance', { tag: '@ui' }, () => {
   });
 
   test('AC-PERF-002: Event card rendering is fast', async ({ app }) => {
-    await app.eventsPage.goto();
     const start = Date.now();
+    await app.eventsPage.goto();
     await expect(app.eventsPage.eventCards.first()).toBeVisible();
 
     const elapsedMs = Date.now() - start;

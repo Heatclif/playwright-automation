@@ -5,17 +5,18 @@ test.describe('Error Handling', { tag: '@ui' }, () => {
   test('AC-ERR-001: 404 page displays correctly', async ({ page }) => {
     await page.goto('/non-existent-route-404');
 
-    await expect(page.locator('body')).toBeVisible();
+    await expect(page.getByText(/404|not found/i).first()).toBeVisible();
   });
 
   test('AC-ERR-002: Network error handling', async ({ app, page }) => {
     await page.route('**/api/events*', (route) => route.abort());
     await app.eventsPage.goto();
 
-    await expect(page.locator('body')).toBeVisible();
+    await expect(app.eventsPage.eventCards).toHaveCount(0);
+    await expect(page.getByText(/error|failed|unable|no events/i).first()).toBeVisible();
   });
 
-  test('AC-ERR-003: Form validation errors', async ({ app }) => {
+  test('AC-ERR-003: Form validation errors', async ({ app, page }) => {
     const { eventsPage, eventDetailsPage } = app;
 
     await eventsPage.goto();
@@ -23,8 +24,8 @@ test.describe('Error Handling', { tag: '@ui' }, () => {
     await eventsPage.bookEvent(FEATURED_EVENT.title);
     await eventDetailsPage.confirmBookingButton.click();
 
+    await expect(page.locator('input:invalid').first()).toBeVisible();
     await expect(eventDetailsPage.bookingRef).toBeHidden();
-    await expect(eventDetailsPage.confirmBookingButton).toBeVisible();
   });
 
   test('AC-ERR-004: Session timeout handling', async ({ app, page }) => {

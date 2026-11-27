@@ -50,6 +50,10 @@ if (-Not (Test-Path $scriptPath)) {
 }
 
 # Run from project root so .review/ and other relative paths resolve correctly
-& node $scriptPath @Args
-
-exit $LASTEXITCODE
+Push-Location $projectRoot
+try {
+  & node $scriptPath @Args
+  exit $LASTEXITCODE
+} finally {
+  Pop-Location
+}

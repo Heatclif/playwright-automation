@@ -1,13 +1,13 @@
 {
-  "runId": "planner-2026-11-27T11:01:33.692Z",
-  "timestamp": "2026-11-27T11:01:33.692Z",
+  "runId": "planner-2026-11-27T12:16:50.599Z",
+  "timestamp": "2026-11-27T12:16:50.599Z",
   "workflow": "planner",
   "totalScenarios": 57,
   "uiScenarios": 41,
   "apiScenarios": 16,
   "scenarios": [
     {
-      "id": "POST--auth-register-0",
+      "id": "POST--auth-register",
       "title": "POST /auth/register",
       "testType": "api",
       "story": "Register a new user",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "POST--auth-login-1",
+      "id": "POST--auth-login",
       "title": "POST /auth/login",
       "testType": "api",
       "story": "Log in with existing credentials",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "id": "GET--auth-me-2",
+      "id": "GET--auth-me",
       "title": "GET /auth/me",
       "testType": "api",
       "story": "Get the currently authenticated user",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "GET--bookings-3",
+      "id": "GET--bookings",
       "title": "GET /bookings",
       "testType": "api",
       "story": "List all bookings",
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "POST--bookings-4",
+      "id": "POST--bookings",
       "title": "POST /bookings",
       "testType": "api",
       "story": "Create a booking (buy tickets)",
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "GET--bookings-ref--ref--5",
+      "id": "GET--bookings-ref--ref-",
       "title": "GET /bookings/ref/{ref}",
       "testType": "api",
       "story": "Look up a booking by reference code",
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "GET--bookings--id--6",
+      "id": "GET--bookings--id-",
       "title": "GET /bookings/{id}",
       "testType": "api",
       "story": "Get a single booking by ID",
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "DELETE--bookings--id--7",
+      "id": "DELETE--bookings--id-",
       "title": "DELETE /bookings/{id}",
       "testType": "api",
       "story": "Cancel a booking",
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "GET--events-8",
+      "id": "GET--events",
       "title": "GET /events",
       "testType": "api",
       "story": "List all events",
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "POST--events-9",
+      "id": "POST--events",
       "title": "POST /events",
       "testType": "api",
       "story": "Create a new event",
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "GET--events--id--10",
+      "id": "GET--events--id-",
       "title": "GET /events/{id}",
       "testType": "api",
       "story": "Get a single event by ID",
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "PUT--events--id--11",
+      "id": "PUT--events--id-",
       "title": "PUT /events/{id}",
       "testType": "api",
       "story": "Update an event",
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "DELETE--events--id--12",
+      "id": "DELETE--events--id-",
       "title": "DELETE /events/{id}",
       "testType": "api",
       "story": "Delete an event",
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "GET--health-13",
+      "id": "GET--health",
       "title": "GET /health",
       "testType": "api",
       "story": "API health check",
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "GET--config-14",
+      "id": "GET--config",
       "title": "GET /config",
       "testType": "api",
       "story": "Get public feature flags",

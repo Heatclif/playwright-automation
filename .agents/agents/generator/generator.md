@@ -23,7 +23,7 @@ All inputs are provided as strings within the delegation context:
 
 | Input | Type | Description |
 |-------|------|-------------|
-| requirementsPath | string | File path to `input/requirements.md` (user stories + acceptance criteria in markdown) |
+| requirementsPath | string | File path to `artifacts/inputs/requirements.md` (user stories + acceptance criteria in markdown) |
 | outputPath | string | File path where manual test cases JSON will be written (`${artifactsDir}/outputs/sprint<N>/manual-cases.json`) |
 | specsPath | string | Directory path where generated `.spec.ts` Playwright specs will be written (`tests/eventhub/` – UI specs go to `ui/`, API specs to `api/` per classification) |
 | rtmPath | string | File path to `rtm/rtm.json` on disk — read for dedup, entries appended to it (`${artifactsDir}/rtm/rtm.json`) |

@@ -1,16 +1,40 @@
 import { expect, test } from '../../../src/eventhub/ui/ui-fixtures';
 
 test.describe('Accessibility', { tag: '@ui' }, () => {
-  test('AC-ACC-001: Color contrast meets WCAG AA', async ({ app, page }) => {
+  test('AC-ACC-001: Color contrast meets WCAG AA', async ({ app }) => {
     await app.homePage.goto();
     await expect(app.homePage.heading).toBeVisible();
 
-    const colors = await app.homePage.heading.evaluate((el) => {
-      const style = window.getComputedStyle(el);
-      return { color: style.color, backgroundColor: style.backgroundColor };
+    const contrastRatio = await app.homePage.heading.evaluate((el) => {
+      const parseRgb = (cssColor: string): [number, number, number, number] => {
+        const m = cssColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+        if (!m) return [0, 0, 0, 1];
+        return [Number(m[1]), Number(m[2]), Number(m[3]), m[4] !== undefined ? Number(m[4]) : 1];
+      };
+      const luminance = ([r, g, b]: [number, number, number, number]) => {
+        const channel = (v: number) => {
+          const s = v / 255;
+          return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+        };
+        return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b);
+      };
+
+      const fg = parseRgb(window.getComputedStyle(el).color);
+      let bg: [number, number, number, number] = [255, 255, 255, 1];
+      let curr: HTMLElement | null = el as HTMLElement;
+      while (curr) {
+        const parsed = parseRgb(window.getComputedStyle(curr).backgroundColor);
+        if (parsed[3] > 0) {
+          bg = parsed;
+          break;
+        }
+        curr = curr.parentElement;
+      }
+      const l1 = luminance(fg);
+      const l2 = luminance(bg);
+      return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     });
-    expect(colors.color).not.toBe(colors.backgroundColor);
-    await expect(page.locator('body')).toBeVisible();
+    expect(contrastRatio).toBeGreaterThanOrEqual(4.5);
   });
 
   test('AC-ACC-002: Form labels are associated', async ({ app }) => {
@@ -28,13 +52,13 @@ test.describe('Accessibility', { tag: '@ui' }, () => {
 
     await page.keyboard.press('Tab');
     const focusedTag = await page.evaluate(() => document.activeElement?.tagName ?? '');
-    expect(focusedTag.length).toBeGreaterThan(0);
+    expect(['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA']).toContain(focusedTag);
   });
 
-  test('AC-ACC-004: ARIA labels where needed', async ({ app }) => {
+  test('AC-ACC-004: ARIA labels where needed', async ({ app, page }) => {
     await app.eventsPage.goto();
 
-    await expect(app.eventsPage.nav.root).toBeVisible();
-    await expect(app.eventsPage.searchInput).toBeVisible();
+    await expect(page.getByRole('navigation')).toBeVisible();
+    await expect(app.eventsPage.searchInput).toHaveAttribute('placeholder', /.+/);
   });
 });

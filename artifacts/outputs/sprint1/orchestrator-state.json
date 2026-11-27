@@ -1,12 +1,31 @@
 {
-  "runId": "orchestrator-review-2026-11-27T11:11:55.616Z",
-  "timestamp": "2026-11-27T11:11:55.616Z",
-  "workflow": "review",
+  "runId": "orchestrator-manual-review-2026-11-27T12:16:50.609Z",
+  "timestamp": "2026-11-27T12:16:50.609Z",
+  "workflow": "manual-review",
+  "planner": {
+    "status": "completed",
+    "scenariosGenerated": 57,
+    "uiScenarios": 41,
+    "apiScenarios": 16,
+    "scenariosPath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\outputs\\sprint1\\planner\\api-scenarios.json",
+    "planPath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\outputs\\sprint1\\planner\\execution-plan.json"
+  },
+  "generator": {
+    "status": "completed",
+    "mode": "manual",
+    "specsGenerated": 0,
+    "uiSpecsCount": 0,
+    "apiSpecsCount": 0,
+    "manualCasesWritten": 0,
+    "manualCasesPath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\outputs\\sprint1\\manual-cases.json",
+    "gapReportPath": "C:\\Users\\Sandeep\\OneDrive - R Systems International Ltd\\Data\\Projects\\QE_AI_Excellence\\Capstone\\playwright-automation\\artifacts\\outputs\\sprint1\\generator\\gap-report.json",
+    "gapsDetected": 0
+  },
   "review": {
     "status": "completed",
-    "source": "spec",
-    "totalSpecs": 38,
-    "passed": 38,
+    "source": "manual",
+    "totalSpecs": 72,
+    "passed": 72,
     "failed": 0,
     "passRate": "100.0%",
     "findingsCount": 0,

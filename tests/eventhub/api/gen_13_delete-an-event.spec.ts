@@ -15,5 +15,8 @@ test.describe('Delete an event', { tag: '@api' }, () => {
 
     expect(response.status).toBe(200);
     expect(response.data.success).toBe(true);
+
+    const getAfter = await eventsApi.get_event_by_id(eventId);
+    expect(getAfter.status).toBe(404);
   });
 });

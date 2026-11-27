@@ -144,7 +144,7 @@ function parseCliArgs(argv: string[]): CliConfig {
   const rawMode = (opts.get('mode') || defaultMode) as 'manual' | 'both' | 'specs';
 
   const defaultSource: 'spec' | 'manual' =
-    stage === 'manual-review' ? 'manual' : 'spec';
+    stage === 'manual-review' || rawMode === 'manual' ? 'manual' : 'spec';
   const rawSource = (opts.get('source') || defaultSource) as 'spec' | 'manual';
 
   return {
@@ -400,7 +400,9 @@ function parseOpenApiScenarios(openapiPath: string): Scenario[] {
       if (!['get', 'post', 'put', 'delete', 'patch'].includes(m)) continue;
 
       const opTag = (operation.tags && operation.tags[0]) || 'api';
-      const id = `${m.toUpperCase()}-${pathKey.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-${scenarios.length}`;
+      const id = operation.operationId
+        ? String(operation.operationId)
+        : `${m.toUpperCase()}-${pathKey.replace(/[^a-z0-9]/gi, '-').toLowerCase()}`;
       const priority: 'P1' | 'P2' =
         pathKey.includes('auth') || pathKey.includes('health') ? 'P1' : 'P2';
 
@@ -523,8 +525,8 @@ function buildValidUiSpec(groupName: string, batch: Scenario[]): string {
       const title = `${sc.id}: ${sc.title}`.replace(/'/g, "\\'");
       return `  test('${title}', async ({ app, page }) => {
     await app.eventsPage.goto();
-    await expect(page).toHaveURL(/\\//);
-    await expect(app.eventsPage.heading).toBeVisible();
+    await expect(page).toHaveURL(/\\/events/);
+    await expect(app.eventsPage.searchInput).toBeVisible();
   });`;
     })
     .join('\n\n');
@@ -542,12 +544,47 @@ function buildValidApiSpec(groupName: string, batch: Scenario[]): string {
   const tests = batch
     .map(sc => {
       const title = `${sc.id}: ${sc.title}`.replace(/'/g, "\\'");
-      return `  test('${title}', async ({ authedApi: { eventsApi } }) => {
+      const m = (sc.method || 'get').toLowerCase();
+      const p = sc.path || '/events';
+
+      if (p.includes('health')) {
+        return `  test('${title}', async ({ api: { healthApi } }) => {
+    const response = await healthApi.get_health();
+    expect(response.status).toBe(200);
+  });`;
+      }
+      if (p.includes('config')) {
+        return `  test('${title}', async ({ api: { healthApi } }) => {
+    const response = await healthApi.get_config();
+    expect(response.status).toBe(200);
+  });`;
+      }
+      if (p.includes('/auth/me')) {
+        return `  test('${title}', async ({ authedApi: { authApi } }) => {
+    const response = await authApi.get_me();
+    expect(response.status).toBe(200);
+    expect(response.data.success).toBe(true);
+  });`;
+      }
+      if (p.includes('/bookings') && m === 'get' && !p.includes('{')) {
+        return `  test('${title}', async ({ authedApi: { bookingsApi } }) => {
+    const response = await bookingsApi.get_bookings({ page: 1, limit: 5 });
+    expect(response.status).toBe(200);
+    expect(response.data.success).toBe(true);
+    expect(Array.isArray(response.data.data)).toBe(true);
+  });`;
+      }
+      if (p.includes('/events') && m === 'get' && !p.includes('{')) {
+        return `  test('${title}', async ({ authedApi: { eventsApi } }) => {
     const response = await eventsApi.get_events({ page: 1, limit: 5 });
     expect(response.status).toBe(200);
     expect(response.data.success).toBe(true);
     expect(Array.isArray(response.data.data)).toBe(true);
   });`;
+      }
+      throw new Error(
+        `Deterministic generator cannot scaffold ${m.toUpperCase()} ${p}; use @generator agent with @add-playwright-test for mutating/parameterized routes.`
+      );
     })
     .join('\n\n');
 
@@ -643,12 +680,11 @@ async function runGeneratorStage(cfg: CliConfig, includeVariants = false) {
 
       // Generate spec files if mode is 'specs' or 'both'
       if (cfg.mode === 'specs' || cfg.mode === 'both') {
-        const content = testType === 'api'
-          ? buildValidApiSpec(story, batch)
-          : buildValidUiSpec(story, batch);
-
         // Guardrail: never overwrite existing spec files
         if (cfg.writeSpecs && !fs.existsSync(fullSpecPath)) {
+          const content = testType === 'api'
+            ? buildValidApiSpec(story, batch)
+            : buildValidUiSpec(story, batch);
           fs.writeFileSync(fullSpecPath, content);
         }
         generatedSpecs.push({ filePath: fullSpecPath, fileName: specName, testType });
@@ -690,10 +726,8 @@ async function runGeneratorStage(cfg: CliConfig, includeVariants = false) {
   }
   writeJson(cfg.rtmPath, rtm);
 
-  // Gap report computation
-  const uncovered = includeVariants
-    ? []
-    : rtm.filter(e => e.status === 'planned').map(e => e.acId);
+  // Gap report computation (always reflect true RTM state)
+  const uncovered = rtm.filter(e => e.status === 'planned').map(e => e.acId);
 
   const gapReport = {
     gapsDetected: uncovered.length,
@@ -922,7 +956,7 @@ async function runReviewStage(cfg: CliConfig) {
   const failedCount = totalChecked - passedCount;
   const passRate = totalChecked > 0
     ? ((passedCount / totalChecked) * 100).toFixed(1) + '%'
-    : '100.0%';
+    : '0.0%';
 
   const output = {
     runId: `review-${now}`,
@@ -941,7 +975,7 @@ async function runReviewStage(cfg: CliConfig) {
   console.log(`  [Review] source=${cfg.source}: ${passedCount}/${totalChecked} passed (${passRate}), ${reviews.length} findings -> ${findingsPath}`);
 
   return {
-    status: 'completed' as const,
+    status: (totalChecked === 0 ? 'failed' : 'completed') as 'completed' | 'failed',
     source: cfg.source,
     totalSpecs: totalChecked,
     passed: passedCount,
@@ -989,26 +1023,28 @@ async function runHealerStage(cfg: CliConfig) {
   }
 
   // Optional live Playwright verification (if --run-playwright true)
-  let playwrightExitCode = 0;
+  let playwrightExecuted = false;
+  let playwrightPassed = false;
   if (cfg.runPlaywright) {
     try {
       execSync('npx playwright test --list --project=chromium', { cwd: PLAYWRIGHT_DIR, stdio: 'pipe' });
+      // Note: --list verifies compilation/discovery; live execution requires .env credentials
     } catch {
-      playwrightExitCode = 1;
+      playwrightPassed = false;
     }
   }
 
-  // Mark generated entries with no findings as done
+  // Update RTM only when real findings exist or live test execution passed
   const filesWithFindings = new Set(findings.map(f => f.file));
   for (const entry of rtm) {
     if (entry.status === 'automated-generated') {
       if (entry.specFile && filesWithFindings.has(entry.specFile)) {
         entry.status = 'needs-human';
         rtmUpdates.push({ acId: entry.acId, status: 'needs-human', reason: 'Reviewer findings require attention' });
-      } else if (playwrightExitCode === 0) {
+      } else if (playwrightExecuted && playwrightPassed) {
         entry.status = 'done';
         testsFixed++;
-        rtmUpdates.push({ acId: entry.acId, status: 'done', reason: 'Verified clean in review & Playwright list check' });
+        rtmUpdates.push({ acId: entry.acId, status: 'done', reason: 'Verified passing in Playwright execution' });
       }
     }
   }
@@ -1072,13 +1108,20 @@ async function runFullPipeline(cfg: CliConfig) {
 
     console.log('─ PHASE 1: PLANNER ─');
     plannerResult = await runPlannerStage(cfg);
+    if (plannerResult.status === 'failed' || plannerResult.scenariosGenerated === 0) {
+      throw new Error(`Planner stage failed: ${plannerResult.error || '0 scenarios generated'}`);
+    }
 
     console.log('─ PHASE 2: GENERATOR ─');
     generatorResult = await runGeneratorStage(cfg, false);
+    if (generatorResult.status === 'failed') {
+      throw new Error(`Generator stage failed: ${generatorResult.error || 'unknown error'}`);
+    }
 
     if (cfg.gapAnalysis) {
       console.log('─ PHASE 3: GAP ANALYSIS LOOP ─');
       let gapIter = 0;
+      let prevGaps = Infinity;
       while (gapIter < cfg.maxGapIterations) {
         gapIter++;
         const gapReport = readJsonSafe<any>(generatorResult.gapReportPath, { gapsDetected: 0 });
@@ -1090,7 +1133,12 @@ async function runFullPipeline(cfg: CliConfig) {
           console.log(`  [GapLoop] Iteration ${gapIter}: variant-mode=manual (${gapReport.gapsDetected} gaps reported for approval).`);
           break;
         }
-        console.log(`  [GapLoop] Iteration ${gapIter}: auto-generating variants for ${gapReport.gapsDetected} gaps...`);
+        if (gapReport.gapsDetected >= prevGaps) {
+          console.log(`  [GapLoop] Iteration ${gapIter}: ${gapReport.gapsDetected} gaps unchanged; stopping loop.`);
+          break;
+        }
+        prevGaps = gapReport.gapsDetected;
+        console.log(`  [GapLoop] Iteration ${gapIter}: re-running generator for ${gapReport.gapsDetected} gaps...`);
         generatorResult = await runGeneratorStage(cfg, true);
       }
     }
@@ -1170,7 +1218,7 @@ async function main() {
   const validStages = ['planner', 'planner-only', 'generator', 'review', 'heal', 'healer', 'manual-review', 'full', 'route'];
 
   if (!cfg.stage || !validStages.includes(cfg.stage)) {
-    console.error(`Usage: npx ts-node scripts/orchestrate.ts <${validStages.join('|')}> [options]`);
+    console.error(`Usage: npx tsx scripts/orchestrate.ts <${validStages.join('|')}> [options]`);
     process.exit(1);
   }
 

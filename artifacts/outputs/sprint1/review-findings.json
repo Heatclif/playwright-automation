@@ -1,10 +1,10 @@
 {
-  "runId": "review-2026-11-27T11:11:55.604Z",
-  "timestamp": "2026-11-27T11:11:55.604Z",
-  "source": "spec",
+  "runId": "review-2026-11-27T12:16:50.607Z",
+  "timestamp": "2026-11-27T12:16:50.607Z",
+  "source": "manual",
   "summary": {
-    "totalSpecs": 38,
-    "passed": 38,
+    "totalSpecs": 72,
+    "passed": 72,
     "failed": 0,
     "passRate": "100.0%"
   },
