@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/bookings",
+    "body": {
+      "eventId": 78971,
+      "customerName": "Priya Sharma",
+      "customerEmail": "priya.sharma@example.com",
+      "customerPhone": "+91-9876543210",
+      "quantity": 2
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 83438,
+        "eventId": 78971,
+        "userId": 17488,
+        "customerName": "Priya Sharma",
+        "customerEmail": "priya.sharma@example.com",
+        "customerPhone": "+91-9876543210",
+        "quantity": 2,
+        "totalPrice": "1998",
+        "status": "confirmed",
+        "bookingRef": "B-NET9IE",
+        "createdAt": "2026-11-27T12:54:10.734Z",
+        "updatedAt": "2026-11-27T12:54:10.734Z",
+        "event": {
+          "id": 78971,
+          "title": "Booking Target Event 1795784050349_3879",
+          "description": "",
+          "category": "Conference",
+          "venue": "Bangalore Tech Park",
+          "city": "Bangalore",
+          "eventDate": "2026-12-27T09:30:00.000Z",
+          "price": "999",
+          "totalSeats": 50,
+          "availableSeats": 50,
+          "imageUrl": null,
+          "isStatic": false,
+          "userId": 17488,
+          "createdAt": "2026-11-27T12:54:10.489Z",
+          "updatedAt": "2026-11-27T12:54:10.489Z"
+        }
+      },
+      "message": "Booking confirmed!"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/auth/login -> 200
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/auth/login",
+    "body": {
+      "email": "natsuerza4321@gmail.com",
+      "password": "***"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "token": "***",
+      "user": {
+        "id": 17488,
+        "email": "natsuerza4321@gmail.com"
+      }
+    }
+  }
+}
+[API] GET https://api.eventhub.rahulshettyacademy.com/api/auth/me -> 200
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/auth/me"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "user": {
+        "userId": 17488,
+        "email": "natsuerza4321@gmail.com",
+        "iat": 1795784064,
+        "exp": 1796388864
+      }
+    }
+  }
+}

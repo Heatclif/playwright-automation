@@ -1,0 +1,133 @@
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/auth/login -> 200
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/auth/login",
+    "body": {
+      "email": "natsuerza4321@gmail.com",
+      "password": "***"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "token": "***",
+      "user": {
+        "id": 17488,
+        "email": "natsuerza4321@gmail.com"
+      }
+    }
+  }
+}
+[API] GET https://api.eventhub.rahulshettyacademy.com/api/events?city=Bangalore&limit=5&page=1 -> 200
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events?city=Bangalore&limit=5&page=1",
+    "params": {
+      "city": "Bangalore",
+      "limit": 5,
+      "page": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "data": [
+        {
+          "id": 78972,
+          "title": "API Tech Summit 1795784054612_4686",
+          "description": "Automated test event created at 2026-11-27T12:54:14.612Z",
+          "category": "Conference",
+          "venue": "Bangalore Tech Park",
+          "city": "Bangalore",
+          "eventDate": "2026-12-27T09:30:00.000Z",
+          "price": "999",
+          "totalSeats": 50,
+          "availableSeats": 50,
+          "imageUrl": null,
+          "isStatic": false,
+          "userId": 17488,
+          "createdAt": "2026-11-27T12:54:14.746Z",
+          "updatedAt": "2026-11-27T12:54:14.746Z"
+        },
+        {
+          "id": 78971,
+          "title": "Booking Target Event 1795784050349_3879",
+          "description": "",
+          "category": "Conference",
+          "venue": "Bangalore Tech Park",
+          "city": "Bangalore",
+          "eventDate": "2026-12-27T09:30:00.000Z",
+          "price": "999",
+          "totalSeats": 50,
+          "availableSeats": 48,
+          "imageUrl": null,
+          "isStatic": false,
+          "userId": 17488,
+          "createdAt": "2026-11-27T12:54:10.489Z",
+          "updatedAt": "2026-11-27T12:54:10.489Z"
+        },
+        {
+          "id": 78018,
+          "title": "Max Seat Event 1795697875219_5524",
+          "description": "Automated test event created at 2026-11-26T12:57:55.219Z",
+          "category": "Conference",
+          "venue": "Bangalore Tech Park",
+          "city": "Bangalore",
+          "eventDate": "2026-12-26T09:30:00.000Z",
+          "price": "999",
+          "totalSeats": 100,
+          "availableSeats": 100,
+          "imageUrl": null,
+          "isStatic": false,
+          "userId": 17488,
+          "createdAt": "2026-11-26T12:57:55.336Z",
+          "updatedAt": "2026-11-26T12:57:55.336Z"
+        },
+        {
+          "id": 78017,
+          "title": "Cancel Restore Event 1795697873293_1491",
+          "description": "Automated test event created at 2026-11-26T12:57:53.293Z",
+          "category": "Conference",
+          "venue": "Bangalore Tech Park",
+          "city": "Bangalore",
+          "eventDate": "2026-12-26T09:30:00.000Z",
+          "price": "999",
+          "totalSeats": 10,
+          "availableSeats": 10,
+          "imageUrl": null,
+          "isStatic": false,
+          "userId": 17488,
+          "createdAt": "2026-11-26T12:57:53.419Z",
+          "updatedAt": "2026-11-26T12:57:53.419Z"
+        },
+        {
+          "id": 78016,
+          "title": "Ref Lookup Event 1795697870414_6110",
+          "description": "Automated test event created at 2026-11-26T12:57:50.414Z",
+          "category": "Conference",
+          "venue": "Bangalore Tech Park",
+          "city": "Bangalore",
+          "eventDate": "2026-12-26T09:30:00.000Z",
+          "price": "999",
+          "totalSeats": 50,
+          "availableSeats": 49,
+          "imageUrl": null,
+          "isStatic": false,
+          "userId": 17488,
+          "createdAt": "2026-11-26T12:57:50.539Z",
+          "updatedAt": "2026-11-26T12:57:50.539Z"
+        }
+      ],
+      "pagination": {
+        "total": 17,
+        "page": 1,
+        "limit": 5,
+        "totalPages": 4
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/bookings",
+    "body": {
+      "eventId": 78978,
+      "customerName": "Amit Patel",
+      "customerEmail": "amit.patel@example.com",
+      "customerPhone": "+91-9876543212",
+      "quantity": 11
+    }
+  },
+  "response": {
+    "status": 400,
+    "body": {
+      "success": false,
+      "error": "Validation failed",
+      "details": [
+        {
+          "field": "quantity",
+          "message": "Quantity must be an integer between 1 and 10"
+        }
+      ]
+    }
+  }
+}

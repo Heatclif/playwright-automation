@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events",
+    "body": {
+      "title": "Booking Target Event 1795784050349_3879",
+      "category": "Conference",
+      "venue": "Bangalore Tech Park",
+      "city": "Bangalore",
+      "eventDate": "2026-12-27T09:30:00.000Z",
+      "price": 999,
+      "totalSeats": 50
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 78971,
+        "title": "Booking Target Event 1795784050349_3879",
+        "description": "",
+        "category": "Conference",
+        "venue": "Bangalore Tech Park",
+        "city": "Bangalore",
+        "eventDate": "2026-12-27T09:30:00.000Z",
+        "price": "999",
+        "totalSeats": 50,
+        "availableSeats": 50,
+        "imageUrl": null,
+        "isStatic": false,
+        "userId": 17488,
+        "createdAt": "2026-11-27T12:54:10.489Z",
+        "updatedAt": "2026-11-27T12:54:10.489Z"
+      },
+      "message": "Event created successfully"
+    }
+  }
+}

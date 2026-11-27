@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events",
+    "body": {
+      "title": "Hands-on AI & Agentic Coding Workshop 1795784056843",
+      "description": "Deep dive into modern AI tools and architecture.",
+      "category": "Workshop",
+      "venue": "Innovation Lab",
+      "city": "Mumbai",
+      "eventDate": "2026-12-18T14:00:00.000Z",
+      "price": 1200,
+      "totalSeats": 30
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 78974,
+        "title": "Hands-on AI & Agentic Coding Workshop 1795784056843",
+        "description": "Deep dive into modern AI tools and architecture.",
+        "category": "Workshop",
+        "venue": "Innovation Lab",
+        "city": "Mumbai",
+        "eventDate": "2026-12-18T14:00:00.000Z",
+        "price": "1200",
+        "totalSeats": 30,
+        "availableSeats": 30,
+        "imageUrl": null,
+        "isStatic": false,
+        "userId": 17488,
+        "createdAt": "2026-11-27T12:54:16.976Z",
+        "updatedAt": "2026-11-27T12:54:16.976Z"
+      },
+      "message": "Event created successfully"
+    }
+  }
+}

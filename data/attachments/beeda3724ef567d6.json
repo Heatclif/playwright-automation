@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/bookings",
+    "body": {
+      "eventId": 78976,
+      "customerName": "Priya Sharma",
+      "customerEmail": "priya.sharma@example.com",
+      "customerPhone": "+91-9876543210",
+      "quantity": 2
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 83440,
+        "eventId": 78976,
+        "userId": 17488,
+        "customerName": "Priya Sharma",
+        "customerEmail": "priya.sharma@example.com",
+        "customerPhone": "+91-9876543210",
+        "quantity": 2,
+        "totalPrice": "1998",
+        "status": "confirmed",
+        "bookingRef": "C-DVPQVF",
+        "createdAt": "2026-11-27T12:54:19.628Z",
+        "updatedAt": "2026-11-27T12:54:19.628Z",
+        "event": {
+          "id": 78976,
+          "title": "Cancel Restore Event 1795784059239_6981",
+          "description": "Automated test event created at 2026-11-27T12:54:19.239Z",
+          "category": "Conference",
+          "venue": "Bangalore Tech Park",
+          "city": "Bangalore",
+          "eventDate": "2026-12-27T09:30:00.000Z",
+          "price": "999",
+          "totalSeats": 10,
+          "availableSeats": 10,
+          "imageUrl": null,
+          "isStatic": false,
+          "userId": 17488,
+          "createdAt": "2026-11-27T12:54:19.376Z",
+          "updatedAt": "2026-11-27T12:54:19.376Z"
+        }
+      },
+      "message": "Booking confirmed!"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/auth/register -> 201
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/auth/register",
+    "body": {
+      "email": "apitest_1795784062113_2373@example.com",
+      "password": "***"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "token": "***",
+      "user": {
+        "id": 38883,
+        "email": "apitest_1795784062113_2373@example.com"
+      }
+    }
+  }
+}

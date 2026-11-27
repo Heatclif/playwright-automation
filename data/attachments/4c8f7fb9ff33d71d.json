@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events/78977"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "message": "Event deleted successfully"
+    }
+  }
+}

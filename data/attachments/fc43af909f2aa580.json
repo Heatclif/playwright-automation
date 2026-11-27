@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/bookings/83440"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "message": "Booking cancelled"
+    }
+  }
+}

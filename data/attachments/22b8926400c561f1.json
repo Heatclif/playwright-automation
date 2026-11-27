@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events",
+    "body": {
+      "title": "Max Seat Event 1795784061083_6583",
+      "description": "Automated test event created at 2026-11-27T12:54:21.083Z",
+      "category": "Conference",
+      "venue": "Bangalore Tech Park",
+      "city": "Bangalore",
+      "eventDate": "2026-12-27T09:30:00.000Z",
+      "price": 999,
+      "totalSeats": 100,
+      "imageUrl": null
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 78978,
+        "title": "Max Seat Event 1795784061083_6583",
+        "description": "Automated test event created at 2026-11-27T12:54:21.083Z",
+        "category": "Conference",
+        "venue": "Bangalore Tech Park",
+        "city": "Bangalore",
+        "eventDate": "2026-12-27T09:30:00.000Z",
+        "price": "999",
+        "totalSeats": 100,
+        "availableSeats": 100,
+        "imageUrl": null,
+        "isStatic": false,
+        "userId": 17488,
+        "createdAt": "2026-11-27T12:54:21.218Z",
+        "updatedAt": "2026-11-27T12:54:21.218Z"
+      },
+      "message": "Event created successfully"
+    }
+  }
+}

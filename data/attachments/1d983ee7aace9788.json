@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/bookings",
+    "body": {
+      "eventId": 78973,
+      "customerName": "Aarav Mehta",
+      "customerEmail": "aarav.mehta@example.com",
+      "customerPhone": "+91-9876543211",
+      "quantity": 1
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 83439,
+        "eventId": 78973,
+        "userId": 17488,
+        "customerName": "Aarav Mehta",
+        "customerEmail": "aarav.mehta@example.com",
+        "customerPhone": "+91-9876543211",
+        "quantity": 1,
+        "totalPrice": "999",
+        "status": "confirmed",
+        "bookingRef": "R-0403C3",
+        "createdAt": "2026-11-27T12:54:16.755Z",
+        "updatedAt": "2026-11-27T12:54:16.755Z",
+        "event": {
+          "id": 78973,
+          "title": "Ref Lookup Event 1795784056347_5267",
+          "description": "Automated test event created at 2026-11-27T12:54:16.347Z",
+          "category": "Conference",
+          "venue": "Bangalore Tech Park",
+          "city": "Bangalore",
+          "eventDate": "2026-12-27T09:30:00.000Z",
+          "price": "999",
+          "totalSeats": 50,
+          "availableSeats": 50,
+          "imageUrl": null,
+          "isStatic": false,
+          "userId": 17488,
+          "createdAt": "2026-11-27T12:54:16.486Z",
+          "updatedAt": "2026-11-27T12:54:16.486Z"
+        }
+      },
+      "message": "Booking confirmed!"
+    }
+  }
+}

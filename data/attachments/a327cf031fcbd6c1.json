@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events",
+    "body": {
+      "title": "Seat Test Event 1795784051815",
+      "category": "Workshop",
+      "venue": "Room 101",
+      "city": "Bangalore",
+      "eventDate": "2026-11-25T10:00:00.000Z",
+      "price": 500,
+      "totalSeats": 25
+    }
+  },
+  "response": {
+    "status": 400,
+    "body": {
+      "success": false,
+      "error": "Validation failed",
+      "details": [
+        {
+          "field": "eventDate",
+          "message": "Event date must be in the future"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/config"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "showExploreLinks": false
+    }
+  }
+}

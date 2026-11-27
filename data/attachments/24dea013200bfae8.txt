@@ -1,0 +1,160 @@
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/auth/login -> 200
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/auth/login",
+    "body": {
+      "email": "natsuerza4321@gmail.com",
+      "password": "***"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "token": "***",
+      "user": {
+        "id": 17488,
+        "email": "natsuerza4321@gmail.com"
+      }
+    }
+  }
+}
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/events -> 201
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events",
+    "body": {
+      "title": "Cancel Restore Event 1795784059239_6981",
+      "description": "Automated test event created at 2026-11-27T12:54:19.239Z",
+      "category": "Conference",
+      "venue": "Bangalore Tech Park",
+      "city": "Bangalore",
+      "eventDate": "2026-12-27T09:30:00.000Z",
+      "price": 999,
+      "totalSeats": 10,
+      "imageUrl": null
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 78976,
+        "title": "Cancel Restore Event 1795784059239_6981",
+        "description": "Automated test event created at 2026-11-27T12:54:19.239Z",
+        "category": "Conference",
+        "venue": "Bangalore Tech Park",
+        "city": "Bangalore",
+        "eventDate": "2026-12-27T09:30:00.000Z",
+        "price": "999",
+        "totalSeats": 10,
+        "availableSeats": 10,
+        "imageUrl": null,
+        "isStatic": false,
+        "userId": 17488,
+        "createdAt": "2026-11-27T12:54:19.376Z",
+        "updatedAt": "2026-11-27T12:54:19.376Z"
+      },
+      "message": "Event created successfully"
+    }
+  }
+}
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/bookings -> 201
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/bookings",
+    "body": {
+      "eventId": 78976,
+      "customerName": "Priya Sharma",
+      "customerEmail": "priya.sharma@example.com",
+      "customerPhone": "+91-9876543210",
+      "quantity": 2
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 83440,
+        "eventId": 78976,
+        "userId": 17488,
+        "customerName": "Priya Sharma",
+        "customerEmail": "priya.sharma@example.com",
+        "customerPhone": "+91-9876543210",
+        "quantity": 2,
+        "totalPrice": "1998",
+        "status": "confirmed",
+        "bookingRef": "C-DVPQVF",
+        "createdAt": "2026-11-27T12:54:19.628Z",
+        "updatedAt": "2026-11-27T12:54:19.628Z",
+        "event": {
+          "id": 78976,
+          "title": "Cancel Restore Event 1795784059239_6981",
+          "description": "Automated test event created at 2026-11-27T12:54:19.239Z",
+          "category": "Conference",
+          "venue": "Bangalore Tech Park",
+          "city": "Bangalore",
+          "eventDate": "2026-12-27T09:30:00.000Z",
+          "price": "999",
+          "totalSeats": 10,
+          "availableSeats": 10,
+          "imageUrl": null,
+          "isStatic": false,
+          "userId": 17488,
+          "createdAt": "2026-11-27T12:54:19.376Z",
+          "updatedAt": "2026-11-27T12:54:19.376Z"
+        }
+      },
+      "message": "Booking confirmed!"
+    }
+  }
+}
+[API] DELETE https://api.eventhub.rahulshettyacademy.com/api/bookings/83440 -> 200
+{
+  "request": {
+    "method": "DELETE",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/bookings/83440"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "message": "Booking cancelled"
+    }
+  }
+}
+[API] GET https://api.eventhub.rahulshettyacademy.com/api/events/78976 -> 200
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events/78976"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 78976,
+        "title": "Cancel Restore Event 1795784059239_6981",
+        "description": "Automated test event created at 2026-11-27T12:54:19.239Z",
+        "category": "Conference",
+        "venue": "Bangalore Tech Park",
+        "city": "Bangalore",
+        "eventDate": "2026-12-27T09:30:00.000Z",
+        "price": "999",
+        "totalSeats": 10,
+        "availableSeats": 10,
+        "imageUrl": null,
+        "isStatic": false,
+        "userId": 17488,
+        "createdAt": "2026-11-27T12:54:19.376Z",
+        "updatedAt": "2026-11-27T12:54:19.376Z"
+      }
+    }
+  }
+}

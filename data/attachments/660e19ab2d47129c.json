@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/auth/me"
+  },
+  "response": {
+    "status": 401,
+    "body": {
+      "success": false,
+      "error": "Unauthorized"
+    }
+  }
+}

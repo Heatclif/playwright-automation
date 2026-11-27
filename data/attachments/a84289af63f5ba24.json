@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/auth/login",
+    "body": {
+      "email": "natsuerza4321@gmail.com",
+      "password": "***"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "token": "***",
+      "user": {
+        "id": 17488,
+        "email": "natsuerza4321@gmail.com"
+      }
+    }
+  }
+}

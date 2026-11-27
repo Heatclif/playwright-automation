@@ -1,0 +1,91 @@
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/auth/login -> 200
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/auth/login",
+    "body": {
+      "email": "natsuerza4321@gmail.com",
+      "password": "***"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "token": "***",
+      "user": {
+        "id": 17488,
+        "email": "natsuerza4321@gmail.com"
+      }
+    }
+  }
+}
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/events -> 201
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events",
+    "body": {
+      "title": "Max Seat Event 1795784061083_6583",
+      "description": "Automated test event created at 2026-11-27T12:54:21.083Z",
+      "category": "Conference",
+      "venue": "Bangalore Tech Park",
+      "city": "Bangalore",
+      "eventDate": "2026-12-27T09:30:00.000Z",
+      "price": 999,
+      "totalSeats": 100,
+      "imageUrl": null
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 78978,
+        "title": "Max Seat Event 1795784061083_6583",
+        "description": "Automated test event created at 2026-11-27T12:54:21.083Z",
+        "category": "Conference",
+        "venue": "Bangalore Tech Park",
+        "city": "Bangalore",
+        "eventDate": "2026-12-27T09:30:00.000Z",
+        "price": "999",
+        "totalSeats": 100,
+        "availableSeats": 100,
+        "imageUrl": null,
+        "isStatic": false,
+        "userId": 17488,
+        "createdAt": "2026-11-27T12:54:21.218Z",
+        "updatedAt": "2026-11-27T12:54:21.218Z"
+      },
+      "message": "Event created successfully"
+    }
+  }
+}
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/bookings -> 400
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/bookings",
+    "body": {
+      "eventId": 78978,
+      "customerName": "Amit Patel",
+      "customerEmail": "amit.patel@example.com",
+      "customerPhone": "+91-9876543212",
+      "quantity": 11
+    }
+  },
+  "response": {
+    "status": 400,
+    "body": {
+      "success": false,
+      "error": "Validation failed",
+      "details": [
+        {
+          "field": "quantity",
+          "message": "Quantity must be an integer between 1 and 10"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,90 @@
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/auth/login -> 200
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/auth/login",
+    "body": {
+      "email": "natsuerza4321@gmail.com",
+      "password": "***"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "token": "***",
+      "user": {
+        "id": 17488,
+        "email": "natsuerza4321@gmail.com"
+      }
+    }
+  }
+}
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/events -> 201
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events",
+    "body": {
+      "title": "Event to Delete 1795784059619_4717",
+      "category": "Conference",
+      "venue": "Bangalore Tech Park",
+      "city": "Bangalore",
+      "eventDate": "2026-12-27T09:30:00.000Z",
+      "price": 999,
+      "totalSeats": 50
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 78977,
+        "title": "Event to Delete 1795784059619_4717",
+        "description": "",
+        "category": "Conference",
+        "venue": "Bangalore Tech Park",
+        "city": "Bangalore",
+        "eventDate": "2026-12-27T09:30:00.000Z",
+        "price": "999",
+        "totalSeats": 50,
+        "availableSeats": 50,
+        "imageUrl": null,
+        "isStatic": false,
+        "userId": 17488,
+        "createdAt": "2026-11-27T12:54:19.750Z",
+        "updatedAt": "2026-11-27T12:54:19.750Z"
+      },
+      "message": "Event created successfully"
+    }
+  }
+}
+[API] DELETE https://api.eventhub.rahulshettyacademy.com/api/events/78977 -> 200
+{
+  "request": {
+    "method": "DELETE",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events/78977"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "message": "Event deleted successfully"
+    }
+  }
+}
+[API] GET https://api.eventhub.rahulshettyacademy.com/api/events/78977 -> 404
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events/78977"
+  },
+  "response": {
+    "status": 404,
+    "body": {
+      "success": false,
+      "error": "Event with id 78977 not found"
+    }
+  }
+}

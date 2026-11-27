@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events",
+    "body": {
+      "description": "Event without title",
+      "category": "Conference",
+      "venue": "Venue 1",
+      "city": "Delhi",
+      "eventDate": "2026-12-11T10:00:00.000Z",
+      "price": 500,
+      "totalSeats": 20
+    }
+  },
+  "response": {
+    "status": 400,
+    "body": {
+      "success": false,
+      "error": "Validation failed",
+      "details": [
+        {
+          "field": "title",
+          "message": "Title is required"
+        }
+      ]
+    }
+  }
+}

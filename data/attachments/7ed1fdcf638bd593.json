@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events",
+    "body": {
+      "title": "API Tech Summit 1795784054612_4686",
+      "description": "Automated test event created at 2026-11-27T12:54:14.612Z",
+      "category": "Conference",
+      "venue": "Bangalore Tech Park",
+      "city": "Bangalore",
+      "eventDate": "2026-12-27T09:30:00.000Z",
+      "price": 999,
+      "totalSeats": 50,
+      "imageUrl": null
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 78972,
+        "title": "API Tech Summit 1795784054612_4686",
+        "description": "Automated test event created at 2026-11-27T12:54:14.612Z",
+        "category": "Conference",
+        "venue": "Bangalore Tech Park",
+        "city": "Bangalore",
+        "eventDate": "2026-12-27T09:30:00.000Z",
+        "price": "999",
+        "totalSeats": 50,
+        "availableSeats": 50,
+        "imageUrl": null,
+        "isStatic": false,
+        "userId": 17488,
+        "createdAt": "2026-11-27T12:54:14.746Z",
+        "updatedAt": "2026-11-27T12:54:14.746Z"
+      },
+      "message": "Event created successfully"
+    }
+  }
+}

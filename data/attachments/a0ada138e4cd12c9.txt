@@ -1,0 +1,102 @@
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/auth/login -> 200
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/auth/login",
+    "body": {
+      "email": "natsuerza4321@gmail.com",
+      "password": "***"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "token": "***",
+      "user": {
+        "id": 17488,
+        "email": "natsuerza4321@gmail.com"
+      }
+    }
+  }
+}
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/events -> 201
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events",
+    "body": {
+      "title": "Pre-Update Event 1795784058283_2047",
+      "category": "Conference",
+      "venue": "Bangalore Tech Park",
+      "city": "Bangalore",
+      "eventDate": "2026-12-27T09:30:00.000Z",
+      "price": 999,
+      "totalSeats": 50
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 78975,
+        "title": "Pre-Update Event 1795784058283_2047",
+        "description": "",
+        "category": "Conference",
+        "venue": "Bangalore Tech Park",
+        "city": "Bangalore",
+        "eventDate": "2026-12-27T09:30:00.000Z",
+        "price": "999",
+        "totalSeats": 50,
+        "availableSeats": 50,
+        "imageUrl": null,
+        "isStatic": false,
+        "userId": 17488,
+        "createdAt": "2026-11-27T12:54:18.419Z",
+        "updatedAt": "2026-11-27T12:54:18.419Z"
+      },
+      "message": "Event created successfully"
+    }
+  }
+}
+[API] PUT https://api.eventhub.rahulshettyacademy.com/api/events/78975 -> 200
+{
+  "request": {
+    "method": "PUT",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/events/78975",
+    "body": {
+      "title": "Updated Global Tech Summit 2026 - Keynote Edition",
+      "price": 2200,
+      "totalSeats": 120,
+      "category": "Conference",
+      "venue": "Bangalore Tech Park",
+      "city": "Bangalore",
+      "eventDate": "2026-12-27T09:30:00.000Z"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "data": {
+        "id": 78975,
+        "title": "Updated Global Tech Summit 2026 - Keynote Edition",
+        "description": "",
+        "category": "Conference",
+        "venue": "Bangalore Tech Park",
+        "city": "Bangalore",
+        "eventDate": "2026-12-27T09:30:00.000Z",
+        "price": "2200",
+        "totalSeats": 120,
+        "availableSeats": 50,
+        "imageUrl": null,
+        "isStatic": false,
+        "userId": 17488,
+        "createdAt": "2026-11-27T12:54:18.419Z",
+        "updatedAt": "2026-11-27T12:54:18.660Z"
+      },
+      "message": "Event updated successfully"
+    }
+  }
+}

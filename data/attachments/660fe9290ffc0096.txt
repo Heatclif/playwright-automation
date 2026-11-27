@@ -1,0 +1,19 @@
+[API] POST https://api.eventhub.rahulshettyacademy.com/api/auth/login -> 400
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eventhub.rahulshettyacademy.com/api/auth/login",
+    "body": {
+      "email": "natsuerza4321@gmail.com",
+      "password": "***"
+    }
+  },
+  "response": {
+    "status": 400,
+    "body": {
+      "success": false,
+      "error": "Invalid email or password",
+      "details": []
+    }
+  }
+}
